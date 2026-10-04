@@ -1,0 +1,149 @@
+/* ==========================================================
+   Effets de défilement façon Apple — additif
+   Tout est conditionné par html.fx (ajouté en <head>) :
+   sans JS, la page reste entièrement visible.
+   ========================================================== */
+
+html.fx { scroll-padding-top: 6rem; }
+
+/* Barre de progression de lecture */
+.fx-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 100%;
+  background: #111215; transform-origin: 0 50%; transform: scaleX(0);
+  z-index: 60; pointer-events: none; will-change: transform;
+}
+
+/* Navbar : verre dépoli + masquage au scroll vers le bas */
+html.fx .floating-navbar {
+  transition: transform .5s cubic-bezier(.22,1,.36,1), background-color .4s, box-shadow .4s, backdrop-filter .4s;
+}
+html.fx .floating-navbar.is-scrolled {
+  background: rgba(255,255,255,.72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+}
+html.fx .floating-navbar.is-hidden { transform: translateY(-140%); }
+
+/* Hero piloté par le scroll (valeurs mises à jour en JS via variables) */
+html.fx .giant-name {
+  transform: scale(var(--hero-name-scale, 1));
+  opacity: var(--hero-name-opacity, .95);
+  will-change: transform, opacity;
+}
+html.fx #profil img[src*="cutout"] {
+  transform: translate3d(0, var(--hero-img-y, 0px), 0) scale(var(--hero-img-scale, 1));
+  will-change: transform;
+}
+
+/* Apparition : fondu + montée + léger flou, une seule fois */
+html.fx [data-fx] {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0) scale(.97);
+  filter: blur(10px);
+  transition:
+    opacity .9s cubic-bezier(.22,1,.36,1),
+    transform 1s cubic-bezier(.22,1,.36,1),
+    filter .9s cubic-bezier(.22,1,.36,1);
+  transition-delay: var(--fx-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+html.fx [data-fx="left"]  { transform: translate3d(-60px, 0, 0); }
+html.fx [data-fx="right"] { transform: translate3d(60px, 0, 0); }
+html.fx [data-fx].is-in {
+  opacity: 1; transform: none; filter: none; will-change: auto;
+}
+
+/* Titre « scrub » : les mots s'allument au fil du scroll */
+.fx-word { opacity: .18; transition: opacity .25s linear; }
+.fx-word.on { opacity: 1; }
+
+/* Cartes d'expérience : relief au survol (le survol répond à une action) */
+html.fx .editorial-card {
+  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .5s;
+}
+@media (hover: hover) {
+  html.fx .editorial-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.22);
+  }
+}
+
+/* Modale : ouverture façon « zoom » */
+#project-modal { transition: background-color .4s; }
+#project-modal:not(.hidden) > div { animation: fx-modal-in .55s cubic-bezier(.22,1,.36,1) both; }
+@keyframes fx-modal-in {
+  from { opacity: 0; transform: translateY(40px) scale(.94); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Accessibilité : on coupe tout si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  html.fx [data-fx] { opacity: 1; transform: none; filter: none; transition: none; }
+  html.fx .giant-name, html.fx #profil img[src*="cutout"] { transform: none; opacity: .95; }
+  .fx-word { opacity: 1; }
+  .fx-progress { display: none; }
+  #project-modal:not(.hidden) > div { animation: none; }
+}
+
+/* ==========================================================
+   V2 — effets plus modernes
+   ========================================================== */
+
+/* Nom du hero : les lettres montent une à une depuis un masque */
+.fx-chw { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; }
+.fx-sp  { display: inline-block; width: .28em; }
+.fx-ch  {
+  display: inline-block; transform: translateY(110%) rotate(6deg); opacity: 0;
+  animation: fx-ch-in 1.1s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay: calc(var(--i) * 55ms + 150ms);
+}
+@keyframes fx-ch-in { to { transform: none; opacity: 1; } }
+
+/* Halo lumineux qui suit la souris dans le hero */
+.fx-glow {
+  position: absolute; left: 0; top: 0; width: 540px; height: 540px; border-radius: 50%;
+  pointer-events: none; z-index: 1; opacity: 0; filter: blur(12px);
+  background: radial-gradient(circle, rgba(56,189,248,.24), rgba(99,102,241,.10) 45%, transparent 70%);
+  transform: translate3d(var(--gx, 50vw), var(--gy, 40vh), 0) translate(-50%, -50%);
+  transition: opacity .6s;
+}
+#profil:hover .fx-glow { opacity: 1; }
+
+/* Bandeau défilant */
+.fx-marquee { background: #111215; color: #fff; overflow: hidden; padding: 20px 0; }
+.fx-track {
+  display: flex; gap: 3rem; width: max-content; animation: fx-marq 38s linear infinite;
+  font-family: "Bebas Neue", Anton, Impact, sans-serif; font-size: clamp(26px, 3.6vw, 44px);
+  letter-spacing: .04em; white-space: nowrap;
+}
+.fx-track span:nth-child(even) { opacity: .35; }
+.fx-marquee:hover .fx-track { animation-play-state: paused; }
+@keyframes fx-marq { to { transform: translateX(-50%); } }
+
+/* Cartes : projecteur qui suit le curseur + inclinaison 3D */
+html.fx .editorial-card { position: relative; }
+.editorial-card::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  opacity: 0; transition: opacity .4s;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(17,18,21,.08), transparent 60%);
+}
+@media (prefers-color-scheme: dark) {
+  .editorial-card::before { background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.09), transparent 60%); }
+}
+@media (hover: hover) {
+  .editorial-card:hover::before { opacity: 1; }
+  html.fx .editorial-card.tilt:hover {
+    transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-6px) scale(1.015);
+    transition: transform .18s ease-out, box-shadow .5s;
+  }
+}
+
+/* Boutons magnétiques */
+.fx-mag { transition: transform .3s cubic-bezier(.22,1,.36,1); will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-ch { animation: none; transform: none; opacity: 1; }
+  .fx-track { animation: none; }
+  .fx-glow { display: none; }
+}
