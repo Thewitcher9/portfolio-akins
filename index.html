@@ -644,11 +644,52 @@
           <p class="text-xs text-gray-600 leading-relaxed mb-4">
             Obtenu avec la Mention Très Bien et mis à l'honneur lors de la cérémonie officielle des bacheliers noiséens.
           </p>
-          <a href="assets/images/diplome_bac_stmg.jpg" target="_blank" rel="noopener noreferrer"
-             class="block rounded-xl overflow-hidden border border-gray-200 hover:opacity-90 transition">
-            <img src="assets/images/diplome_bac_stmg.jpg" alt="Diplôme Baccalauréat STMG" loading="lazy"
-              class="w-full h-auto">
-          </a>
+          <div class="relative w-full max-w-2xl mx-auto">
+  <div id="diplomaSlider" class="flex transition-transform duration-500 ease-in-out">
+    
+    <!-- Slide 1 : Diplôme -->
+    <div class="w-full flex-shrink-0 px-1">
+      <a href="assets/images/diplome_bac_stmg.jpg" target="_blank" rel="noopener noreferrer"
+         class="block rounded-xl overflow-hidden border border-gray-200 hover:opacity-90 transition">
+        <img src="assets/images/diplome_bac_stmg.jpg" alt="Diplôme Baccalauréat STMG" loading="lazy"
+             class="w-full h-auto">
+      </a>
+    </div>
+
+    <!-- Slide 2 : Vidéo YouTube -->
+    <div class="w-full flex-shrink-0 px-1">
+      <div class="rounded-xl overflow-hidden border border-gray-200 aspect-video">
+        <iframe 
+          class="w-full h-full"
+          src="https://www.youtube.com/embed/E-NhIq2Q1Sw" 
+          title="Vidéo YouTube"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+  <button onclick="slidePrev()" 
+          class="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-md rounded-full p-2 transition">
+    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+
+  <button onclick="slideNext()" 
+          class="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white shadow-md rounded-full p-2 transition">
+    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+
+  <div class="flex justify-center gap-2 mt-3">
+    <button onclick="goToSlide(0)" class="w-2.5 h-2.5 rounded-full bg-black transition" data-dot="0"></button>
+    <button onclick="goToSlide(1)" class="w-2.5 h-2.5 rounded-full bg-gray-300 transition" data-dot="1"></button>
+  </div>
+
+</div>
         </div>
   </section>
 
@@ -758,6 +799,36 @@
   <!-- Main JavaScript File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/apple-effects.js"></script>
+
+  <script>
+  let currentSlide = 0;
+  const totalSlides = 2;
+  const slider = document.getElementById('diplomaSlider');
+  const dots = document.querySelectorAll('[data-dot]');
+
+  function updateSlider() {
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('bg-black', i === currentSlide);
+      dot.classList.toggle('bg-gray-300', i !== currentSlide);
+    });
+  }
+
+  function slideNext() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function slidePrev() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+  }
+</script>
 </body>
 
 </html>
