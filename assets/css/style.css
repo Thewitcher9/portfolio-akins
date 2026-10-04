@@ -1,0 +1,164 @@
+/* ==========================================================================
+   PORTFOLIO AKINS ANRETAR — STYLE MATTHEW EDITORIAL / BRUTALIST LUXE
+   Inspiré du design à typographie géante, fond gris perle et navbar flottante
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Bebas Neue', 'Anton', sans-serif;
+
+  /* Palette inspirée du modèle */
+  --bg-page: #EAECEF;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F4F5F7;
+  --bg-dark: #121316;
+  
+  --text-main: #111215;
+  --text-muted: #5F6368;
+  --text-light: #9AA0A6;
+  
+  --border-subtle: #D8DCE2;
+  --border-card: #E2E5E9;
+  
+  --pill-bg: #FFFFFF;
+  --pill-border: #D1D5DB;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+/* Floating animation for hero dynamic badges */
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float-badge 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-badge 6s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+.portrait-glow {
+  box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+/* Background thin concentric circles like in the reference image */
+.bg-concentric {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 50% 35%, transparent 220px, rgba(0,0,0,0.035) 221px, transparent 222px),
+    radial-gradient(circle at 50% 35%, transparent 380px, rgba(0,0,0,0.03) 381px, transparent 382px),
+    radial-gradient(circle at 50% 35%, transparent 540px, rgba(0,0,0,0.025) 541px, transparent 542px);
+  z-index: 0;
+}
+
+/* Floating pill navbar */
+.floating-navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Giant typography text */
+.giant-name {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 16vw, 15rem);
+  line-height: 0.82;
+  text-transform: uppercase;
+  color: #111215;
+  letter-spacing: -0.01em;
+  user-select: none;
+}
+
+/* Photo Placeholder Box (Designed to be intuitive and clean for user replacement) */
+.photo-placeholder {
+  border: 2px dashed #CBD5E1;
+  background-color: rgba(255, 255, 255, 0.65);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-placeholder:hover {
+  border-color: #111215;
+  background-color: #FFFFFF;
+}
+
+.photo-placeholder-dark {
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+}
+
+/* Cards */
+.editorial-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-card);
+  border-radius: 24px;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover {
+  border-color: #CBD5E1;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+/* STAR Badges */
+.star-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: 11px;
+}
+
+/* Print styling */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  
+  header, footer, .no-print, button, .photo-placeholder {
+    display: none !important;
+  }
+
+  .editorial-card {
+    border: 1px solid #E5E7EB !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+}
