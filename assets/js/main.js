@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Open Project Modal (STAR Breakdown with custom placeholder)
-window.openProjectModal = function(projectId) {
+window.openProjectModal = function (projectId) {
   const proj = projectsData.find(p => p.id === projectId);
   if (!proj) return;
 
@@ -297,7 +297,7 @@ window.openProjectModal = function(projectId) {
   }
 };
 
-window.closeProjectModal = function() {
+window.closeProjectModal = function () {
   const modal = document.getElementById("project-modal");
   if (modal) {
     modal.classList.add("hidden");
@@ -357,13 +357,13 @@ function showToast(msg) {
 // ✏️ Adapte les titres et chemins à tes fichiers
 const MASTER_DOCS = [
   { titre: "Relevé de notes Master 1", fichier: "assets/docs/Relevé_des_Notes_AKINS_ANRETAR_M1.pdf" },
-{ titre: "Plaquette formation Modules Master 1", fichier: "assets/docs/Plaquette_Formation_Modules_Master1.pdf" }
+  { titre: "Plaquette formation Modules Master 1", fichier: "assets/docs/Plaquette_Formation_Modules_Master1.pdf" }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
   const $ = id => document.getElementById(id);
   const card = $('master-card'), modal = $('docs-modal'), list = $('docs-list'),
-        frame = $('docs-frame'), empty = $('docs-empty'), link = $('docs-open'), closeBtn = $('docs-close');
+    frame = $('docs-frame'), empty = $('docs-empty'), link = $('docs-open'), closeBtn = $('docs-close');
 
   if (!card || !modal || !list) {
     console.error('Éléments manquants :', { card, modal, list });
