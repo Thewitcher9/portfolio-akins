@@ -356,7 +356,7 @@ function showToast(msg) {
 
 // ✏️ Adapte les titres et chemins à tes fichiers
 const MASTER_DOCS = [
-  { titre: "Relevé de notes Master 1", fichier: "assets/docs/Relevé_des_Notes_AKINS_ANRETAR_M1.pdf", desc: "Résultats du Master 1" }
+  { titre: "Relevé de notes Master 1", fichier: "assets/docs/Relevé_des_Notes_AKINS_ANRETAR_M1.pdf" }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
