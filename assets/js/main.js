@@ -356,13 +356,19 @@ function showToast(msg) {
 
 // ✏️ Adapte les titres et chemins à tes fichiers
 const MASTER_DOCS = [
-  { titre: "Relevé de notes Master 1", fichier: "assets/docs/Relevé_des_Notes_AKINS_ANRETAR_M1.pdf", desc: "Résultats du semestre" }
+  { titre: "Relevé de notes Master 1", fichier: "assets/docs/Relevé_des_Notes_AKINS_ANRETAR_M1.pdf", desc: "Résultats du Master 1" }
 ];
 
-(() => {
+document.addEventListener('DOMContentLoaded', () => {
   const $ = id => document.getElementById(id);
   const card = $('master-card'), modal = $('docs-modal'), list = $('docs-list'),
-        frame = $('docs-frame'), empty = $('docs-empty'), link = $('docs-open');
+        frame = $('docs-frame'), empty = $('docs-empty'), link = $('docs-open'), closeBtn = $('docs-close');
+
+  if (!card || !modal || !list) {
+    console.error('Éléments manquants :', { card, modal, list });
+    return;
+  }
+
   const base = 'w-full text-left p-3 rounded-xl border text-sm transition ';
   const off = 'border-gray-200 bg-white hover:border-black', on = 'border-black bg-black text-white';
 
@@ -374,22 +380,22 @@ const MASTER_DOCS = [
     list.appendChild(li);
   });
 
-  const open = () => { modal.classList.replace('hidden', 'flex'); document.body.style.overflow = 'hidden'; };
+  const open = () => { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; };
   const close = () => {
-    modal.classList.replace('flex', 'hidden'); document.body.style.overflow = '';
-    frame.src = 'about:blank'; frame.classList.add('hidden'); link.classList.add('hidden'); empty.classList.remove('hidden');
+    modal.style.display = 'none'; document.body.style.overflow = '';
+    frame.src = 'about:blank'; frame.style.display = 'none'; link.style.display = 'none'; empty.style.display = 'block';
     list.querySelectorAll('button').forEach(b => b.className = base + off);
   };
 
   card.addEventListener('click', open);
-  $('docs-close').addEventListener('click', close);
+  closeBtn.addEventListener('click', close);
   modal.addEventListener('click', e => { if (e.target === modal) close(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
   list.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
     const d = MASTER_DOCS[+b.dataset.i];
     list.querySelectorAll('button').forEach(x => x.className = base + (x === b ? on : off));
-    empty.classList.add('hidden'); frame.classList.remove('hidden'); link.classList.remove('hidden');
+    empty.style.display = 'none'; frame.style.display = 'block'; link.style.display = 'block';
     frame.src = link.href = d.fichier;
   });
-})();
+});
