@@ -399,4 +399,248 @@ document.addEventListener('DOMContentLoaded', () => {
     empty.style.display = 'none'; frame.style.display = 'block'; link.style.display = 'block';
     frame.src = link.href = d.fichier;
   });
+
+  // Initialisation de la carte académique interactive Leaflet
+  initAcademicMap();
 });
+
+function initAcademicMap() {
+  const mapElement = document.getElementById('academic-leaflet-map');
+  if (!mapElement || typeof L === 'undefined') return;
+
+  if (window.lucide && typeof window.lucide.createIcons === 'function') {
+    window.lucide.createIcons();
+  }
+
+  const academicSteps = [
+    {
+      id: 'master',
+      order: 3,
+      degree: 'Master Management Stratégique & Changement',
+      level: 'Bac +5',
+      badgeClass: 'bg-black text-white',
+      institution: 'ISM-IAE · Université Paris-Saclay (UVSQ)',
+      program: 'Diagnostic stratégique, conduite du changement & IA',
+      address: '47 Boulevard Vauban, Guyancourt',
+      city: 'Guyancourt (78)',
+      period: '2025 – 2027',
+      coords: [48.780466, 2.044312],
+      description: 'Formation d’excellence au sein de la 1ère université de France (Paris-Saclay).'
+    },
+    {
+      id: 'but-gea',
+      order: 2,
+      degree: 'BUT Gestion des Entreprises & Administrations',
+      level: 'Bac +3',
+      badgeClass: 'bg-sky-600 text-white',
+      institution: 'Université Gustave Eiffel (IUT Meaux)',
+      program: 'Parcours GEMA · Gestion, Entrepreneuriat & Management',
+      address: '17 Rue Jablinot, Meaux',
+      city: 'Meaux (77)',
+      period: '2022 – 2025',
+      coords: [48.954686, 2.878153],
+      description: 'Grade de Licence, gestion budgétaire & pilotage de la performance.'
+    },
+    {
+      id: 'bac-stmg',
+      order: 1,
+      degree: 'Baccalauréat STMG (Gestion & Finance)',
+      level: 'Mention Très Bien',
+      badgeClass: 'bg-emerald-600 text-white',
+      institution: 'Lycée Évariste Galois',
+      program: 'Spécialité Gestion et Finance',
+      address: '32 Av. Montaigne, Noisy-le-Grand',
+      city: 'Noisy-le-Grand (93)',
+      period: '2022',
+      coords: [48.844976, 2.538934],
+      description: 'Mis à l’honneur lors de la cérémonie officielle des bacheliers noiséens.'
+    }
+  ];
+
+  const defaultStep = academicSteps[0]; // Master
+
+  // Création de la carte Leaflet
+  const map = L.map('academic-leaflet-map', {
+    center: defaultStep.coords,
+    zoom: 12,
+    scrollWheelZoom: false,
+    zoomControl: true
+  });
+
+  // Tuiles CartoDB Positron (Style Apple Clean & Light)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+    subdomains: 'abcd'
+  }).addTo(map);
+
+  // Tracé chronologique en ligne pointillée (Bac -> BUT -> Master)
+  const trajectoryCoords = [
+    academicSteps[2].coords, // Noisy-le-Grand (Bac)
+    academicSteps[1].coords, // Meaux (BUT)
+    academicSteps[0].coords  // Guyancourt (Master)
+  ];
+
+  L.polyline(trajectoryCoords, {
+    color: '#111215',
+    weight: 3,
+    dashArray: '6, 8',
+    opacity: 0.65
+  }).addTo(map);
+
+  // Générateur de pin moderne DivIcon
+  function createPinIcon(order, isSelected) {
+    const bgColor = isSelected ? '#111215' : '#334155';
+    const ringColor = isSelected ? '#38bdf8' : '#94a3b8';
+    const pingHtml = isSelected
+      ? `<span class="pin-pulse" style="position: absolute; inset: -5px; border-radius: 9999px; background-color: ${ringColor}; opacity: 0.4;"></span>`
+      : '';
+
+    const html = `
+      <div style="position: relative; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
+        ${pingHtml}
+        <div style="position: relative; width: 34px; height: 34px; border-radius: 9999px; background-color: ${bgColor}; border: 2.5px solid #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.25); display: flex; align-items: center; justify-content: center; color: #ffffff; font-weight: 800; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 13px;">
+          ${order}
+        </div>
+        <div style="position: absolute; bottom: -5px; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid ${bgColor};"></div>
+      </div>
+    `;
+
+    return L.divIcon({
+      className: 'custom-academic-pin',
+      html: html,
+      iconSize: [38, 42],
+      iconAnchor: [19, 40],
+      popupAnchor: [0, -38]
+    });
+  }
+
+  // Création des marqueurs et popups
+  const markers = {};
+
+  academicSteps.forEach(step => {
+    const isMaster = step.id === 'master';
+    const marker = L.marker(step.coords, {
+      icon: createPinIcon(step.order, isMaster)
+    }).addTo(map);
+
+    const popupContent = `
+      <div style="font-family: 'Plus Jakarta Sans', system-ui, sans-serif; min-width: 220px; padding: 4px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; gap: 8px;">
+          <span style="font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 6px;" class="${step.badgeClass}">
+            ${step.level}
+          </span>
+          <span style="font-size: 11px; font-weight: 700; color: #6b7280; font-family: monospace;">
+            ${step.period}
+          </span>
+        </div>
+        <h4 style="font-size: 13px; font-weight: 800; color: #111215; margin: 0 0 4px 0; line-height: 1.3;">
+          ${step.degree}
+        </h4>
+        <p style="font-size: 11px; font-weight: 600; color: #4b5563; margin: 0 0 4px 0;">
+          ${step.institution}
+        </p>
+        <p style="font-size: 11px; color: #6b7280; margin: 0 0 6px 0;">
+          📍 ${step.address}
+        </p>
+        <p style="font-size: 10.5px; color: #4b5563; font-style: italic; margin: 0; padding-top: 6px; border-top: 1px solid #f1f5f9; line-height: 1.35;">
+          ${step.description}
+        </p>
+      </div>
+    `;
+
+    marker.bindPopup(popupContent, { className: 'academic-custom-popup' });
+
+    marker.on('click', () => {
+      selectStep(step.id);
+    });
+
+    markers[step.id] = marker;
+  });
+
+  // Ouvre le popup par défaut pour le Master
+  markers['master'].openPopup();
+
+  function selectStep(id) {
+    const step = academicSteps.find(s => s.id === id);
+    if (!step) return;
+
+    // Met à jour les icônes de marqueurs
+    academicSteps.forEach(s => {
+      const isSelected = s.id === id;
+      markers[s.id].setIcon(createPinIcon(s.order, isSelected));
+    });
+
+    // Met à jour l'état visuel des cartes de la colonne de gauche
+    document.querySelectorAll('.academic-step-item').forEach(el => {
+      const stepId = el.getAttribute('data-step-id');
+      if (stepId === id) {
+        el.className = 'academic-step-item p-3.5 sm:p-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 outline-none bg-white border-black shadow-md ring-1 ring-black/5 translate-x-1';
+      } else {
+        el.className = 'academic-step-item p-3.5 sm:p-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 outline-none bg-white/80 border-gray-200 hover:bg-white hover:border-gray-400 opacity-80 hover:opacity-100';
+      }
+    });
+
+    // Déplacement fluide vers le marqueur
+    map.flyTo(step.coords, 13, {
+      duration: 1.2,
+      easeLinearity: 0.25
+    });
+
+    markers[id].openPopup();
+  }
+
+  // Écouteurs de clic sur les cartes d'étapes à gauche
+  document.querySelectorAll('.academic-step-item').forEach(el => {
+    const stepId = el.getAttribute('data-step-id');
+    el.addEventListener('click', () => selectStep(stepId));
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectStep(stepId);
+      }
+    });
+  });
+
+  // Bouton "Vue panoramique"
+  const resetBtn = document.getElementById('academic-map-reset-btn');
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      const bounds = L.latLngBounds(academicSteps.map(s => s.coords));
+      map.fitBounds(bounds, {
+        padding: [50, 50],
+        maxZoom: 11
+      });
+      map.closePopup();
+
+      // Réinitialise l'apparence des cartes
+      document.querySelectorAll('.academic-step-item').forEach(el => {
+        el.className = 'academic-step-item p-3.5 sm:p-4 rounded-2xl border text-left cursor-pointer transition-all duration-300 outline-none bg-white/90 border-gray-200 hover:bg-white hover:border-black';
+      });
+
+      academicSteps.forEach(s => {
+        markers[s.id].setIcon(createPinIcon(s.order, false));
+      });
+    });
+  }
+
+  // Invalidation de la taille pour un rendu net des tuiles
+  setTimeout(() => {
+    map.invalidateSize();
+  }, 400);
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          map.invalidateSize();
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(mapElement);
+  }
+
+  window.addEventListener('resize', () => {
+    map.invalidateSize();
+  });
+}
