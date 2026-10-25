@@ -46,6 +46,95 @@
 <body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
 
   <!-- ========================================== -->
+  <!-- OVERLAY DE RÉVÉLATION (LOGO REVEAL)         -->
+  <!-- ========================================== -->
+  <div id="logo-reveal-overlay" role="button" tabindex="0" aria-label="Révéler le portfolio"
+    class="fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+    style="transition: transform 800ms cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;">
+    
+    <div id="logo-reveal-content" class="flex flex-col items-center justify-center gap-6 px-6 transition-all duration-700 ease-out opacity-0 scale-90 translate-y-2">
+      <!-- Logo centré -->
+      <div class="relative flex items-center justify-center p-4 rounded-3xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-md">
+        <img src="assets/images/Logo_AKINS.png" alt="Logo Akins ANRETAR"
+          class="w-[clamp(130px,25vw,220px)] h-auto object-contain filter invert contrast-125 drop-shadow-[0_12px_24px_rgba(255,255,255,0.1)]" />
+      </div>
+
+      <!-- Texte d'invite avec pulsation -->
+      <p class="text-white/60 text-xs sm:text-sm uppercase tracking-widest font-mono animate-pulse pointer-events-none text-center">
+        Cliquez pour découvrir
+      </p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const overlay = document.getElementById('logo-reveal-overlay');
+      const content = document.getElementById('logo-reveal-content');
+      if (!overlay || !content) return;
+
+      // Verrouiller le scroll
+      document.body.style.overflow = 'hidden';
+
+      // Préchargement immédiat de l'audio
+      let audio = null;
+      try {
+        audio = new Audio('assets/audio/reveal.mp3');
+        audio.preload = 'auto';
+        audio.onerror = function () { audio = null; };
+      } catch (e) {
+        audio = null;
+      }
+
+      // Animation d'apparition
+      setTimeout(function () {
+        content.classList.remove('opacity-0', 'scale-90', 'translate-y-2');
+        content.classList.add('opacity-100', 'scale-100', 'translate-y-0');
+      }, 50);
+
+      let isRevealed = false;
+      function handleReveal() {
+        if (isRevealed) return;
+        isRevealed = true;
+
+        // Jouer le son
+        if (audio) {
+          try {
+            audio.currentTime = 0;
+            const p = audio.play();
+            if (p && typeof p.catch === 'function') {
+              p.catch(function () {});
+            }
+          } catch (e) {}
+        }
+
+        const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+          overlay.remove();
+          document.body.style.overflow = '';
+          return;
+        }
+
+        overlay.style.transform = 'translateY(-100%)';
+        content.style.opacity = '0';
+        content.style.transform = 'scale(0.9) translateY(-1rem)';
+
+        setTimeout(function () {
+          overlay.remove();
+          document.body.style.overflow = '';
+        }, 820);
+      }
+
+      overlay.addEventListener('click', handleReveal);
+      overlay.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.code === 'Space') {
+          e.preventDefault();
+          handleReveal();
+        }
+      });
+    })();
+  </script>
+
+  <!-- ========================================== -->
   <!-- FLOATING PILL NAVBAR                       -->
   <!-- ========================================== -->
   <div class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4 pointer-events-none">
