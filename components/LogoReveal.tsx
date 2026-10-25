@@ -8,10 +8,10 @@
  *  - Son  :  public/reveal.mp3 (chemin personnalisé via la prop `soundSrc`)
  * 
  * 💡 FONCTIONNALITÉS :
- *  - Voile plein écran d'accueil (Overlay fixe z-9999, fond #0a0a0a).
- *  - Logo centré responsive (clamp(120px, 25vw, 220px)).
- *  - Animation d'apparition fade-in + scale 0.9 -> 1 au montage.
- *  - Texte d'invitation avec micro-animation pulse ("Cliquez pour découvrir").
+ *  - Voile d'accueil épuré style Apple (Overlay fixe z-9999, fond blanc minimaliste #FBFBFD).
+ *  - Logo centré responsive (clamp(110px, 20vw, 170px)).
+ *  - Animation d'apparition fade-in + scale 0.95 -> 1 au montage.
+ *  - Typographie moderne et humaine ("Cliquer pour découvrir" avec point de pulsation).
  *  - Lecture audio immédiate au clic avec préchargement et fallback silencieux (anti-crash).
  *  - Transition de révélation fluide (translateY -100% avec cubic-bezier(0.77, 0, 0.175, 1)).
  *  - Gestion de l'accessibilité : role="button", tabIndex, aria-label, touches Entrée & Espace.
@@ -57,7 +57,7 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
   logoSrc = '/logo.svg',
   logoAlt = 'Logo Akins ANRETAR',
   soundSrc = '/reveal.mp3',
-  promptText = 'Cliquez pour découvrir',
+  promptText = 'Cliquer pour découvrir',
   onReveal,
 }) => {
   // isMounted contrôle l'animation d'apparition initiale du logo
@@ -175,7 +175,7 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
           aria-label="Révéler le portfolio"
           onClick={triggerReveal}
           onKeyDown={handleKeyDown}
-          className={`fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white/40 ${
+          className={`fixed inset-0 z-[9999] bg-[#FBFBFD] flex flex-col items-center justify-center cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-black/10 ${
             isAnimating ? '-translate-y-full' : 'translate-y-0'
           }`}
           style={{
@@ -185,30 +185,36 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
             willChange: 'transform',
           }}
         >
-          {/* Conteneur Logo + Texte avec micro-animations */}
+          {/* Halot subtil d'ambiance Apple */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(0,0,0,0.015),transparent_70%)] pointer-events-none" />
+
+          {/* Conteneur Logo + Texte */}
           <div
-            className={`flex flex-col items-center justify-center gap-6 px-6 transition-all duration-700 ease-out ${
+            className={`relative z-10 flex flex-col items-center justify-center gap-7 px-6 transition-all duration-700 ease-out ${
               !isMounted
-                ? 'opacity-0 scale-90 translate-y-2'
+                ? 'opacity-0 scale-95 translate-y-2'
                 : isAnimating
-                ? 'opacity-0 scale-90 -translate-y-4'
+                ? 'opacity-0 scale-95 -translate-y-4'
                 : 'opacity-100 scale-100 translate-y-0'
             }`}
           >
-            {/* Logo adaptatif centré */}
-            <div className="relative flex items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-sm">
+            {/* Logo centré dans une carte épurée Apple */}
+            <div className="relative flex items-center justify-center p-6 sm:p-7 rounded-3xl bg-white border border-black/[0.05] shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] transition-all duration-500">
               <img
                 src={logoSrc}
                 alt={logoAlt}
-                className="w-[clamp(120px,25vw,220px)] h-auto object-contain filter invert contrast-125 drop-shadow-[0_10px_20px_rgba(255,255,255,0.08)]"
+                className="w-[clamp(110px,20vw,170px)] h-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
                 loading="eager"
               />
             </div>
 
-            {/* Texte d'invite avec pulsation subtile */}
-            <p className="text-white/60 text-xs sm:text-sm uppercase tracking-widest font-mono animate-pulse pointer-events-none text-center">
-              {promptText}
-            </p>
+            {/* Texte d'invite épuré, typographie moderne Apple (sans monospace ni effet robot) */}
+            <div className="flex items-center gap-2.5 pointer-events-none">
+              <span className="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse" />
+              <p className="text-xs sm:text-[13px] font-medium tracking-normal text-neutral-500 font-sans">
+                {promptText}
+              </p>
+            </div>
           </div>
         </div>
       )}

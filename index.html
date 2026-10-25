@@ -46,23 +46,29 @@
 <body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
 
   <!-- ========================================== -->
-  <!-- OVERLAY DE RÉVÉLATION (LOGO REVEAL)         -->
+  <!-- OVERLAY DE RÉVÉLATION (LOGO REVEAL APPLE LIGHT) -->
   <!-- ========================================== -->
   <div id="logo-reveal-overlay" role="button" tabindex="0" aria-label="Révéler le portfolio"
-    class="fixed inset-0 z-[9999] bg-[#0a0a0a] flex flex-col items-center justify-center cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+    class="fixed inset-0 z-[9999] bg-[#FBFBFD] flex flex-col items-center justify-center cursor-pointer select-none outline-none focus-visible:ring-2 focus-visible:ring-black/10"
     style="transition: transform 800ms cubic-bezier(0.77, 0, 0.175, 1); will-change: transform;">
     
-    <div id="logo-reveal-content" class="flex flex-col items-center justify-center gap-6 px-6 transition-all duration-700 ease-out opacity-0 scale-90 translate-y-2">
-      <!-- Logo centré -->
-      <div class="relative flex items-center justify-center p-4 rounded-3xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-md">
+    <!-- Halot subtil d'ambiance Apple -->
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(0,0,0,0.015),transparent_70%)] pointer-events-none"></div>
+
+    <div id="logo-reveal-content" class="relative z-10 flex flex-col items-center justify-center gap-7 px-6 transition-all duration-700 ease-out opacity-0 scale-95 translate-y-2">
+      <!-- Logo centré façon Apple Studio -->
+      <div class="relative flex items-center justify-center p-6 sm:p-7 rounded-3xl bg-white border border-black/[0.05] shadow-[0_20px_50px_rgba(0,0,0,0.05)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.08)] transition-all duration-500">
         <img src="assets/images/Logo_AKINS.png" alt="Logo Akins ANRETAR"
-          class="w-[clamp(130px,25vw,220px)] h-auto object-contain filter invert contrast-125 drop-shadow-[0_12px_24px_rgba(255,255,255,0.1)]" />
+          class="w-[clamp(110px,20vw,170px)] h-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.04)]" />
       </div>
 
-      <!-- Texte d'invite avec pulsation -->
-      <p class="text-white/60 text-xs sm:text-sm uppercase tracking-widest font-mono animate-pulse pointer-events-none text-center">
-        Cliquez pour découvrir
-      </p>
+      <!-- Texte d'invite épuré, typographie moderne Apple -->
+      <div class="flex items-center gap-2.5 pointer-events-none">
+        <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse"></span>
+        <p class="text-xs sm:text-[13px] font-medium tracking-normal text-neutral-500 font-sans">
+          Cliquer pour découvrir
+        </p>
+      </div>
     </div>
   </div>
 
