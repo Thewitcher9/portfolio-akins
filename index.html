@@ -81,53 +81,112 @@
       // Verrouiller le scroll
       document.body.style.overflow = 'hidden';
 
-      // Préchargement immédiat de l'audio
-      let audio = null;
+      // 1. Préchargement immédiat des deux audios (son de transition + voix de Lauren)
+      let revealAudio = null;
+      let voiceAudio = null;
+
       try {
-        audio = new Audio('assets/audio/reveal.mp3');
-        audio.preload = 'auto';
-        audio.onerror = function () { audio = null; };
+        revealAudio = new Audio('assets/audio/reveal.mp3');
+        revealAudio.preload = 'auto';
+        revealAudio.onerror = function () { revealAudio = null; };
       } catch (e) {
-        audio = null;
+        revealAudio = null;
       }
 
-      // Animation d'apparition
+      try {
+        voiceAudio = new Audio('assets/audio/Voix_Lauren_AkinsANRETAR.mp3');
+        voiceAudio.preload = 'auto';
+        voiceAudio.onerror = function () { voiceAudio = null; };
+      } catch (e) {
+        voiceAudio = null;
+      }
+
+      // Animation d'apparition du logo
       setTimeout(function () {
         content.classList.remove('opacity-0', 'scale-90', 'translate-y-2');
         content.classList.add('opacity-100', 'scale-100', 'translate-y-0');
       }, 50);
 
       let isRevealed = false;
+      let soundFinished = false;
+      let animationFinished = false;
+      let voicePlayed = false;
+
+      function playVoice() {
+        if (voicePlayed || !voiceAudio) return;
+        voicePlayed = true;
+        try {
+          voiceAudio.currentTime = 0;
+          const vp = voiceAudio.play();
+          if (vp && typeof vp.catch === 'function') {
+            vp.catch(function () {});
+          }
+        } catch (e) {}
+      }
+
+      function checkAndPlayVoice() {
+        if (soundFinished && animationFinished) {
+          playVoice();
+        }
+      }
+
       function handleReveal() {
         if (isRevealed) return;
         isRevealed = true;
 
-        // Jouer le son
-        if (audio) {
+        // Écoute de la fin du son de transition pour enchaîner sur la voix
+        if (revealAudio) {
+          revealAudio.addEventListener('ended', function () {
+            soundFinished = true;
+            checkAndPlayVoice();
+          });
+
           try {
-            audio.currentTime = 0;
-            const p = audio.play();
+            revealAudio.currentTime = 0;
+            const p = revealAudio.play();
             if (p && typeof p.catch === 'function') {
-              p.catch(function () {});
+              p.catch(function () {
+                // Si la lecture du premier son échoue, on marque le son comme terminé
+                soundFinished = true;
+                checkAndPlayVoice();
+              });
             }
-          } catch (e) {}
+          } catch (e) {
+            soundFinished = true;
+            checkAndPlayVoice();
+          }
+        } else {
+          soundFinished = true;
         }
 
         const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReduced) {
+          animationFinished = true;
           overlay.remove();
           document.body.style.overflow = '';
+          checkAndPlayVoice();
           return;
         }
 
+        // Lancement de l'animation de translation vers le haut
         overlay.style.transform = 'translateY(-100%)';
         content.style.opacity = '0';
         content.style.transform = 'scale(0.9) translateY(-1rem)';
 
+        // Fin de l'animation de révélation (820ms)
         setTimeout(function () {
+          animationFinished = true;
           overlay.remove();
           document.body.style.overflow = '';
+          checkAndPlayVoice();
         }, 820);
+
+        // Sécurité de secours : garantit que la voix se déclenche même si un événement audio n'est pas émis
+        setTimeout(function () {
+          if (!voicePlayed) {
+            playVoice();
+          }
+        }, 2600);
       }
 
       overlay.addEventListener('click', handleReveal);

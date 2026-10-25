@@ -43,6 +43,10 @@ export interface LogoRevealProps {
    */
   soundSrc?: string;
   /**
+   * Chemin vers le fichier vocal d'accueil (par défaut : '/Voix_Lauren_AkinsANRETAR.mp3')
+   */
+  voiceSrc?: string;
+  /**
    * Texte d'invite sous le logo
    */
   promptText?: string;
@@ -57,6 +61,7 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
   logoSrc = '/logo.svg',
   logoAlt = 'Logo Akins ANRETAR',
   soundSrc = '/reveal.mp3',
+  voiceSrc = '/Voix_Lauren_AkinsANRETAR.mp3',
   promptText = 'Cliquer pour découvrir',
   onReveal,
 }) => {
@@ -68,14 +73,19 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
   const [isRevealed, setIsRevealed] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const voiceRef = useRef<HTMLAudioElement | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const fallbackTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // 1. Préchargement de l'audio pour éliminer toute latence au clic
+  const soundDoneRef = useRef<boolean>(false);
+  const animationDoneRef = useRef<boolean>(false);
+  const voicePlayedRef = useRef<boolean>(false);
+
+  // 1. Préchargement des deux flux audio (transition + voix de Lauren)
   useEffect(() => {
     try {
       const audio = new Audio(soundSrc);
       audio.preload = 'auto';
-      // Fallback silencieux si le fichier n'existe pas ou ne peut pas être décodé
       audio.onerror = () => {
         audioRef.current = null;
       };
@@ -84,22 +94,61 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
       audioRef.current = null;
     }
 
+    try {
+      const voice = new Audio(voiceSrc);
+      voice.preload = 'auto';
+      voice.onerror = () => {
+        voiceRef.current = null;
+      };
+      voiceRef.current = voice;
+    } catch {
+      voiceRef.current = null;
+    }
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
       }
+      if (voiceRef.current) {
+        voiceRef.current.pause();
+        voiceRef.current = null;
+      }
+      if (fallbackTimerRef.current) {
+        clearTimeout(fallbackTimerRef.current);
+      }
     };
-  }, [soundSrc]);
+  }, [soundSrc, voiceSrc]);
+
+  // Fonction pour jouer la voix de Lauren
+  const playVoice = useCallback(() => {
+    if (voicePlayedRef.current || !voiceRef.current) return;
+    voicePlayedRef.current = true;
+    try {
+      voiceRef.current.currentTime = 0;
+      const playPromise = voiceRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Ignoré proprement si bloqué
+        });
+      }
+    } catch {
+      // Fallback silencieux
+    }
+  }, []);
+
+  const checkAndPlayVoice = useCallback(() => {
+    if (soundDoneRef.current && animationDoneRef.current) {
+      playVoice();
+    }
+  }, [playVoice]);
 
   // 2. Gestion de l'animation d'apparition et blocage du scroll du body
   useEffect(() => {
-    // Activer l'animation d'apparition initiale dès le premier rendu
     const mountTimer = setTimeout(() => {
       setIsMounted(true);
     }, 50);
 
-    // Verrouiller le scroll tant que l'overlay est visible
     const initialOverflow = document.body.style.overflow;
     if (!isRevealed) {
       document.body.style.overflow = 'hidden';
@@ -111,6 +160,9 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
+      if (fallbackTimerRef.current) {
+        clearTimeout(fallbackTimerRef.current);
+      }
     };
   }, [isRevealed]);
 
@@ -118,19 +170,28 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
   const triggerReveal = useCallback(() => {
     if (isAnimating || isRevealed) return;
 
-    // Déclenchement du son immédiat lors de l'action utilisateur
+    // Déclenchement du son de transition avec synchronisation vers la voix
     if (audioRef.current) {
+      audioRef.current.addEventListener('ended', () => {
+        soundDoneRef.current = true;
+        checkAndPlayVoice();
+      });
+
       try {
         audioRef.current.currentTime = 0;
         const playPromise = audioRef.current.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // Fallback silencieux : pas d'erreur dans la console si l'utilisateur a bloqué l'audio
+            soundDoneRef.current = true;
+            checkAndPlayVoice();
           });
         }
       } catch {
-        // Fallback silencieux anti-crash
+        soundDoneRef.current = true;
+        checkAndPlayVoice();
       }
+    } else {
+      soundDoneRef.current = true;
     }
 
     // Détection de prefers-reduced-motion
@@ -140,8 +201,10 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     if (prefersReducedMotion) {
+      animationDoneRef.current = true;
       setIsRevealed(true);
       document.body.style.overflow = '';
+      checkAndPlayVoice();
       if (onReveal) onReveal();
       return;
     }
@@ -150,12 +213,21 @@ export const LogoReveal: React.FC<LogoRevealProps> = ({
     setIsAnimating(true);
 
     timerRef.current = setTimeout(() => {
+      animationDoneRef.current = true;
       setIsRevealed(true);
       setIsAnimating(false);
       document.body.style.overflow = '';
+      checkAndPlayVoice();
       if (onReveal) onReveal();
     }, 800);
-  }, [isAnimating, isRevealed, onReveal]);
+
+    // Sécurité de secours : garantit le déclenchement de la voix
+    fallbackTimerRef.current = setTimeout(() => {
+      if (!voicePlayedRef.current) {
+        playVoice();
+      }
+    }, 2600);
+  }, [isAnimating, isRevealed, onReveal, checkAndPlayVoice, playVoice]);
 
   // 4. Gestion de l'accessibilité au clavier (Entrée / Espace)
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
