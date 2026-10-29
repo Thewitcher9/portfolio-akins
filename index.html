@@ -47,9 +47,9 @@
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 
   <!-- Custom CSS for Matthew Brutalist Luxe Theme -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20261029b">
-  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261029b">
-  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261029b">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261029c">
+  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261029c">
+  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261029c">
 </head>
 
 <body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
@@ -71,8 +71,14 @@
           class="w-[clamp(110px,20vw,170px)] h-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.04)]" />
       </div>
 
+      <!-- Signature manuscrite qui s'écrit -->
+      <div class="relative -mt-2 flex flex-col items-center pointer-events-none" aria-hidden="true">
+        <span id="logo-reveal-signature" class="signature">Akins Anretar</span>
+        <span id="logo-reveal-signature-line" class="signature-line"></span>
+      </div>
+
       <!-- Texte d'invite épuré, typographie moderne Apple -->
-      <div class="flex items-center gap-2.5 pointer-events-none">
+      <div id="logo-reveal-prompt" class="flex items-center gap-2.5 pointer-events-none opacity-0 transition-opacity duration-700">
         <span class="w-1.5 h-1.5 rounded-full bg-neutral-300"></span>
         <p class="text-xs sm:text-[13px] font-medium tracking-normal text-neutral-500 font-sans">
           Cliquer pour découvrir
@@ -106,6 +112,27 @@
         content.classList.remove('opacity-0', 'scale-90', 'translate-y-2');
         content.classList.add('opacity-100', 'scale-100', 'translate-y-0');
       }, 50);
+
+      // 2. Signature : elle s'écrit sous le logo, puis l'invitation à cliquer apparaît
+      const signature = document.getElementById('logo-reveal-signature');
+      const signatureLine = document.getElementById('logo-reveal-signature-line');
+      const prompt = document.getElementById('logo-reveal-prompt');
+      const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function startSignature() {
+        if (!signature || signature.classList.contains('is-writing')) return;
+        signature.classList.add('is-writing');
+        if (signatureLine) signatureLine.classList.add('is-writing');
+        setTimeout(function () { if (prompt) prompt.classList.add('opacity-100'); }, reducedMotion ? 0 : 2300);
+      }
+
+      // On attend la police manuscrite (au plus 1,5 s) pour éviter un affichage de secours
+      const fontReady = document.fonts && document.fonts.load
+        ? document.fonts.load('1em "Mrs Saint Delafield"')
+        : Promise.resolve();
+      Promise.race([fontReady, new Promise(function (r) { setTimeout(r, 1500); })])
+        .then(function () { setTimeout(startSignature, 450); })
+        .catch(startSignature);
 
       let isRevealed = false;
 
@@ -1344,10 +1371,10 @@
   <div id="toast-notification"></div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261029b"></script>
-  <script src="assets/js/apple-effects.js?v=20261029b"></script>
-  <script src="assets/js/doc-stack.js?v=20261029b"></script>
-  <script src="assets/js/photo-slideshow.js?v=20261029b"></script>
+  <script src="assets/js/main.js?v=20261029c"></script>
+  <script src="assets/js/apple-effects.js?v=20261029c"></script>
+  <script src="assets/js/doc-stack.js?v=20261029c"></script>
+  <script src="assets/js/photo-slideshow.js?v=20261029c"></script>
 
   <script>
   let currentSlide = 0;
