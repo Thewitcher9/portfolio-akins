@@ -1,0 +1,262 @@
+/* ==========================================
+   PILE DE DOCUMENTS ANIMÉE (Appréciations)
+   ========================================== */
+
+.doc-stack {
+  position: relative;
+  height: 260px;
+  margin-bottom: 1.25rem;
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.9), transparent 70%),
+    #EEF0F3;
+  border: 1px solid #E5E7EB;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Feuilles fantômes derrière un document unique, pour garder l'effet de pile */
+.doc-stack[data-count="1"]::before,
+.doc-stack[data-count="1"]::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140px;
+  aspect-ratio: 1 / 1.414;
+  margin: -112px 0 0 -70px;
+  border-radius: 6px;
+  background: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(17, 18, 21, 0.08);
+  z-index: 0;
+}
+.doc-stack[data-count="1"]::before { transform: translate(26px, 6px) rotate(5deg) scale(0.95); opacity: 0.7; }
+.doc-stack[data-count="1"]::after { transform: translate(-24px, 8px) rotate(-4deg) scale(0.92); opacity: 0.5; }
+
+.doc-sheet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 140px;
+  aspect-ratio: 1 / 1.414;
+  margin: -112px 0 0 -70px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: #FFFFFF;
+  overflow: hidden;
+  cursor: zoom-in;
+  box-shadow: 0 10px 30px rgba(17, 18, 21, 0.12), 0 2px 6px rgba(17, 18, 21, 0.06);
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 900ms ease,
+    box-shadow 300ms ease,
+    filter 900ms ease;
+  will-change: transform;
+}
+
+.doc-sheet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  pointer-events: none;
+  user-select: none;
+}
+
+.doc-sheet:focus-visible {
+  outline: 2px solid #111215;
+  outline-offset: 3px;
+}
+
+/* Positions dans la pile (attribuées par doc-stack.js) */
+.doc-sheet[data-pos="0"] { z-index: 3; transform: translate(0, 0) rotate(-1deg); }
+.doc-sheet[data-pos="1"] { z-index: 2; transform: translate(34px, 8px) rotate(6deg) scale(0.93); filter: brightness(0.96); }
+.doc-sheet[data-pos="2"] { z-index: 1; transform: translate(-34px, 10px) rotate(-7deg) scale(0.88); filter: brightness(0.92); }
+
+/* Document qui quitte le dessus de la pile */
+.doc-sheet.is-leaving { z-index: 4; transform: translate(0, -40px) rotate(-4deg) scale(1.02); opacity: 0; }
+
+.doc-stack:hover .doc-sheet[data-pos="0"],
+.doc-sheet[data-pos="0"]:focus-visible {
+  transform: translate(0, -8px) rotate(0deg) scale(1.04);
+  box-shadow: 0 22px 45px rgba(17, 18, 21, 0.2), 0 4px 10px rgba(17, 18, 21, 0.08);
+}
+
+/* Légende et progression */
+.doc-stack-caption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.doc-stack-label {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border: 1px solid #E5E7EB;
+  font-size: 10px;
+  font-weight: 700;
+  color: #111215;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 300ms ease;
+}
+
+.doc-stack-dots {
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.doc-stack-dot {
+  position: relative;
+  width: 18px;
+  height: 4px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(17, 18, 21, 0.15);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.doc-stack-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #111215;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.doc-stack-dot.is-active::after { transform: scaleX(1); }
+
+.doc-stack.is-playing .doc-stack-dot.is-active::after {
+  animation: doc-stack-progress var(--doc-stack-interval, 4500ms) linear forwards;
+}
+
+.doc-stack.is-paused .doc-stack-dot.is-active::after { animation-play-state: paused; }
+
+@keyframes doc-stack-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* ==========================================
+   VISIONNEUSE DE DOCUMENTS
+   ========================================== */
+
+.doc-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(17, 18, 21, 0.78);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+
+.doc-viewer.is-open { opacity: 1; pointer-events: auto; }
+
+.doc-viewer-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(720px, 100%);
+  max-height: calc(100vh - 32px);
+  border-radius: 1.5rem;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+  transform: translateY(12px) scale(0.98);
+  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.doc-viewer.is-open .doc-viewer-panel { transform: none; }
+
+.doc-viewer-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.doc-viewer-body {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  background: #EEF0F3;
+  padding: 20px;
+}
+
+.doc-viewer-body img {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 6px;
+  background: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(17, 18, 21, 0.15);
+}
+
+.doc-viewer-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #111215;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(17, 18, 21, 0.15);
+}
+
+.doc-viewer-nav:hover { background: #111215; color: #FFFFFF; }
+.doc-viewer-nav[data-dir="-1"] { left: 16px; }
+.doc-viewer-nav[data-dir="1"] { right: 16px; }
+
+.doc-viewer-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 20px;
+  border-top: 1px solid #E5E7EB;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doc-sheet,
+  .doc-viewer,
+  .doc-viewer-panel { transition: none; }
+  .doc-stack.is-playing .doc-stack-dot.is-active::after { animation: none; }
+}
+
+@media print {
+  .doc-stack, .doc-viewer { display: none !important; }
+}

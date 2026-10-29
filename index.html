@@ -49,6 +49,7 @@
   <!-- Custom CSS for Matthew Brutalist Luxe Theme -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/apple-effects.css">
+  <link rel="stylesheet" href="assets/css/doc-stack.css">
 </head>
 
 <body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
@@ -847,6 +848,14 @@
               <span class="text-[10px] font-mono text-gray-400">2024 – 2025</span>
             </div>
 
+            <!-- Pile de documents animée -->
+            <div class="doc-stack" data-org="SNCF Optim'services" aria-label="Documents SNCF Optim'services">
+              <button type="button" class="doc-sheet" data-img="assets/images/docs/lettre_sncf_optim.jpg" data-pdf="assets/docs/Lettre_de_Recommandation_SNCF_OptimServices.pdf"
+                data-title="Lettre de recommandation" data-meta="Julie VIDAL · Directrice du CSP Déplacements Professionnels" aria-label="Agrandir : Lettre de recommandation">
+                <img src="assets/images/docs/lettre_sncf_optim.jpg" alt="Lettre de recommandation SNCF Optim'services" loading="lazy">
+              </button>
+            </div>
+
             <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
               « Sérieux, appliqué et curieux, Akins s'est bien intégré à l'équipe. […] Son sens de l'initiative et sa capacité à gérer plusieurs dossiers en parallèle sont particulièrement appréciés. »
             </blockquote>
@@ -885,6 +894,18 @@
             <div class="flex items-center gap-2 mb-4">
               <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-[#003189] text-white font-mono uppercase tracking-wider">Région Île-de-France</span>
               <span class="text-[10px] font-mono text-gray-400">Mars – Juil. 2024</span>
+            </div>
+
+            <!-- Pile de documents animée -->
+            <div class="doc-stack" data-org="Région Île-de-France" aria-label="Documents Région Île-de-France">
+              <button type="button" class="doc-sheet" data-img="assets/images/docs/lettre_region_idf.jpg" data-pdf="assets/docs/Lettre_de_Recommandation_Region_IDF.pdf"
+                data-title="Lettre de recommandation" data-meta="10 juillet 2024 · Patrick KARAM, Vice-Président" aria-label="Agrandir : Lettre de recommandation">
+                <img src="assets/images/docs/lettre_region_idf.jpg" alt="Lettre de recommandation Région Île-de-France" loading="lazy">
+              </button>
+              <button type="button" class="doc-sheet" data-img="assets/images/docs/fiche_region_idf.jpg" data-pdf="assets/docs/Fiche_Appreciation_Region_IDF.pdf"
+                data-title="Fiche d'appréciation de stage" data-meta="29 mai 2024 · Bureau des Représentations" aria-label="Agrandir : Fiche d'appréciation de stage">
+                <img src="assets/images/docs/fiche_region_idf.jpg" alt="Fiche d'appréciation de stage Région Île-de-France" loading="lazy">
+              </button>
             </div>
 
             <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
@@ -936,6 +957,14 @@
             <div class="flex items-center gap-2 mb-4">
               <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-700 text-white font-mono uppercase tracking-wider">Agorex Expertise</span>
               <span class="text-[10px] font-mono text-gray-400">Avr. – Mai 2023</span>
+            </div>
+
+            <!-- Pile de documents animée -->
+            <div class="doc-stack" data-org="Agorex Expertise" aria-label="Documents Agorex Expertise">
+              <button type="button" class="doc-sheet" data-img="assets/images/docs/fiche_agorex.jpg" data-pdf="assets/docs/Fiche_Appreciation_Agroex_Expertise.pdf"
+                data-title="Fiche d'appréciation de stage" data-meta="17 mai 2023 · Stéphane DUBOIS" aria-label="Agrandir : Fiche d'appréciation de stage">
+                <img src="assets/images/docs/fiche_agorex.jpg" alt="Fiche d'appréciation de stage Agorex Expertise" loading="lazy">
+              </button>
             </div>
 
             <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
@@ -1099,6 +1128,7 @@
   <!-- Main JavaScript File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/apple-effects.js"></script>
+  <script src="assets/js/doc-stack.js"></script>
 
   <script>
   let currentSlide = 0;
