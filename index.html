@@ -47,9 +47,9 @@
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 
   <!-- Custom CSS for Matthew Brutalist Luxe Theme -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20261029e">
-  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261029e">
-  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261029e">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261030">
+  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261030">
+  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261030">
 </head>
 
 <body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
@@ -1190,6 +1190,40 @@
   </section>
 
   <!-- ========================================== -->
+  <!-- SECTION: ACTUALITÉS LINKEDIN (BROUILLON)   -->
+  <!-- ========================================== -->
+  <section id="actualites" class="py-20 sm:py-28 bg-white border-t border-[#D8DCE2]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Fil d'actualité</span>
+          <h2 class="section-title">
+            Mes dernières publications <em class="serif">LinkedIn.</em>
+          </h2>
+          <p class="text-sm text-gray-500 mt-3 max-w-xl leading-relaxed">
+            Retours d'expérience, projets et événements que je partage avec mon réseau.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0">
+          <button type="button" data-linkedin-nav="-1" aria-label="Publications précédentes"
+            class="w-10 h-10 rounded-full border border-gray-300 hover:border-black flex items-center justify-center transition">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+          </button>
+          <button type="button" data-linkedin-nav="1" aria-label="Publications suivantes"
+            class="w-10 h-10 rounded-full border border-gray-300 hover:border-black flex items-center justify-center transition">
+            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Rempli par assets/js/linkedin-feed.js -->
+      <div id="linkedin-track" class="linkedin-track" tabindex="0" aria-label="Publications LinkedIn"></div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
   <!-- SECTION: CENTRES D'INTÉRÊT                 -->
   <!-- ========================================== -->
   <section id="interets" class="py-20 sm:py-28 max-w-7xl mx-auto px-6 lg:px-12">
@@ -1374,10 +1408,11 @@
   <div id="toast-notification"></div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261029e"></script>
-  <script src="assets/js/apple-effects.js?v=20261029e"></script>
-  <script src="assets/js/doc-stack.js?v=20261029e"></script>
-  <script src="assets/js/photo-slideshow.js?v=20261029e"></script>
+  <script src="assets/js/main.js?v=20261030"></script>
+  <script src="assets/js/apple-effects.js?v=20261030"></script>
+  <script src="assets/js/doc-stack.js?v=20261030"></script>
+  <script src="assets/js/photo-slideshow.js?v=20261030"></script>
+  <script src="assets/js/linkedin-feed.js?v=20261030"></script>
 
   <script>
   let currentSlide = 0;
