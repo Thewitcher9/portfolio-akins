@@ -1,6 +1,6 @@
 /**
  * PORTFOLIO AKINS ANRETAR - JAVASCRIPT LOGIC
- * Thème inspiré d'Apple
+ * Style Matthew Editorial Brutalist Luxe
  * Visuel optionnel par projet via le champ `image` (aucun bloc affiché si absent)
  */
 
@@ -157,82 +157,125 @@ window.openProjectModal = function (projectId) {
   if (!modal || !modalBody) return;
 
   modalBody.innerHTML = `
-    <div class="max-h-[85vh] overflow-y-auto">
-      <!-- En-tête -->
-      <div class="px-6 sm:px-10 pt-10 pb-8">
-        <div class="meta-row pr-10"><span>${proj.company}</span><span>${proj.period}</span></div>
-        <h2 class="title-3 mb-2 pr-10">${proj.title}</h2>
-        <p class="body-sm">${proj.role} · ${proj.contract} · ${proj.location}</p>
+    <!-- Modal Header -->
+    <div class="p-6 sm:p-8 border-b border-gray-200 bg-white">
+      <div class="flex items-center gap-2 mb-2 flex-wrap">
+        <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white">${proj.period}</span>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">${proj.contract}</span>
+        <span class="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800">${proj.location}</span>
       </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1 font-display tracking-tight">${proj.title}</h2>
+      <p class="text-gray-700 font-semibold text-base">${proj.role} · <span class="text-gray-900">${proj.company}</span></p>
+      <p class="text-gray-400 text-xs mt-1 font-mono">${proj.sector}</p>
+    </div>
 
+    <!-- Modal Content -->
+    <div class="p-6 sm:p-8 space-y-6 max-h-[70vh] overflow-y-auto bg-gray-50">
+      
       ${proj.image ? `
-      <div class="mx-6 sm:mx-10 mb-8 h-40 rounded-[18px] bg-[#F5F5F7] flex items-center justify-center p-6">
+      <div class="h-40 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-6">
         <img src="${proj.image}" alt="${proj.company}" class="max-w-full max-h-full object-contain">
       </div>` : ""}
 
-      <div class="px-6 sm:px-10 pb-10 space-y-8">
-        <p class="lead">${proj.summary}</p>
+      <!-- Summary Box -->
+      <div class="p-4 rounded-xl bg-white border border-gray-200">
+        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Résumé de la mission</h4>
+        <p class="text-sm text-gray-800 leading-relaxed">${proj.summary}</p>
+      </div>
 
-        <!-- Méthode STAR -->
-        <div class="space-y-6">
-          <div class="flex gap-4">
-            <span class="star-tag shrink-0">S</span>
-            <div>
-              <h4 class="text-[17px] font-semibold mb-1">Situation</h4>
-              <p class="body-sm" style="font-size:17px">${proj.star.situation}</p>
-            </div>
-          </div>
+      <!-- STAR Detailed Framework -->
+      <div class="space-y-4">
+        <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider font-mono">DÉCOMPOSITION MÉTHODE STAR</h4>
 
-          <div class="flex gap-4">
-            <span class="star-tag shrink-0">T</span>
-            <div>
-              <h4 class="text-[17px] font-semibold mb-1">Tâche</h4>
-              <p class="body-sm" style="font-size:17px">${proj.star.tache}</p>
-            </div>
+        <!-- Situation -->
+        <div class="p-4 rounded-xl bg-white border border-gray-200">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="star-tag bg-gray-100 text-gray-900 font-mono">S</span>
+            <h5 class="text-sm font-bold text-gray-900">Situation & Contexte</h5>
           </div>
-
-          <div class="flex gap-4">
-            <span class="star-tag shrink-0">A</span>
-            <div class="min-w-0">
-              <h4 class="text-[17px] font-semibold mb-1">Actions</h4>
-              <ul class="list-plain">
-                ${proj.star.action.map(act => `<li class="!text-[15px] !py-2.5" style="color:var(--text-2)">${act}</li>`).join("")}
-              </ul>
-            </div>
-          </div>
-
-          <div class="flex gap-4">
-            <span class="star-tag shrink-0" style="background:var(--blue);color:#fff">R</span>
-            <div class="min-w-0">
-              <h4 class="text-[17px] font-semibold mb-1">Résultats</h4>
-              <ul class="list-plain">
-                ${proj.star.resultats.map(res => `<li class="!text-[15px] !py-2.5">${res}</li>`).join("")}
-              </ul>
-            </div>
-          </div>
+          <p class="text-gray-600 text-sm leading-relaxed">${proj.star.situation}</p>
         </div>
 
-        <!-- Livrables -->
-        <div class="rounded-[18px] bg-[#F5F5F7] p-6">
-          <h4 class="text-[17px] font-semibold mb-2">Livrables</h4>
-          <ul class="list-plain">
-            ${proj.deliverables.map(d => `<li class="!text-[15px] !py-2.5 !border-[#E8E8ED]">${d}</li>`).join("")}
+        <!-- Tâche -->
+        <div class="p-4 rounded-xl bg-white border border-gray-200">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="star-tag bg-gray-100 text-gray-900 font-mono">T</span>
+            <h5 class="text-sm font-bold text-gray-900">Tâche & Enjeu Prioritaire</h5>
+          </div>
+          <p class="text-gray-600 text-sm leading-relaxed">${proj.star.tache}</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="p-4 rounded-xl bg-white border border-gray-200">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="star-tag bg-gray-100 text-gray-900 font-mono">A</span>
+            <h5 class="text-sm font-bold text-gray-900">Actions Clés Conduites</h5>
+          </div>
+          <ul class="space-y-2 mt-2">
+            ${proj.star.action.map(act => `
+              <li class="flex items-start gap-2 text-sm text-gray-700">
+                <i data-lucide="check" class="w-4 h-4 text-black shrink-0 mt-0.5"></i>
+                <span>${act}</span>
+              </li>
+            `).join("")}
           </ul>
         </div>
 
-        <!-- Compétences -->
-        <div>
-          <h4 class="text-[17px] font-semibold mb-3">Compétences mobilisées</h4>
-          <div class="flex flex-wrap gap-2">
-            ${proj.skills.map(s => `<span class="chip">${s}</span>`).join("")}
+        <!-- Résultats -->
+        <div class="p-4 rounded-xl bg-gray-900 text-white border border-gray-800">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="star-tag bg-white text-gray-900 font-mono font-bold">R</span>
+            <h5 class="text-sm font-bold text-white">Résultats & Impact Mesurable</h5>
           </div>
+          <ul class="space-y-2 mt-2">
+            ${proj.star.resultats.map(res => `
+              <li class="flex items-start gap-2 text-sm text-gray-200">
+                <i data-lucide="trending-up" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span>${res}</span>
+              </li>
+            `).join("")}
+          </ul>
         </div>
       </div>
 
-      <!-- Pied -->
-      <div class="px-6 sm:px-10 py-5 border-t border-[#E8E8ED] flex items-center justify-end flex-wrap gap-3">
-        <button onclick="closeProjectModal()" class="btn btn-secondary btn-sm !min-h-[36px] !text-[14px]">Fermer</button>
-        <a href="mailto:akins.anretar@yahoo.com?subject=${encodeURIComponent("Contact suite à votre portfolio - " + proj.title)}" class="btn btn-primary btn-sm !min-h-[36px] !text-[14px]">Échanger sur ce projet</a>
+      <!-- Livrables Majeurs -->
+      <div>
+        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 font-mono">LIVRABLES MAJEURS</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          ${proj.deliverables.map(d => `
+            <div class="p-2.5 rounded-lg bg-white border border-gray-200 text-xs text-gray-800 flex items-center gap-2">
+              <i data-lucide="file-text" class="w-3.5 h-3.5 text-gray-400 shrink-0"></i>
+              <span>${d}</span>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+      <!-- Skills Used -->
+      <div>
+        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 font-mono">COMPÉTENCES MOBILISÉES</h4>
+        <div class="flex flex-wrap gap-1.5">
+          ${proj.skills.map(s => `
+            <span class="px-3 py-1 rounded-full bg-gray-200 text-gray-800 text-xs font-semibold">
+              ${s}
+            </span>
+          `).join("")}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="p-4 sm:p-5 border-t border-gray-200 bg-white flex items-center justify-between flex-wrap gap-2">
+      <span class="text-xs text-gray-500 font-mono italic">« Toute victoire s’élabore »</span>
+      <div class="flex gap-2">
+        <a href="mailto:akins.anretar@yahoo.com?subject=Contact suite à votre portfolio - ${encodeURIComponent(proj.title)}" class="px-5 py-2.5 rounded-full bg-black text-white text-xs font-bold hover:bg-gray-800 transition flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          <span>Échanger sur ce projet</span>
+        </a>
+        <button onclick="closeProjectModal()" class="px-4 py-2.5 rounded-full border border-gray-300 text-gray-700 text-xs font-semibold hover:bg-gray-100 transition">
+          Fermer
+        </button>
       </div>
     </div>
   `;
@@ -291,10 +334,10 @@ function showToast(msg) {
   if (!toast) {
     toast = document.createElement("div");
     toast.id = "toast-notification";
-    toast.className = "fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-full bg-[#1D1D1F]/90 backdrop-blur text-white text-sm shadow-xl flex items-center gap-2 transition-all duration-300 translate-y-10 opacity-0 pointer-events-none";
+    toast.className = "fixed bottom-6 right-6 z-50 px-5 py-3 rounded-full bg-black text-white text-xs font-semibold shadow-2xl flex items-center gap-2 transform transition-all duration-300 translate-y-10 opacity-0 pointer-events-none";
     document.body.appendChild(toast);
   }
-  toast.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-[#30D158]"></i> ${msg}`;
+  toast.innerHTML = `<i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i> ${msg}`;
   if (window.lucide) window.lucide.createIcons();
 
   toast.classList.remove("translate-y-10", "opacity-0", "pointer-events-none");
@@ -319,8 +362,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  const base = 'w-full text-left p-3 rounded-[14px] border text-sm transition ';
-  const off = 'border-[#E8E8ED] bg-white hover:border-[#0071E3]', on = 'border-[#0071E3] bg-[#0071E3] text-white';
+  const base = 'w-full text-left p-3 rounded-xl border text-sm transition ';
+  const off = 'border-gray-200 bg-white hover:border-black', on = 'border-black bg-black text-white';
 
   MASTER_DOCS.forEach((d, i) => {
     const li = document.createElement('li');

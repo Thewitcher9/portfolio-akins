@@ -9,7 +9,7 @@
   <meta name="description"
     content="Portfolio d'Akins ANRETAR, Chef de Projet Organisation & Transformation. Master Management Stratégique (IAE Paris-Saclay), alternant chez OUIGO.">
   <meta name="author" content="Akins ANRETAR">
-  <meta name="theme-color" content="#FBFBFD">
+  <meta name="theme-color" content="#111215">
   <meta property="og:type" content="profile">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:title" content="Akins ANRETAR — Chef de Projet Organisation & Transformation">
@@ -25,8 +25,18 @@
     tailwind.config = {
       theme: {
         extend: {
+          colors: {
+            brand: {
+              page: '#EAECEF',
+              card: '#FFFFFF',
+              dark: '#111215',
+              muted: '#5F6368',
+              border: '#D8DCE2'
+            }
+          },
           fontFamily: {
-            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"Inter"', '"Segoe UI"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+            display: ['"Bebas Neue"', '"Anton"', 'sans-serif'],
           }
         }
       }
@@ -36,13 +46,13 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 
-  <!-- Thème inspiré d'Apple -->
+  <!-- Custom CSS for Matthew Brutalist Luxe Theme -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/apple-effects.css">
   <link rel="stylesheet" href="assets/css/doc-stack.css">
 </head>
 
-<body>
+<body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
 
   <!-- ========================================== -->
   <!-- OVERLAY DE RÉVÉLATION (LOGO REVEAL APPLE LIGHT) -->
@@ -63,7 +73,8 @@
 
       <!-- Texte d'invite épuré, typographie moderne Apple -->
       <div class="flex items-center gap-2.5 pointer-events-none">
-                <p class="text-[13px] text-[#6E6E73]">
+        <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse"></span>
+        <p class="text-xs sm:text-[13px] font-medium tracking-normal text-neutral-500 font-sans">
           Cliquer pour découvrir
         </p>
       </div>
@@ -142,353 +153,751 @@
   </script>
 
   <!-- ========================================== -->
-  <!-- NAVIGATION                                 -->
+  <!-- FLOATING PILL NAVBAR                       -->
   <!-- ========================================== -->
-  <nav class="global-nav" aria-label="Navigation principale">
-    <div class="wrap global-nav-inner">
-      <a href="#profil" class="global-nav-brand">
-        <img src="assets/images/Logo_AKINS.png" alt="" />
-        <span>Akins Anretar</span>
+  <div class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 pt-4 pointer-events-none">
+    <header
+      class="max-w-5xl mx-auto floating-navbar px-4 sm:px-6 py-3 rounded-2xl sm:rounded-full pointer-events-auto flex items-center justify-between transition-all">
+
+      <!-- Brand Logo / Monogram -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="relative w-8 h-8 rounded-full overflow-hidden ring-2 ring-black/15 shadow-sm">
+          <img src="assets/images/img_PRO.jpg" alt="Akins ANRETAR" class="w-full h-full object-cover object-top" />
+        </div>
+        <div
+          class="w-8 h-8 rounded-lg bg-white border border-gray-200 p-1 shadow-sm flex items-center justify-center group-hover:border-black transition">
+          <img src="assets/images/Logo_AKINS.png" alt="Logo Akins" class="w-full h-full object-contain" />
+        </div>
+        <span class="text-xs font-bold uppercase tracking-wider text-black font-sans hidden sm:inline-block">
+          PORTFOLIO BY <span class="font-extrabold">AKINS</span>
+        </span>
       </a>
 
-      <div class="global-nav-links">
-        <a href="#about">Profil</a>
-        <a href="#experiences">Expériences</a>
-        <a href="#methodes">Compétences</a>
-        <a href="#formations">Formation</a>
-        <a href="#appreciation">Recommandations</a>
+      <!-- Center Nav Links -->
+      <nav
+        class="hidden md:flex items-center gap-4 lg:gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-500">
+        <a href="#profil" class="hover:text-black transition">Profil</a>
+        <span class="text-gray-300">/</span>
+        <a href="#experiences" class="hover:text-black transition">Expériences</a>
+        <span class="text-gray-300">/</span>
+        <a href="#methodes" class="hover:text-black transition">Méthodes</a>
+        <span class="text-gray-300">/</span>
+        <a href="#formations" class="hover:text-black transition">Formations</a>
+        <span class="text-gray-300">/</span>
+        <a href="#appreciation" class="hover:text-black transition">Appréciation</a>
+      </nav>
+
+      <!-- Right Action CTA Button -->
+      <div class="flex items-center gap-2">
+        <button onclick="window.print()" title="Imprimer ou exporter le CV"
+          class="p-2 rounded-full border border-gray-200 hover:border-black text-gray-600 hover:text-black transition">
+          <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+        </button>
+        <a href="#contact"
+          class="px-5 py-2 rounded-full border border-black hover:bg-black hover:text-white text-black text-xs font-bold uppercase tracking-wider transition">
+          ME CONTACTER
+        </a>
       </div>
 
-      <a href="#contact" class="btn btn-primary btn-sm">Contact</a>
+    </header>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- HERO SECTION (STYLE MATTHEW)               -->
+  <!-- ========================================== -->
+  <section id="profil"
+    class="relative pt-28 pb-16 sm:pt-36 sm:pb-24 min-h-[90vh] flex flex-col justify-between overflow-hidden">
+
+    <!-- Background concentric circular lines -->
+    <div class="bg-concentric"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
+
+      <!-- Top Subheaders Grid -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Poste & Spécialité</span>
+          <h2 class="text-lg sm:text-xl font-extrabold text-black font-sans tracking-tight">
+            Chef de Projet · Organisation & Transformation
+          </h2>
+        </div>
+
+        <div class="sm:text-right">
+          <span
+            class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-gray-300 text-xs font-semibold text-gray-800">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Alternant chez OUIGO · SNCF Voyageurs
+          </span>
+        </div>
+      </div>
+
+      <!-- Center Stage: Massive Giant Typography + Cutout Portrait (Matthew Reference) -->
+      <div class="relative flex items-center justify-center py-6 sm:py-10 my-2">
+
+        <!-- Giant Typography (Akins ANRETAR) across the background -->
+        <div
+          class="text-center w-full absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+          <h1 class="giant-name opacity-95">
+            AKINS ANRETAR
+          </h1>
+        </div>
+
+        <!-- Cutout Portrait (Positioned in foreground, overlapping the text seamlessly) -->
+        <div class="relative z-10 max-w-xs sm:max-w-sm md:max-w-md mx-auto flex flex-col items-center">
+
+          <div class="relative group">
+            <!-- Subtle ambient glow behind subject -->
+            <div
+              class="absolute -inset-6 bg-gradient-to-tr from-sky-400/10 via-white/50 to-indigo-500/10 rounded-full blur-2xl opacity-80 pointer-events-none">
+            </div>
+
+            <!-- Cutout Image directly on canvas -->
+            <img src="assets/images/img_PRO_cutout.png"
+              alt="Akins ANRETAR — Chef de Projet Organisation & Transformation"
+              class="relative z-10 w-full h-auto max-h-[500px] object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-transform duration-500 ease-out" />
+
+            <!-- Floating Badge 1 (Top-Right): Role & Tech -->
+            <div class="absolute top-10 -right-2 sm:-right-6 z-20 animate-float">
+              <div
+                class="px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-gray-900 tracking-tight font-sans">Pilotage IA · OUIGO</span>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2 (Bottom-Left): Master & Leadership -->
+            <div class="absolute bottom-12 -left-2 sm:-left-6 z-20 animate-float-delayed">
+              <div
+                class="px-4 py-2 rounded-full bg-black text-white border border-gray-800 shadow-xl flex items-center gap-2">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                <span class="text-xs font-bold tracking-tight font-sans">Master IAE Paris-Saclay</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Bottom Meta & Scroll Down Prompt -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 pt-6 border-t border-gray-300/80">
+
+        <!-- Motto Quote -->
+        <div class="flex items-center gap-3">
+          <span class="w-2.5 h-2.5 rounded-full bg-black"></span>
+          <p class="text-xs sm:text-sm font-semibold italic text-gray-800">
+            « Toute victoire s’élabore » <span class="text-gray-500 font-normal ml-1">— Master Management Stratégique
+              (ISM-IAE Paris-Saclay)</span>
+          </p>
+        </div>
+
+        <!-- Scroll down indicator matching reference -->
+        <a href="#about"
+          class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-black hover:translate-y-0.5 transition-transform">
+          <span>Découvrir</span>
+          <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+
+      </div>
+
     </div>
-  </nav>
+  </section>
 
-  <main>
+  <!-- ========================================== -->
+  <!-- SECTION: ABOUT & VALEUR AJOUTÉE            -->
+  <!-- ========================================== -->
+  <section id="about" class="py-20 bg-white border-t border-[#D8DCE2]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-    <!-- ========================================== -->
-    <!-- HERO                                       -->
-    <!-- ========================================== -->
-    <section id="profil" class="hero">
-      <div class="wrap">
-        <p class="hero-status" data-fx>Alternant chez OUIGO · SNCF Voyageurs</p>
-        <h1 class="headline-xl" data-fx>Akins Anretar.</h1>
-        <p class="subhead mt-3" data-fx style="--fx-delay: 100ms">
-          Chef de projet Organisation&nbsp;&amp;&nbsp;Transformation.
-        </p>
-
-        <div class="hero-ctas" data-fx style="--fx-delay: 200ms">
-          <a href="#contact" class="btn btn-primary">Me contacter</a>
-          <a href="#experiences" class="link">Voir mes expériences</a>
-        </div>
-
-        <div class="hero-portrait" data-fx style="--fx-delay: 300ms">
-          <img src="assets/images/img_PRO_cutout.png"
-            alt="Portrait d'Akins Anretar, chef de projet Organisation et Transformation" />
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- PROFIL                                     -->
-    <!-- ========================================== -->
-    <section id="about" class="section section-alt">
-      <div class="wrap">
-        <span class="eyebrow" data-fx>Profil</span>
-        <h2 class="headline max-w-3xl" data-scrub>
+      <!-- Section Title -->
+      <div class="max-w-3xl mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Positionnement</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
           Piloter le changement par la méthode, l'IA et l'engagement humain.
         </h2>
+      </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center mt-14">
-          <div class="lg:col-span-7 space-y-5 lead" data-fx>
-            <p>
-              Étudiant en <strong>Master Management Stratégique et Changement</strong> à l'<strong>ISM-IAE
-              (Université Paris-Saclay)</strong>, je mets mon énergie et ma méthode au service de projets de
-              transformation complexes.
-            </p>
-            <p>
-              Mon parcours m'a mené du secteur privé (<strong>OUIGO, SNCF Optim'services</strong>) au secteur public
-              (<strong>Conseil Régional d'Île-de-France</strong>), pendant l'année des <strong>Jeux Olympiques et
-              Paralympiques de Paris 2024</strong>.
-            </p>
-            <p>
-              Une conviction guide mon travail&nbsp;: une solution technologique n'a de valeur que si les équipes de
-              terrain l'adoptent.
-            </p>
+
+
+      <!-- Narrative & Photo Placeholder for public speaking -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+        <div class="lg:col-span-7 space-y-4 text-sm text-gray-700 leading-relaxed">
+          <p>
+            Étudiant en <strong class="text-black">Master Management Stratégique et Changement</strong> à l'<strong
+              class="text-black">ISM-IAE (Université Paris-Saclay)</strong>, je mets mon énergie et mes compétences
+            méthodologiques au service de projets de transformation complexes.
+          </p>
+          <p>
+            Mon parcours m'a permis d'intervenir à la fois dans le secteur privé de haute intensité (<strong
+              class="text-black">OUIGO, SNCF Optim'services</strong>) et dans le secteur public institutionnel (<strong
+              class="text-black">Conseil Régional d'Île-de-France</strong> lors de l'année des <strong
+              class="text-black">Jeux Olympiques et Paralympiques de Paris 2024</strong>).
+          </p>
+          <p>
+            Mes maîtres mots : <strong class="text-black">Proactivité, Réactivité et Esprit d'équipe</strong>. J'attache
+            une importance capitale à la conduite du changement : une solution technologique n'a de valeur que si elle
+            est adoptée avec enthousiasme par les équipes de terrain.
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-md bg-gray-100 text-gray-800 text-xs font-semibold">Gouvernance de
+              Projet</span>
+            <span class="px-3 py-1 rounded-md bg-gray-100 text-gray-800 text-xs font-semibold">IA Conversationnelle &
+              Chatbots</span>
+            <span class="px-3 py-1 rounded-md bg-gray-100 text-gray-800 text-xs font-semibold">Conduite du
+              Changement</span>
+            <span class="px-3 py-1 rounded-md bg-gray-100 text-gray-800 text-xs font-semibold">Prise de Parole en
+              Public</span>
+            <span class="px-3 py-1 rounded-md bg-gray-100 text-gray-800 text-xs font-semibold">Analyse Budgétaire</span>
           </div>
-
-          <figure class="lg:col-span-5" data-fx style="--fx-delay: 150ms">
-            <img src="assets/images/Photo_LINKEDIN.jpg" alt="Akins Anretar lors d'une prise de parole en conférence"
-              loading="lazy" class="w-full aspect-[4/5] object-cover object-top rounded-[28px]" />
-            <figcaption class="caption mt-3 text-center">Prise de parole et animation de conférence.</figcaption>
-          </figure>
         </div>
 
-        <div class="facts mt-20" data-fx-stagger="100">
-          <div class="fact"><strong>4</strong><span>expériences en entreprise et en collectivité</span></div>
-          <div class="fact"><strong>2</strong><span>alternances au sein du Groupe SNCF</span></div>
-          <div class="fact"><strong>2024</strong><span>Paris 2024 avec la Région Île-de-France</span></div>
-          <div class="fact"><strong>Bac +5</strong><span>Master en cours à l'IAE Paris-Saclay</span></div>
+        <div class="lg:col-span-5">
+          <div class="relative rounded-2xl overflow-hidden border border-gray-200/80 shadow-md bg-white group">
+            <img src="assets/images/Photo_LINKEDIN.jpg"
+              alt="Akins ANRETAR — Prise de parole et animation de conférence"
+              loading="lazy"
+              class="w-full h-full object-cover object-top aspect-[4/3] group-hover:scale-[1.02] transition-transform duration-500" />
+            <div class="absolute bottom-0 inset-x-0 p-3 sm:p-4 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-center justify-between">
+              <span class="text-white text-xs font-semibold tracking-wide drop-shadow-sm flex items-center gap-1.5">
+                <i data-lucide="mic" class="w-3.5 h-3.5 text-white/90"></i>
+                Prise de parole & animation de conférence
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- SECTION: LES 4 EXPÉRIENCES CLÉS (STAR)     -->
+  <!-- ========================================== -->
+  <section id="experiences" class="py-20 sm:py-28 max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Missions
+          Opérationnelles</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
+          Mes 4 Expériences Clés
+        </h2>
+      </div>
+      <p class="text-xs font-mono text-gray-500">
+        Décomposition STAR complète · Cliquez sur une carte pour voir les détails
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      <!-- CARTE EXPÉRIENCE 1: OUIGO -->
+      <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
+        role="button" tabindex="0" onclick="openProjectModal('ouigo')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('ouigo')}">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+              Sept. 2025 – Aujourd'hui
+            </span>
+            <span class="text-xs font-semibold text-gray-500">Alternance (Master)</span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+            Pilotage du Projet d'Assistant Virtuel IA
+          </h3>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
+            OUIGO (SNCF Voyageurs) · Saint-Denis
+          </p>
+
+          <!-- Visuel -->
+          <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-[#111215] text-white flex flex-col items-center justify-center gap-2 p-6 text-center">
+            <i data-lucide="bot" class="w-8 h-8 text-sky-400"></i>
+            <span class="text-2xl sm:text-3xl font-extrabold tracking-tight">OUIGO</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-gray-400">Assistant virtuel IA · Selfcare voyageur 24/7</span>
+          </div>
+
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
+            Cadrage fonctionnel, définition des flux conversationnels, collaboration avec les équipes tech/produit et
+            analyse de la performance pour automatiser le selfcare voyageur à grande échelle.
+          </p>
+
+          <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-gray-700">Désengorgement des flux relation client 24h/24 & hausse de la
+                satisfaction.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-black">
+          <span>Consulter la décomposition STAR</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
         </div>
       </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- EXPÉRIENCES                                -->
-    <!-- ========================================== -->
-    <section id="experiences" class="section">
-      <div class="wrap-wide">
-        <div class="max-w-3xl mb-14" data-fx>
-          <span class="eyebrow">Expériences</span>
-          <h2 class="headline">Du terrain aux projets de transformation.</h2>
-          <p class="lead mt-5">Quatre missions, chacune détaillée selon la méthode STAR&nbsp;: situation, tâche, action, résultat.</p>
+      <!-- CARTE EXPÉRIENCE 2: SNCF OPTIM'SERVICES -->
+      <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
+        role="button" tabindex="0" onclick="openProjectModal('sncf-optim')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('sncf-optim')}">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+              Sept. 2024 – Sept. 2025
+            </span>
+            <span class="text-xs font-semibold text-gray-500">Alternance (1 an 1 mois)</span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+            Chatbot IA, PowerApps & Séminaire National
+          </h3>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
+            SNCF Optim'services (CSP Déplacements) · Saint-Denis
+          </p>
+
+          <!-- Logo -->
+          <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center p-6">
+            <img src="assets/images/LogoOptimService.jpg" alt="Logo SNCF Optim'services"
+              loading="lazy" class="max-w-full max-h-full object-contain">
+          </div>
+
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
+            Supervision du Chatbot IA interne, refonte UX SharePoint, kits de déploiement PowerApps, ateliers digitaux
+            et organisation clé en main du séminaire national des assistants de direction.
+          </p>
+
+          <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-gray-700">Adoption massive des outils digitaux & succès plébiscité du séminaire.</span>
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" data-fx-stagger="120">
-
-          <!-- OUIGO -->
-          <article class="tile tile-link" role="button" tabindex="0" onclick="openProjectModal('ouigo')"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('ouigo')}">
-            <div class="tile-visual tile-visual-dark">
-              <span class="text-4xl font-bold tracking-tight">OUIGO</span>
-              <span class="body-sm" style="color:#A1A1A6">Assistant virtuel IA · Selfcare voyageur</span>
-            </div>
-            <div class="meta-row"><span>OUIGO · SNCF Voyageurs</span><span>Sept. 2025 – aujourd'hui</span></div>
-            <h3 class="title-3 mb-3">Pilotage du projet d'assistant virtuel IA.</h3>
-            <p class="body-sm mb-6" style="font-size:17px">
-              Cadrage fonctionnel, flux conversationnels, travail avec les équipes tech et produit, et suivi de la
-              performance pour automatiser le selfcare voyageur.
-            </p>
-            <span class="link mt-auto">Lire l'étude de cas</span>
-          </article>
-
-          <!-- SNCF OPTIM'SERVICES -->
-          <article class="tile tile-link" role="button" tabindex="0" onclick="openProjectModal('sncf-optim')"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('sncf-optim')}">
-            <div class="tile-visual">
-              <img src="assets/images/LogoOptimService.jpg" alt="Logo SNCF Optim'services" loading="lazy">
-            </div>
-            <div class="meta-row"><span>SNCF Optim'services</span><span>Sept. 2024 – sept. 2025</span></div>
-            <h3 class="title-3 mb-3">Chatbot IA, PowerApps et séminaire national.</h3>
-            <p class="body-sm mb-6" style="font-size:17px">
-              Supervision du chatbot IA interne, refonte du SharePoint, kits de déploiement PowerApps, ateliers
-              digitaux et organisation du séminaire national des assistants de direction.
-            </p>
-            <span class="link mt-auto">Lire l'étude de cas</span>
-          </article>
-
-          <!-- RÉGION ÎLE-DE-FRANCE -->
-          <article class="tile tile-link" role="button" tabindex="0" onclick="openProjectModal('region-idf')"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('region-idf')}">
-            <div class="tile-visual">
-              <img src="assets/images/conseil_regional_idf.jpg" alt="Conseil Régional Île-de-France" loading="lazy">
-            </div>
-            <div class="meta-row"><span>Région Île-de-France</span><span>Mars – juil. 2024</span></div>
-            <h3 class="title-3 mb-3">Instruction de dossiers et Jeux de Paris 2024.</h3>
-            <p class="body-sm mb-6" style="font-size:17px">
-              Instruction des dossiers de subvention, lien avec les mairies, Semaine Olympique et Paralympique et
-              relations avec les athlètes de haut niveau.
-            </p>
-            <span class="link mt-auto">Lire l'étude de cas</span>
-          </article>
-
-          <!-- AGOREX EXPERTISE -->
-          <article class="tile tile-link" role="button" tabindex="0" onclick="openProjectModal('agorex')"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('agorex')}">
-            <div class="tile-visual">
-              <img src="assets/images/LogoAgorexExpertise.jpg" alt="Logo Agorex Expertise" loading="lazy">
-            </div>
-            <div class="meta-row"><span>Agorex Expertise</span><span>Avr. – mai 2023</span></div>
-            <h3 class="title-3 mb-3">Gestion financière, rapprochements et bilan.</h3>
-            <p class="body-sm mb-6" style="font-size:17px">
-              Tenue comptable, lettrage des comptes tiers, rapprochements bancaires, analyse de trésorerie et
-              travaux préparatoires de clôture.
-            </p>
-            <span class="link mt-auto">Lire l'étude de cas</span>
-          </article>
-
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-black">
+          <span>Consulter la décomposition STAR</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
         </div>
       </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- COMPÉTENCES                                -->
-    <!-- ========================================== -->
-    <section id="methodes" class="section section-alt">
-      <div class="wrap-wide">
-        <div class="max-w-3xl mb-14" data-fx>
-          <span class="eyebrow">Compétences</span>
-          <h2 class="headline">Méthode, outils et leadership.</h2>
+      <!-- CARTE EXPÉRIENCE 3: RÉGION ÎLE-DE-FRANCE -->
+      <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
+        role="button" tabindex="0" onclick="openProjectModal('region-idf')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('region-idf')}">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+              Mars – Juil. 2024
+            </span>
+            <span class="text-xs font-semibold text-gray-500">Stage (5 mois)</span>
+          </div>
+
+          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+            Instruction de Dossiers & JOP Paris 2024
+          </h3>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
+            Région Île-de-France (Service des Sports) · Saint-Ouen
+          </p>
+
+          <!-- Photo Placeholder -->
+          <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center p-6">
+  <img src="assets/images/conseil_regional_idf.jpg" alt="Conseil Régional Île-de-France"
+    loading="lazy" class="max-w-full max-h-full object-contain">
+</div>
+
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
+            Instruction des dossiers de subventions pour le Conseil Régional, interface avec les mairies, déploiement de
+            la Semaine Olympique et Paralympique et gestion des relations athlètes de haut niveau.
+          </p>
+
+          <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-gray-700">Arbitrages budgétaires sécurisés et contribution au rayonnement des JOP
+                2024.</span>
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-fx-stagger="120">
-          <div class="tile">
-            <i data-lucide="compass" class="w-8 h-8 mb-6" style="color:var(--blue)" stroke-width="1.5"></i>
-            <h3 class="title-4 mb-4">Pilotage et gouvernance</h3>
-            <ul class="list-plain">
-              <li>Méthodes agiles (Scrum, Kanban)</li>
-              <li>Cadrage fonctionnel et user stories</li>
-              <li>Comitologie (COPIL, COTECH)</li>
-              <li>Gestion des risques et des jalons</li>
-            </ul>
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-black">
+          <span>Consulter la décomposition STAR</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </div>
+      </div>
+
+      <!-- CARTE EXPÉRIENCE 4: AGOREX EXPERTISE -->
+      <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
+        role="button" tabindex="0" onclick="openProjectModal('agorex')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('agorex')}">
+        <div>
+          <div class="flex items-center justify-between gap-2 mb-4">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+              Avril – Mai 2023
+            </span>
+            <span class="text-xs font-semibold text-gray-500">Stage (BUT GEA)</span>
           </div>
 
-          <div class="tile">
-            <i data-lucide="sparkles" class="w-8 h-8 mb-6" style="color:var(--blue)" stroke-width="1.5"></i>
-            <h3 class="title-4 mb-4">Outils digitaux et IA</h3>
-            <ul class="list-plain">
-              <li>Assistants virtuels et chatbots IA</li>
-              <li>Microsoft PowerApps</li>
-              <li>SharePoint Online et intranet</li>
-              <li>Trello, Jira, Microsoft 365</li>
-            </ul>
-          </div>
+          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+            Gestion Financière, Rapprochements & Bilan
+          </h3>
+          <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
+            Agorex Expertise · Île-de-France
+          </p>
 
-          <div class="tile">
-            <i data-lucide="users" class="w-8 h-8 mb-6" style="color:var(--blue)" stroke-width="1.5"></i>
-            <h3 class="title-4 mb-4">Changement et leadership</h3>
-            <ul class="list-plain">
-              <li>Prise de parole en public</li>
-              <li>Animation d'ateliers collaboratifs</li>
-              <li>Plans de communication et tutoriels</li>
-              <li>Analyse financière et suivi budgétaire</li>
-            </ul>
+          <!-- Photo Placeholder -->
+          <!-- Logo -->
+<div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center p-6">
+  <img src="assets/images/LogoAgorexExpertise.jpg" alt="Logo Agorex Expertise"
+    loading="lazy" class="max-w-full max-h-full object-contain">
+</div>
+
+<p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
+  Tenue comptable, lettrage des comptes tiers, rapprochements bancaires, analyse de trésorerie et travaux
+  préparatoires de clôture de bilans annuels.
+</p>
+
+          <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-gray-700">Maîtrise approfondie des chiffres et de la rentabilité (ROI) d'un
+                projet.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-gray-100 flex items-center justify-between text-xs font-bold text-black">
+          <span>Consulter la décomposition STAR</span>
+          <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- SECTION: MÉTHODES & BOÎTE À OUTILS         -->
+  <!-- ========================================== -->
+  <section id="methodes" class="py-20 bg-white border-t border-[#D8DCE2]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Compétences</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
+          Méthodologies & Stack Opérationnelle
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <div class="p-6 rounded-2xl bg-[#EAECEF]/50 border border-gray-200">
+          <div class="w-10 h-10 rounded-lg bg-black text-white flex items-center justify-center mb-4">
+            <i data-lucide="check-square" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-base font-bold text-black mb-3">Pilotage & Gouvernance</h3>
+          <ul class="space-y-2 text-xs text-gray-700">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Méthodes
+              Agiles (Scrum / Kanban)</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Cadrage
+              fonctionnel & User Stories</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Comitologie
+              (Copil / Cotech)</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Gestion des
+              risques & Suivi des jalons</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#EAECEF]/50 border border-gray-200">
+          <div class="w-10 h-10 rounded-lg bg-black text-white flex items-center justify-center mb-4">
+            <i data-lucide="bot" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-base font-bold text-black mb-3">Outils Digitaux & IA</h3>
+          <ul class="space-y-2 text-xs text-gray-700">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Assistants
+              Virtuels & Chatbots IA</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Suite
+              Microsoft PowerApps</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> SharePoint
+              Online & Intranet</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Trello / Jira
+              / Pack Office 365</li>
+          </ul>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#EAECEF]/50 border border-gray-200">
+          <div class="w-10 h-10 rounded-lg bg-black text-white flex items-center justify-center mb-4">
+            <i data-lucide="users" class="w-5 h-5"></i>
+          </div>
+          <h3 class="text-base font-bold text-black mb-3">Changement & Leadership</h3>
+          <ul class="space-y-2 text-xs text-gray-700">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Prise de
+              parole en public (Keynotes)</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Animation
+              d'ateliers collaboratifs</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Plans de
+              communication & Tutoriels</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-black"></i> Analyse
+              financière & Suivi budgétaire</li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- SECTION: FORMATIONS & EXCELLENCE           -->
+  <!-- ========================================== -->
+  <section id="formations" class="py-20 sm:py-28 max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div class="max-w-2xl mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Parcours Académique</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
+        Formations & Diplômes d'Excellence
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Formation 1 -->
+      <div id="master-card" 
+           class="group/master editorial-card p-6 rounded-2xl bg-white border border-gray-200 flex flex-col justify-between cursor-pointer hover:border-black hover:shadow-lg transition">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono inline-block mb-3">
+            2025 – 2027 · Bac +5
+          </span>
+          <h3 class="text-lg font-bold text-black font-sans mb-1 min-h-[3.25rem] flex items-center group-hover/master:underline">
+            Master Management Stratégique et Changement
+          </h3>
+          <p class="text-xs font-semibold text-gray-700 mb-2 truncate">
+            ISM-IAE · Université Paris-Saclay (UVSQ)
+          </p>
+          <p class="text-xs text-gray-600 leading-relaxed min-h-[2.75rem]">
+            Diagnostic stratégique, gouvernance des organisations, conduite du changement et management international.
+          </p>
+        </div>
+
+        <div class="mt-auto pt-4">
+          <div class="rounded-xl overflow-hidden border border-gray-200 bg-white p-5 flex items-center justify-center aspect-[16/11] shadow-sm group-hover/master:border-gray-300 transition">
+            <img src="assets/images/ISM_IAE_LOGO.png" 
+                 alt="Logo ISM-IAE — Université Paris-Saclay & UVSQ" 
+                 loading="lazy"
+                 class="max-w-[90%] max-h-[75%] object-contain group-hover/master:scale-105 transition-transform duration-500">
+          </div>
+          <div class="mt-2.5 p-2.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between text-gray-800 group-hover/master:bg-black group-hover/master:text-white transition duration-300">
+            <span class="text-[11px] font-semibold flex items-center gap-1.5">
+              <i data-lucide="folder" class="w-3.5 h-3.5"></i>
+              Consulter les documents du Master
+            </span>
+            <span class="text-[11px] font-bold group-hover/master:translate-x-0.5 transition-transform">
+              ↗
+            </span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- FORMATION                                  -->
-    <!-- ========================================== -->
-    <section id="formations" class="section">
-      <div class="wrap-wide">
-        <div class="max-w-3xl mb-14" data-fx>
-          <span class="eyebrow">Formation</span>
-          <h2 class="headline">Un parcours construit pas à pas.</h2>
+      <!-- Formation 2 -->
+      <div class="group/gea editorial-card p-6 rounded-2xl bg-white border border-gray-200 flex flex-col justify-between hover:border-black hover:shadow-lg transition">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800 font-mono inline-block mb-3 border border-gray-200">
+            2022 – 2025 · Bac +3
+          </span>
+          <h3 class="text-lg font-bold text-black font-sans mb-1 min-h-[3.25rem] flex items-center">
+            BUT Gestion des Entreprises & Administrations
+          </h3>
+          <p class="text-xs font-semibold text-gray-700 mb-2 truncate">
+            Parcours GEMA · Université Gustave Eiffel
+          </p>
+          <p class="text-xs text-gray-600 leading-relaxed min-h-[2.75rem]">
+            Gestion budgétaire, bilan comptable, droit des affaires, marketing et pilotage d'activités opérationnelles.
+          </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5" data-fx-stagger="120">
+        <div class="mt-auto pt-4">
+          <a href="assets/docs/Diplome_Licenceprofessionnelle_BUT_GEA_AkinsANRETAR.pdf" target="_blank" rel="noopener noreferrer"
+             class="block rounded-xl overflow-hidden border border-gray-200 bg-white aspect-[16/11] shadow-sm hover:border-gray-300 transition">
+            <img src="assets/images/diplome_but_gea.jpg" 
+                 alt="Diplôme Licence Professionnelle BUT GEA — Akins ANRETAR" 
+                 loading="lazy"
+                 class="w-full h-full object-cover object-center group-hover/gea:scale-105 transition-transform duration-500">
+          </a>
+          <a href="assets/docs/Diplome_Licenceprofessionnelle_BUT_GEA_AkinsANRETAR.pdf" target="_blank" rel="noopener noreferrer"
+             class="mt-2.5 p-2.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between text-gray-800 hover:bg-black hover:text-white transition duration-300">
+            <span class="text-[11px] font-semibold flex items-center gap-1.5">
+              <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+              Consulter le diplôme officiel (PDF)
+            </span>
+            <span class="text-[11px] font-bold group-hover/gea:translate-x-0.5 transition-transform">
+              ↗
+            </span>
+          </a>
+        </div>
+      </div>
 
-          <!-- Master -->
-          <article id="master-card" class="tile tile-link" role="button" tabindex="0"
-            onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
-            <div class="meta-row"><span>2025 – 2027</span><span>Bac +5</span></div>
-            <h3 class="title-4 mb-2">Master Management Stratégique et Changement</h3>
-            <p class="body-sm mb-6">ISM-IAE · Université Paris-Saclay (UVSQ)<br>Diagnostic stratégique, gouvernance, conduite du changement et management international.</p>
-            <div class="tile-visual mt-auto mb-5" style="aspect-ratio:16/11">
-              <img src="assets/images/ISM_IAE_LOGO.png" alt="Logo ISM-IAE, Université Paris-Saclay" loading="lazy">
-            </div>
-            <span class="link">Consulter les documents du Master</span>
-          </article>
+      <!-- Formation 3 -->
+      <div class="group/bac editorial-card p-6 rounded-2xl bg-white border border-gray-200 flex flex-col justify-between hover:border-black hover:shadow-lg transition">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800 font-mono inline-block mb-3 border border-gray-200">
+            2022 · Mention Très Bien
+          </span>
+          <h3 class="text-lg font-bold text-black font-sans mb-1 min-h-[3.25rem] flex items-center">
+            Baccalauréat STMG
+          </h3>
+          <p class="text-xs font-semibold text-gray-700 mb-2 truncate">
+            Lycée Évariste Galois · Noisy-le-Grand
+          </p>
+          <p class="text-xs text-gray-600 leading-relaxed min-h-[2.75rem]">
+            Obtenu avec la Mention Très Bien et mis à l'honneur lors de la cérémonie officielle des bacheliers noiséens.
+          </p>
+        </div>
 
-          <!-- BUT GEA -->
-          <article class="tile">
-            <div class="meta-row"><span>2022 – 2025</span><span>Bac +3</span></div>
-            <h3 class="title-4 mb-2">BUT Gestion des Entreprises et des Administrations</h3>
-            <p class="body-sm mb-6">Parcours GEMA · Université Gustave Eiffel<br>Gestion budgétaire, comptabilité, droit des affaires, marketing et pilotage d'activité.</p>
-            <a href="assets/docs/Diplome_Licenceprofessionnelle_BUT_GEA_AkinsANRETAR.pdf" target="_blank" rel="noopener noreferrer"
-              class="tile-visual mt-auto mb-5 !p-0" style="aspect-ratio:16/11">
-              <img src="assets/images/diplome_but_gea.jpg" alt="Diplôme BUT GEA d'Akins Anretar" loading="lazy"
-                class="!max-w-full !max-h-full w-full h-full !object-cover">
-            </a>
-            <a href="assets/docs/Diplome_Licenceprofessionnelle_BUT_GEA_AkinsANRETAR.pdf" target="_blank" rel="noopener noreferrer"
-              class="link">Voir le diplôme (PDF)</a>
-          </article>
-
-          <!-- Bac STMG -->
-          <article class="tile">
-            <div class="meta-row"><span>2022</span><span>Mention Très Bien</span></div>
-            <h3 class="title-4 mb-2">Baccalauréat STMG</h3>
-            <p class="body-sm mb-6">Lycée Évariste Galois · Noisy-le-Grand<br>Mention Très Bien, mise à l'honneur lors de la cérémonie des bacheliers noiséens.</p>
-
-            <div class="relative w-full rounded-[18px] overflow-hidden bg-white mt-auto mb-5" style="aspect-ratio:16/11">
-              <div id="diplomaSlider" class="flex w-full h-full transition-transform duration-500 ease-in-out">
-                <div class="w-full h-full flex-shrink-0">
-                  <a href="assets/images/diplome_bac_stmg.jpg" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
-                    <img src="assets/images/diplome_bac_stmg.jpg" alt="Diplôme du baccalauréat STMG" loading="lazy" class="w-full h-full object-cover">
-                  </a>
-                </div>
-                <div class="w-full h-full flex-shrink-0 bg-black">
-                  <iframe class="w-full h-full" src="https://www.youtube.com/embed/E-NhIq2Q1Sw"
-                    title="Une cérémonie pour les bacheliers noiséens" frameborder="0" loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
+        <div class="mt-auto pt-4">
+          <!-- Slider avec overflow-hidden strict et aspect-[16/11] identique -->
+          <div class="relative w-full rounded-xl overflow-hidden border border-gray-200 bg-white aspect-[16/11] shadow-sm">
+            <div id="diplomaSlider" class="flex w-full h-full transition-transform duration-500 ease-in-out">
+              <!-- Slide 1 : Diplôme -->
+              <div class="w-full h-full flex-shrink-0 bg-white">
+                <a href="assets/images/diplome_bac_stmg.jpg" target="_blank" rel="noopener noreferrer" class="block w-full h-full">
+                  <img src="assets/images/diplome_bac_stmg.jpg" alt="Diplôme Baccalauréat STMG" loading="lazy"
+                       class="w-full h-full object-cover object-center group-hover/bac:scale-105 transition-transform duration-500">
+                </a>
               </div>
 
-              <button onclick="slidePrev()" type="button" aria-label="Précédent"
-                class="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow z-10">
-                <i data-lucide="chevron-left" class="w-4 h-4"></i>
-              </button>
-              <button onclick="slideNext()" type="button" aria-label="Suivant"
-                class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow z-10">
-                <i data-lucide="chevron-right" class="w-4 h-4"></i>
-              </button>
-              <div class="absolute bottom-2 inset-x-0 flex justify-center gap-1.5 z-10">
-                <button type="button" onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-[#1D1D1F] transition" data-dot="0" aria-label="Diplôme"></button>
-                <button type="button" onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-[#D2D2D7] transition" data-dot="1" aria-label="Vidéo de la cérémonie"></button>
+              <!-- Slide 2 : Vidéo YouTube -->
+              <div class="w-full h-full flex-shrink-0 bg-black">
+                <iframe 
+                  class="w-full h-full"
+                  src="https://www.youtube.com/embed/E-NhIq2Q1Sw" 
+                  title="Une cérémonie pour les bacheliers noiséens"
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
               </div>
             </div>
-            <a href="assets/images/diplome_bac_stmg.jpg" target="_blank" rel="noopener noreferrer" class="link">Voir le diplôme</a>
-          </article>
 
+            <!-- Flèches de navigation -->
+            <button onclick="slidePrev()" type="button" aria-label="Précédent"
+                    class="absolute left-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/90 hover:bg-white text-black shadow-md rounded-full flex items-center justify-center transition z-10">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+              </svg>
+            </button>
+
+            <button onclick="slideNext()" type="button" aria-label="Suivant"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 bg-white/90 hover:bg-white text-black shadow-md rounded-full flex items-center justify-center transition z-10">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            <!-- Dots overlay -->
+            <div class="absolute bottom-2 inset-x-0 flex justify-center gap-1.5 z-10">
+              <button type="button" onclick="goToSlide(0)" class="w-2 h-2 rounded-full bg-black shadow-sm transition" data-dot="0" aria-label="Slide 1"></button>
+              <button type="button" onclick="goToSlide(1)" class="w-2 h-2 rounded-full bg-gray-300 shadow-sm transition" data-dot="1" aria-label="Slide 2"></button>
+            </div>
+          </div>
+
+          <!-- Bouton d'action identique aux cartes 1 et 2 -->
+          <a href="assets/images/diplome_bac_stmg.jpg" target="_blank" rel="noopener noreferrer"
+             class="mt-2.5 p-2.5 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between text-gray-800 hover:bg-black hover:text-white transition duration-300">
+            <span class="text-[11px] font-semibold flex items-center gap-1.5">
+              <i data-lucide="award" class="w-3.5 h-3.5"></i>
+              Consulter le diplôme (Bac STMG)
+            </span>
+            <span class="text-[11px] font-bold group-hover/bac:translate-x-0.5 transition-transform">
+              ↗
+            </span>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ========================================== -->
-    <!-- RECOMMANDATIONS                            -->
-    <!-- ========================================== -->
-    <section id="appreciation" class="section section-alt">
-      <div class="wrap-wide">
-        <div class="max-w-3xl mb-14" data-fx>
-          <span class="eyebrow">Recommandations</span>
-          <h2 class="headline">Ils en parlent mieux que moi.</h2>
-          <p class="lead mt-5">Extraits de mes lettres de recommandation et fiches d'appréciation. Chaque document original est consultable.</p>
-        </div>
+  <!-- ========================================== -->
+  <!-- SECTION: APPRÉCIATION & RECOMMANDATIONS    -->
+  <!-- ========================================== -->
+  <section id="appreciation" class="py-20 sm:py-28 bg-white border-t border-[#D8DCE2]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5" data-fx-stagger="120">
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Retours & Témoignages</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
+          Appréciations & Recommandations
+        </h2>
+        <p class="text-sm text-gray-500 mt-2 leading-relaxed">
+          Extraits de mes lettres de recommandation et fiches d'appréciation, classés par entreprise et par année. Chaque document original est consultable en PDF.
+        </p>
+      </div>
 
-          <!-- SNCF Optim'services (2024 – 2025) -->
-          <article class="tile">
-            <div class="meta-row"><span>SNCF Optim'services</span><span>2024 – 2025</span></div>
+      <!-- Grille des appréciations -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <div class="doc-stack mt-3" data-org="SNCF Optim'services" aria-label="Documents SNCF Optim'services">
+        <!-- Appréciation 1 : SNCF Optim'services (2024 – 2025) -->
+        <div class="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-[#FBFBFD] border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300">
+          <div class="absolute top-5 right-6 text-[72px] leading-none font-serif text-gray-100 select-none pointer-events-none group-hover:text-gray-200 transition">&ldquo;</div>
+
+          <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-gray-800 text-white font-mono uppercase tracking-wider">SNCF Optim'services</span>
+              <span class="text-[10px] font-mono text-gray-400">2024 – 2025</span>
+            </div>
+
+            <!-- Pile de documents animée -->
+            <div class="doc-stack" data-org="SNCF Optim'services" aria-label="Documents SNCF Optim'services">
               <button type="button" class="doc-sheet" data-img="assets/images/docs/lettre_sncf_optim.jpg" data-pdf="assets/docs/Lettre_de_Recommandation_SNCF_OptimServices.pdf"
                 data-title="Lettre de recommandation" data-meta="Julie VIDAL · Directrice du CSP Déplacements Professionnels" aria-label="Agrandir : Lettre de recommandation">
                 <img src="assets/images/docs/lettre_sncf_optim.jpg" alt="Lettre de recommandation SNCF Optim'services" loading="lazy">
               </button>
             </div>
 
-            <blockquote class="quote mb-6">
-              « Sérieux, appliqué et curieux, Akins s'est bien intégré à l'équipe. […] Son sens de l'initiative et sa
-              capacité à gérer plusieurs dossiers en parallèle sont particulièrement appréciés. »
+            <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
+              « Sérieux, appliqué et curieux, Akins s'est bien intégré à l'équipe. […] Son sens de l'initiative et sa capacité à gérer plusieurs dossiers en parallèle sont particulièrement appréciés. »
             </blockquote>
+          </div>
 
-            <div class="mt-auto">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="avatar">JV</div>
-                <div>
-                  <p class="text-[14px] font-semibold">Julie Vidal</p>
-                  <p class="caption">Directrice du CSP Déplacements Professionnels</p>
-                </div>
+          <div>
+            <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+              <div class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">JV</div>
+              <div>
+                <p class="text-xs font-bold text-black">Julie VIDAL</p>
+                <p class="text-[11px] text-gray-500 font-mono">Directrice du CSP Déplacements Professionnels</p>
               </div>
-              <a href="assets/docs/Lettre_de_Recommandation_SNCF_OptimServices.pdf" target="_blank" rel="noopener noreferrer" class="doc-link">
-                <i data-lucide="file-text" class="w-5 h-5 shrink-0" style="color:var(--text-3)" stroke-width="1.5"></i>
-                <span class="flex-1 min-w-0">
-                  <span class="doc-link-title">Lettre de recommandation</span>
-                  <span class="doc-link-meta">Alternance 2024 – 2025 · PDF</span>
+            </div>
+
+            <div class="mt-4 space-y-2">
+              <a href="assets/docs/Lettre_de_Recommandation_SNCF_OptimServices.pdf" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-gray-200 hover:border-black transition group/doc">
+                <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 group-hover/doc:bg-black group-hover/doc:text-white transition">
+                  <i data-lucide="file-signature" class="w-4 h-4"></i>
                 </span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0" style="color:var(--text-3)"></i>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-xs font-bold text-black">Lettre de recommandation</span>
+                  <span class="block text-[11px] text-gray-500 font-mono truncate">Alternance 2024 – 2025 · PDF</span>
+                </span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
             </div>
-          </article>
+          </div>
+        </div>
 
-          <!-- Région Île-de-France (2024) -->
-          <article class="tile">
-            <div class="meta-row"><span>Région Île-de-France</span><span>Mars – juil. 2024</span></div>
+        <!-- Appréciation 2 : Région Île-de-France (2024) -->
+        <div class="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-[#FBFBFD] border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300">
+          <div class="absolute top-5 right-6 text-[72px] leading-none font-serif text-gray-100 select-none pointer-events-none group-hover:text-gray-200 transition">&ldquo;</div>
 
-            <div class="doc-stack mt-3" data-org="Région Île-de-France" aria-label="Documents Région Île-de-France">
+          <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-[#003189] text-white font-mono uppercase tracking-wider">Région Île-de-France</span>
+              <span class="text-[10px] font-mono text-gray-400">Mars – Juil. 2024</span>
+            </div>
+
+            <!-- Pile de documents animée -->
+            <div class="doc-stack" data-org="Région Île-de-France" aria-label="Documents Région Île-de-France">
               <button type="button" class="doc-sheet" data-img="assets/images/docs/lettre_region_idf.jpg" data-pdf="assets/docs/Lettre_de_Recommandation_Region_IDF.pdf"
                 data-title="Lettre de recommandation" data-meta="10 juillet 2024 · Patrick KARAM, Vice-Président" aria-label="Agrandir : Lettre de recommandation">
                 <img src="assets/images/docs/lettre_region_idf.jpg" alt="Lettre de recommandation Région Île-de-France" loading="lazy">
@@ -499,199 +908,277 @@
               </button>
             </div>
 
-            <blockquote class="quote mb-6">
-              « Tout au long de ce stage il a fait preuve d'un professionnalisme et d'une rigueur admirable. […] Akins
-              est un élément de qualité qui […] apportera rapidement une vraie plus-value. »
+            <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
+              « Tout au long de ce stage il a fait preuve d'un professionnalisme et d'une rigueur admirable. […] Akins est un élément de qualité qui […] apportera rapidement une vraie plus-value. »
             </blockquote>
+          </div>
 
-            <div class="mt-auto">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="avatar">PK</div>
-                <div>
-                  <p class="text-[14px] font-semibold">Patrick Karam</p>
-                  <p class="caption">Vice-Président chargé des Sports et des JOP</p>
-                </div>
+          <div>
+            <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+              <div class="w-9 h-9 rounded-full bg-[#003189] flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">PK</div>
+              <div>
+                <p class="text-xs font-bold text-black">Patrick KARAM</p>
+                <p class="text-[11px] text-gray-500 font-mono">Vice-Président chargé des Sports et des JOP</p>
               </div>
-              <a href="assets/docs/Lettre_de_Recommandation_Region_IDF.pdf" target="_blank" rel="noopener noreferrer" class="doc-link">
-                <i data-lucide="file-text" class="w-5 h-5 shrink-0" style="color:var(--text-3)" stroke-width="1.5"></i>
-                <span class="flex-1 min-w-0">
-                  <span class="doc-link-title">Lettre de recommandation</span>
-                  <span class="doc-link-meta">10 juillet 2024 · PDF</span>
+            </div>
+
+            <div class="mt-4 space-y-2">
+              <a href="assets/docs/Lettre_de_Recommandation_Region_IDF.pdf" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-gray-200 hover:border-black transition group/doc">
+                <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 group-hover/doc:bg-black group-hover/doc:text-white transition">
+                  <i data-lucide="file-signature" class="w-4 h-4"></i>
                 </span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0" style="color:var(--text-3)"></i>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-xs font-bold text-black">Lettre de recommandation</span>
+                  <span class="block text-[11px] text-gray-500 font-mono truncate">10 juillet 2024 · Patrick KARAM · PDF</span>
+                </span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
-              <a href="assets/docs/Fiche_Appreciation_Region_IDF.pdf" target="_blank" rel="noopener noreferrer" class="doc-link">
-                <i data-lucide="file-check" class="w-5 h-5 shrink-0" style="color:var(--text-3)" stroke-width="1.5"></i>
-                <span class="flex-1 min-w-0">
-                  <span class="doc-link-title">Fiche d'appréciation de stage</span>
-                  <span class="doc-link-meta">29 mai 2024 · PDF</span>
+              <a href="assets/docs/Fiche_Appreciation_Region_IDF.pdf" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-gray-200 hover:border-black transition group/doc">
+                <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 group-hover/doc:bg-black group-hover/doc:text-white transition">
+                  <i data-lucide="clipboard-check" class="w-4 h-4"></i>
                 </span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0" style="color:var(--text-3)"></i>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-xs font-bold text-black">Fiche d'appréciation de stage</span>
+                  <span class="block text-[11px] text-gray-500 font-mono truncate">29 mai 2024 · Bureau des Représentations · PDF</span>
+                </span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
             </div>
-          </article>
+          </div>
+        </div>
 
-          <!-- Agorex Expertise (2023) -->
-          <article class="tile">
-            <div class="meta-row"><span>Agorex Expertise</span><span>Avr. – mai 2023</span></div>
+        <!-- Appréciation 3 : Agorex Expertise (2023) -->
+        <div class="group relative flex flex-col justify-between p-6 sm:p-7 rounded-3xl bg-[#FBFBFD] border border-gray-200 hover:border-black hover:shadow-xl transition-all duration-300">
+          <div class="absolute top-5 right-6 text-[72px] leading-none font-serif text-gray-100 select-none pointer-events-none group-hover:text-gray-200 transition">&ldquo;</div>
 
-            <div class="doc-stack mt-3" data-org="Agorex Expertise" aria-label="Documents Agorex Expertise">
+          <div class="relative z-10">
+            <div class="flex items-center gap-2 mb-4">
+              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-700 text-white font-mono uppercase tracking-wider">Agorex Expertise</span>
+              <span class="text-[10px] font-mono text-gray-400">Avr. – Mai 2023</span>
+            </div>
+
+            <!-- Pile de documents animée -->
+            <div class="doc-stack" data-org="Agorex Expertise" aria-label="Documents Agorex Expertise">
               <button type="button" class="doc-sheet" data-img="assets/images/docs/fiche_agorex.jpg" data-pdf="assets/docs/Fiche_Appreciation_Agroex_Expertise.pdf"
                 data-title="Fiche d'appréciation de stage" data-meta="17 mai 2023 · Stéphane DUBOIS" aria-label="Agrandir : Fiche d'appréciation de stage">
                 <img src="assets/images/docs/fiche_agorex.jpg" alt="Fiche d'appréciation de stage Agorex Expertise" loading="lazy">
               </button>
             </div>
 
-            <blockquote class="quote mb-6">« Très investi et sérieux. Bonne intégration au sein de l'équipe. »</blockquote>
+            <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
+              « Très investi et sérieux. Bonne intégration au sein de l'équipe. »
+            </blockquote>
+          </div>
 
-            <div class="mt-auto">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="avatar">SD</div>
-                <div>
-                  <p class="text-[14px] font-semibold">Stéphane Dubois</p>
-                  <p class="caption">Responsable juridique et administrative</p>
-                </div>
+          <div>
+            <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
+              <div class="w-9 h-9 rounded-full bg-emerald-700 flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">SD</div>
+              <div>
+                <p class="text-xs font-bold text-black">Stéphane DUBOIS</p>
+                <p class="text-[11px] text-gray-500 font-mono">Responsable juridique & administrative</p>
               </div>
-              <a href="assets/docs/Fiche_Appreciation_Agroex_Expertise.pdf" target="_blank" rel="noopener noreferrer" class="doc-link">
-                <i data-lucide="file-check" class="w-5 h-5 shrink-0" style="color:var(--text-3)" stroke-width="1.5"></i>
-                <span class="flex-1 min-w-0">
-                  <span class="doc-link-title">Fiche d'appréciation de stage</span>
-                  <span class="doc-link-meta">17 mai 2023 · PDF</span>
+            </div>
+
+            <div class="mt-4 space-y-2">
+              <a href="assets/docs/Fiche_Appreciation_Agroex_Expertise.pdf" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-3 p-2.5 rounded-xl bg-white border border-gray-200 hover:border-black transition group/doc">
+                <span class="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center shrink-0 group-hover/doc:bg-black group-hover/doc:text-white transition">
+                  <i data-lucide="clipboard-check" class="w-4 h-4"></i>
                 </span>
-                <i data-lucide="arrow-up-right" class="w-4 h-4 shrink-0" style="color:var(--text-3)"></i>
+                <span class="min-w-0 flex-1">
+                  <span class="block text-xs font-bold text-black">Fiche d'appréciation de stage</span>
+                  <span class="block text-[11px] text-gray-500 font-mono truncate">17 mai 2023 · Stage BUT GEA · PDF</span>
+                </span>
+                <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
             </div>
-          </article>
-
-          <!-- LinkedIn -->
-          <article class="tile items-center justify-center text-center">
-            <i data-lucide="linkedin" class="w-10 h-10 mb-5" style="color:#0A66C2" stroke-width="1.5"></i>
-            <h3 class="title-4 mb-2">D'autres recommandations.</h3>
-            <p class="body-sm mb-6 max-w-xs">Retrouvez mon parcours complet et mes recommandations sur LinkedIn.</p>
-            <a href="https://www.linkedin.com/in/akins-anretar" target="_blank" rel="noopener noreferrer" class="link">Voir mon profil LinkedIn</a>
-          </article>
-
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- CONTACT                                    -->
-    <!-- ========================================== -->
-    <section id="contact" class="section section-dark text-center">
-      <div class="wrap" data-fx>
-        <h2 class="headline-xl">Travaillons ensemble.</h2>
-        <p class="lead mt-6 max-w-2xl mx-auto" style="color:#A1A1A6">
-          Vous cherchez un profil pour piloter un projet de transformation ou d'IA&nbsp;? Écrivez-moi, je vous réponds
-          rapidement.
-        </p>
-
-        <div class="flex flex-wrap items-center justify-center gap-4 mt-10">
-          <a href="mailto:akins.anretar@yahoo.com?subject=Prise de contact - Profil Chef de Projet" class="btn btn-primary">
-            akins.anretar@yahoo.com
+        <!-- Bloc CTA LinkedIn -->
+        <div class="flex flex-col items-center justify-center p-6 sm:p-7 rounded-3xl border-2 border-dashed border-gray-200 hover:border-black text-center transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-2xl bg-[#0A66C2] flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform duration-300">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="w-6 h-6 brightness-0 invert">
+          </div>
+          <p class="text-sm font-bold text-black mb-1">Plus de recommandations</p>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+            Retrouvez l'ensemble de mes recommandations vérifiées sur mon profil LinkedIn.
+          </p>
+          <a href="https://www.linkedin.com/in/akins-anretar" target="_blank" rel="noopener noreferrer"
+            class="px-5 py-2 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-gray-800 transition flex items-center gap-2">
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            Voir sur LinkedIn
           </a>
-          <button id="btn-copy-email" type="button" class="btn btn-secondary">Copier l'adresse</button>
         </div>
 
-        <div class="mt-8">
-          <a href="https://www.linkedin.com/in/akins-anretar" target="_blank" rel="noopener noreferrer" class="link">LinkedIn</a>
-        </div>
-
-        <p class="caption mt-12" style="color:#86868B">Saint-Denis, Île-de-France · Ouvert à la mobilité internationale</p>
       </div>
-    </section>
-
-  </main>
+    </div>
+  </section>
 
   <!-- ========================================== -->
-  <!-- PIED DE PAGE                               -->
+  <!-- SECTION: CONTACT & APPEL À L'ACTION        -->
   <!-- ========================================== -->
-  <footer class="site-footer">
-    <div class="wrap">
-      <p class="pb-3">Chef de projet Organisation &amp; Transformation · Master Management Stratégique et Changement, ISM-IAE Paris-Saclay.</p>
-      <div class="site-footer-row">
-        <span>© 2026 Akins Anretar. « Toute victoire s'élabore. »</span>
-        <div class="site-footer-links">
-          <a href="#about">Profil</a>
-          <a href="#experiences">Expériences</a>
-          <a href="#formations">Formation</a>
-          <button type="button" onclick="window.print()" class="hover:underline" style="color:#424245">Imprimer le CV</button>
-        </div>
+  <section id="contact" class="py-20 bg-white border-t border-[#D8DCE2]">
+    <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
+      <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block">Contact</span>
+      <h2 class="text-4xl sm:text-5xl font-extrabold text-[#111215] tracking-tight font-display">
+        Prêt à collaborer sur vos projets stratégiques ?
+      </h2>
+      <p class="text-gray-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Vous recherchez un profil proactif pour piloter vos projets de transformation ou d'IA ? Je suis à votre écoute
+        pour échanger.
+      </p>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <a href="mailto:akins.anretar@yahoo.com?subject=Prise de contact - Profil Chef de Projet"
+          class="px-8 py-3.5 rounded-full bg-black text-white hover:bg-gray-800 text-xs font-bold uppercase tracking-wider transition shadow-lg flex items-center gap-2">
+          <i data-lucide="mail" class="w-4 h-4"></i>
+          <span>akins.anretar@yahoo.com</span>
+        </a>
+
+        <button id="btn-copy-email"
+          class="px-6 py-3.5 rounded-full border border-gray-300 hover:border-black text-black text-xs font-bold uppercase tracking-wider transition flex items-center gap-2">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span>Copier l'adresse</span>
+        </button>
+
+        <a href="https://www.linkedin.com/in/akins-anretar" target="_blank" rel="noopener noreferrer"
+          class="px-6 py-3.5 rounded-full border border-gray-300 hover:border-black text-black text-xs font-bold uppercase tracking-wider transition flex items-center gap-2">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn"
+            class="w-4 h-4" />
+          <span>LinkedIn</span>
+        </a>
       </div>
+
+      <div class="pt-4 text-xs text-gray-400 font-mono">
+        Saint-Denis · Île-de-France · Mobilité Internationale
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- FOOTER (NOIR AVEC EMAIL GÉANT)             -->
+  <!-- ========================================== -->
+  <footer class="py-16 bg-[#111215] text-white border-t border-gray-900">
+    <div
+      class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
+
+      <!-- Left side: Links & info -->
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-sm">
+            <img src="assets/images/Logo_AKINS.png" alt="Logo Akins" class="w-full h-full object-contain" />
+          </div>
+          <span class="font-display font-bold text-2xl tracking-wider text-white block">AKINS ANRETAR</span>
+        </div>
+        <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+          Chef de Projet Organisation & Transformation d'Entreprise. Master Management Stratégique & Changement (ISM-IAE
+          Paris-Saclay).
+        </p>
+        <div class="flex items-center gap-4 text-xs text-gray-400 pt-2">
+          <a href="#profil" class="hover:text-white transition">Profil</a>
+          <span>•</span>
+          <a href="#experiences" class="hover:text-white transition">Expériences</a>
+          <span>•</span>
+          <a href="#formations" class="hover:text-white transition">Formations</a>
+          <span>•</span>
+          <button onclick="window.print()" class="hover:text-white transition">Imprimer CV</button>
+        </div>
+        <p class="text-[11px] text-gray-600 font-mono pt-2">
+          © 2026 Akins ANRETAR — « Toute victoire s’élabore »
+        </p>
+      </div>
+
+      <!-- Right side: Huge Email -->
+      <div class="text-left md:text-right">
+        <span class="text-xs font-mono uppercase tracking-widest text-gray-500 block mb-1">Direct Contact</span>
+        <a href="mailto:akins.anretar@yahoo.com"
+          class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white hover:text-gray-300 transition font-sans tracking-tight break-all">
+          akins.anretar@yahoo.com
+        </a>
+      </div>
+
     </div>
   </footer>
 
   <!-- ========================================== -->
-  <!-- MODALE : DÉTAIL PROJET STAR                -->
+  <!-- MODAL: DÉTAIL PROJET STAR                  -->
   <!-- ========================================== -->
-  <div id="project-modal" role="dialog" aria-modal="true"
-    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto">
-    <div class="relative w-full max-w-3xl bg-white rounded-[28px] shadow-2xl overflow-hidden my-8">
-      <button onclick="closeProjectModal()" aria-label="Fermer"
-        class="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-[#E8E8ED] hover:bg-[#D2D2D7] text-[#1D1D1F] flex items-center justify-center transition">
+  <div id="project-modal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto">
+    <div class="relative w-full max-w-3xl bg-white rounded-3xl border border-gray-200 shadow-2xl overflow-hidden my-8">
+
+      <!-- Close Button -->
+      <button onclick="closeProjectModal()"
+        class="absolute top-5 right-5 z-20 w-9 h-9 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-600 flex items-center justify-center transition">
         <i data-lucide="x" class="w-4 h-4"></i>
       </button>
+
+      <!-- Dynamic Modal Content rendered by main.js -->
       <div id="project-modal-content"></div>
+
     </div>
   </div>
 
+  <!-- Toast Notification Container -->
+  <div id="toast-notification"></div>
+
+  <!-- Main JavaScript File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/apple-effects.js"></script>
   <script src="assets/js/doc-stack.js"></script>
 
   <script>
-    let currentSlide = 0;
-    const totalSlides = 2;
-    const slider = document.getElementById('diplomaSlider');
-    const dots = document.querySelectorAll('[data-dot]');
+  let currentSlide = 0;
+  const totalSlides = 2;
+  const slider = document.getElementById('diplomaSlider');
+  const dots = document.querySelectorAll('[data-dot]');
 
-    function updateSlider() {
-      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('bg-[#1D1D1F]', i === currentSlide);
-        dot.classList.toggle('bg-[#D2D2D7]', i !== currentSlide);
-      });
-    }
+  function updateSlider() {
+    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('bg-black', i === currentSlide);
+      dot.classList.toggle('bg-gray-300', i !== currentSlide);
+    });
+  }
 
-    function slideNext() {
-      currentSlide = (currentSlide + 1) % totalSlides;
-      updateSlider();
-    }
+  function slideNext() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlider();
+  }
 
-    function slidePrev() {
-      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-      updateSlider();
-    }
+  function slidePrev() {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
 
-    function goToSlide(index) {
-      currentSlide = index;
-      updateSlider();
-    }
-  </script>
+  function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+  }
+</script>
 
-  <!-- MODALE : DOCUMENTS DU MASTER -->
-  <div id="docs-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm" role="dialog" aria-modal="true">
-    <div class="bg-white rounded-[28px] w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl">
-      <div class="flex justify-between items-start p-6 border-b border-[#E8E8ED]">
-        <div>
-          <h3 class="title-4">Master Management Stratégique et Changement</h3>
-          <p class="body-sm mt-1">Choisissez un document à consulter.</p>
-        </div>
-        <button type="button" id="docs-close" aria-label="Fermer"
-          class="w-9 h-9 rounded-full bg-[#E8E8ED] hover:bg-[#D2D2D7] flex items-center justify-center transition">
-          <i data-lucide="x" class="w-4 h-4"></i>
-        </button>
+<div id="docs-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60" role="dialog" aria-modal="true">
+  <div class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+    <div class="flex justify-between items-start p-5 border-b border-gray-200">
+      <div>
+        <h3 class="text-lg font-bold text-black">Master Management Stratégique et Changement</h3>
+        <p class="text-xs text-gray-600">Choisis le document à consulter</p>
       </div>
-      <div class="flex flex-col md:flex-row min-h-0 flex-1">
-        <ul id="docs-list" class="md:w-64 shrink-0 p-3 space-y-2 border-b md:border-b-0 md:border-r border-[#E8E8ED] overflow-auto"></ul>
-        <div class="flex-1 min-h-[320px] bg-[#F5F5F7] flex flex-col">
-          <p id="docs-empty" class="m-auto body-sm p-6">Sélectionnez un document dans la liste.</p>
-          <iframe id="docs-frame" title="Aperçu du document" class="hidden w-full flex-1 bg-white"></iframe>
-          <a id="docs-open" target="_blank" rel="noopener" class="hidden text-center text-sm py-3 border-t border-[#E8E8ED] link justify-center">Ouvrir dans un nouvel onglet</a>
-        </div>
+      <button type="button" id="docs-close" aria-label="Fermer" class="text-2xl leading-none text-gray-500 hover:text-black">&times;</button>
+    </div>
+    <div class="flex flex-col md:flex-row min-h-0 flex-1">
+      <ul id="docs-list" class="md:w-64 shrink-0 p-3 space-y-2 border-b md:border-b-0 md:border-r border-gray-200 overflow-auto"></ul>
+      <div class="flex-1 min-h-[320px] bg-gray-50 flex flex-col">
+        <p id="docs-empty" class="m-auto text-sm text-gray-500 p-6">Sélectionne un document dans la liste.</p>
+        <iframe id="docs-frame" title="Aperçu du document" class="hidden w-full flex-1 bg-white"></iframe>
+        <a id="docs-open" target="_blank" rel="noopener" class="hidden text-center text-xs font-semibold py-2 border-t border-gray-200 text-black hover:underline">Ouvrir dans un nouvel onglet ↗</a>
       </div>
     </div>
   </div>
+</div>
 </body>
 
 </html>
