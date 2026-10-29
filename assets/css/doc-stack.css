@@ -6,11 +6,8 @@
   position: relative;
   height: 260px;
   margin-bottom: 1.25rem;
-  border-radius: 1.25rem;
-  background:
-    radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.9), transparent 70%),
-    #EEF0F3;
-  border: 1px solid #E5E7EB;
+  border-radius: 18px;
+  background: #F5F5F7;
   overflow: hidden;
   isolation: isolate;
 }
@@ -101,12 +98,11 @@
 .doc-stack-label {
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(6px);
-  border: 1px solid #E5E7EB;
-  font-size: 10px;
-  font-weight: 700;
-  color: #111215;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1D1D1F;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -135,7 +131,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: #111215;
+  background: #1D1D1F;
   transform: scaleX(0);
   transform-origin: left;
 }
@@ -165,8 +161,8 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
-  background: rgba(17, 18, 21, 0.78);
-  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
   transition: opacity 250ms ease;
@@ -180,7 +176,7 @@
   flex-direction: column;
   width: min(720px, 100%);
   max-height: calc(100vh - 32px);
-  border-radius: 1.5rem;
+  border-radius: 28px;
   background: #FFFFFF;
   overflow: hidden;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
@@ -204,8 +200,8 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  background: #EEF0F3;
-  padding: 20px;
+  background: #F5F5F7;
+  padding: 24px;
 }
 
 .doc-viewer-body img {
@@ -236,7 +232,7 @@
   box-shadow: 0 6px 16px rgba(17, 18, 21, 0.15);
 }
 
-.doc-viewer-nav:hover { background: #111215; color: #FFFFFF; }
+.doc-viewer-nav:hover { background: #FFFFFF; color: #0071E3; }
 .doc-viewer-nav[data-dir="-1"] { left: 16px; }
 .doc-viewer-nav[data-dir="1"] { right: 16px; }
 

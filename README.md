@@ -10,7 +10,7 @@
 Ce portfolio a été conçu sur-mesure pour mettre en valeur le profil, les **4 expériences clés**, les **formations d'excellence** et l'ambition d'**Akins ANRETAR** auprès des recruteurs, directions de transformation et cabinets de conseil.
 
 ### 🌟 Points Forts pour les Recruteurs :
-1. **Design "Executive Tech" immersif** : Fond sombre prestigieux, accents bleu ciel & émeraude, cartes en glassmorphism, typographie premium (*Space Grotesk* et *Plus Jakarta Sans*).
+1. **Design inspiré d'Apple** : typographie système, surfaces blanches et gris clair, un seul accent bleu, animations discrètes à l'apparition.
 2. **Méthode STAR intégrée** : Décomposition systématique de chaque projet en **Situation**, **Tâche**, **Action** et **Résultat / KPIs** avec livrables concrets.
 3. **Filtres interactifs par catégorie** :
    - *Transformation & IA* (OUIGO & SNCF Optim'services)

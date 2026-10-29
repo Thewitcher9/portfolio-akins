@@ -24,11 +24,11 @@
       <div class="doc-viewer-panel">
         <div class="doc-viewer-head">
           <div class="min-w-0">
-            <span class="doc-viewer-org text-[10px] font-mono uppercase tracking-widest text-gray-400 block"></span>
-            <h3 class="doc-viewer-title text-base sm:text-lg font-extrabold text-black leading-tight"></h3>
-            <p class="doc-viewer-meta text-[11px] font-mono text-gray-500 mt-0.5"></p>
+            <span class="doc-viewer-org caption block"></span>
+            <h3 class="doc-viewer-title title-4"></h3>
+            <p class="doc-viewer-meta body-sm mt-0.5"></p>
           </div>
-          <button type="button" class="doc-viewer-close w-9 h-9 shrink-0 rounded-full bg-gray-100 hover:bg-black hover:text-white text-gray-600 flex items-center justify-center transition" aria-label="Fermer">
+          <button type="button" class="doc-viewer-close w-9 h-9 shrink-0 rounded-full bg-[#E8E8ED] hover:bg-[#D2D2D7] text-[#1D1D1F] flex items-center justify-center transition" aria-label="Fermer">
             <i data-lucide="x" class="w-4 h-4"></i>
           </button>
         </div>
@@ -38,14 +38,10 @@
           <button type="button" class="doc-viewer-nav" data-dir="1" aria-label="Document suivant"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
         </div>
         <div class="doc-viewer-foot">
-          <span class="doc-viewer-count text-[11px] font-mono text-gray-500"></span>
+          <span class="doc-viewer-count caption"></span>
           <div class="flex gap-2">
-            <a class="doc-viewer-download px-4 py-2 rounded-full border border-gray-300 hover:border-black text-black text-xs font-bold transition flex items-center gap-1.5" download>
-              <i data-lucide="download" class="w-3.5 h-3.5"></i> Télécharger
-            </a>
-            <a class="doc-viewer-open px-4 py-2 rounded-full bg-black hover:bg-gray-800 text-white text-xs font-bold transition flex items-center gap-1.5" target="_blank" rel="noopener noreferrer">
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Ouvrir le PDF
-            </a>
+            <a class="doc-viewer-download btn btn-secondary btn-sm !min-h-[36px] !text-[14px]" download>Télécharger</a>
+            <a class="doc-viewer-open btn btn-primary btn-sm !min-h-[36px] !text-[14px]" target="_blank" rel="noopener noreferrer">Ouvrir le PDF</a>
           </div>
         </div>
       </div>`;
