@@ -1171,28 +1171,66 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="editorial-card p-6 sm:p-7">
-        <i data-lucide="trophy" class="w-6 h-6 text-black mb-5" stroke-width="1.5"></i>
-        <h3 class="text-lg font-bold text-black mb-2">Sport</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">
-          Footballeur depuis l'âge de 6 ans. Le sport m'a forgé une discipline, une détermination et un esprit de
-          compétiteur que je retrouve dans chaque projet.
-        </p>
+      <!-- Sport -->
+      <div class="editorial-card overflow-hidden flex flex-col">
+        <div class="photo-slideshow" aria-label="Photos : sport">
+          <img src="assets/images/interets/sport_1.jpg" alt="Akins en match de football, ballon au pied" loading="lazy">
+          <img src="assets/images/interets/sport_6.jpg" alt="Akins sur le terrain, maillot rouge numéro 5" loading="lazy">
+          <img src="assets/images/interets/sport_3.jpg" alt="Akins au bord du terrain de football" loading="lazy">
+          <img src="assets/images/interets/sport_4.jpg" alt="Match de football sur terrain synthétique" loading="lazy">
+          <img src="assets/images/interets/sport_5.jpg" alt="Action de jeu lors d'un match de football" loading="lazy">
+          <img src="assets/images/interets/sport_2.jpg" alt="Akins à l'entraînement en salle de musculation" loading="lazy">
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-center gap-2.5 mb-2">
+            <i data-lucide="trophy" class="w-5 h-5 text-black" stroke-width="1.5"></i>
+            <h3 class="text-lg font-bold text-black">Sport</h3>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Footballeur depuis l'âge de 6 ans. Le sport m'a forgé une discipline, une détermination et un esprit de
+            compétiteur que je retrouve dans chaque projet.
+          </p>
+        </div>
       </div>
-      <div class="editorial-card p-6 sm:p-7">
-        <i data-lucide="plane" class="w-6 h-6 text-black mb-5" stroke-width="1.5"></i>
-        <h3 class="text-lg font-bold text-black mb-2">Voyage</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">
-          Découvrir de nouveaux paysages et d'autres cultures. Originaire de la Martinique, c'est là que je me
-          ressource le plus souvent.
-        </p>
+
+      <!-- Voyage -->
+      <div class="editorial-card overflow-hidden flex flex-col">
+        <div class="photo-slideshow" aria-label="Photos : voyage">
+          <img src="assets/images/interets/voyage_2.jpg" alt="Akins face à la mer, sous un palmier" loading="lazy">
+          <img src="assets/images/interets/voyage_8.jpg" alt="Vue panoramique sur la côte de la Martinique" loading="lazy">
+          <img src="assets/images/interets/voyage_6.jpg" alt="Mer turquoise vue à travers la végétation" loading="lazy">
+          <img src="assets/images/interets/voyage_1.jpg" alt="Akins en randonnée dans la forêt tropicale" loading="lazy">
+          <img src="assets/images/interets/voyage_7.jpg" alt="Sentier de randonnée en forêt tropicale" loading="lazy">
+          <img src="assets/images/interets/voyage_3.jpg" alt="La grande roue du London Eye au bord de la Tamise" loading="lazy">
+          <img src="assets/images/interets/voyage_5.jpg" alt="Arrivée au stade avec des amis" loading="lazy">
+          <img src="assets/images/interets/voyage_4.jpg" alt="Architecture moderne sous un ciel bleu" loading="lazy">
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-center gap-2.5 mb-2">
+            <i data-lucide="plane" class="w-5 h-5 text-black" stroke-width="1.5"></i>
+            <h3 class="text-lg font-bold text-black">Voyage</h3>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Découvrir de nouveaux paysages et d'autres cultures. Originaire de la Martinique, c'est là que je me
+            ressource le plus souvent.
+          </p>
+        </div>
       </div>
-      <div class="editorial-card p-6 sm:p-7">
-        <i data-lucide="book-open" class="w-6 h-6 text-black mb-5" stroke-width="1.5"></i>
-        <h3 class="text-lg font-bold text-black mb-2">Lecture</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">
-          Lire pour m'évader, prendre du recul et remettre en question ma vision du monde.
-        </p>
+
+      <!-- Lecture -->
+      <div class="editorial-card overflow-hidden flex flex-col">
+        <div class="photo-slideshow" aria-label="Photo : lecture">
+          <img src="assets/images/interets/lecture_1.jpg" alt="Le roman « Rompre » de Yann Moix" loading="lazy">
+        </div>
+        <div class="p-6 sm:p-7">
+          <div class="flex items-center gap-2.5 mb-2">
+            <i data-lucide="book-open" class="w-5 h-5 text-black" stroke-width="1.5"></i>
+            <h3 class="text-lg font-bold text-black">Lecture</h3>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Lire pour m'évader, prendre du recul et remettre en question ma vision du monde.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -1309,6 +1347,7 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/apple-effects.js"></script>
   <script src="assets/js/doc-stack.js"></script>
+  <script src="assets/js/photo-slideshow.js"></script>
 
   <script>
   let currentSlide = 0;
