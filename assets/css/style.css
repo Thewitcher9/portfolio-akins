@@ -3,11 +3,12 @@
    Inspiré du design à typographie géante, fond gris perle et navbar flottante
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 :root {
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-display: 'Bebas Neue', 'Anton', sans-serif;
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
 
   /* Palette inspirée du modèle */
   --bg-page: #EAECEF;
@@ -39,19 +40,61 @@ body {
   letter-spacing: 0.02em;
 }
 
+/* Accent éditorial : serif italique */
+.serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Titres de section */
+.section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 4.2vw, 3.25rem);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  color: #111215;
+}
+.section-title .serif { font-size: 1.12em; letter-spacing: -0.02em; }
+.section-title-lg { font-size: clamp(2.5rem, 6vw, 4.5rem); }
+
+/* Pastilles de dates */
+.date-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(17, 18, 21, 0.14);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #111215;
+}
+
+/* Citations */
+.quote-serif {
+  font-family: var(--font-serif);
+  font-size: 1.375rem;
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  color: #111215;
+}
+
 /* Floating animation for hero dynamic badges */
 @keyframes float-badge {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  50% { transform: translateY(-4px); }
 }
 
 .animate-float {
-  animation: float-badge 5s ease-in-out infinite;
+  animation: float-badge 7s ease-in-out infinite;
 }
 
 .animate-float-delayed {
-  animation: float-badge 6s ease-in-out infinite;
-  animation-delay: 2.5s;
+  animation: float-badge 8s ease-in-out infinite;
+  animation-delay: 3s;
 }
 
 .portrait-glow {
@@ -120,9 +163,9 @@ body {
 /* Cards */
 .editorial-card {
   background: #FFFFFF;
-  border: 1px solid var(--border-card);
+  border: 1px solid rgba(17, 18, 21, 0.07);
   border-radius: 24px;
-  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 2px rgba(17, 18, 21, 0.04);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 

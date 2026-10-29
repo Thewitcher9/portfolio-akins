@@ -166,7 +166,7 @@ window.openProjectModal = function (projectId) {
       </div>
       <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-1 font-display tracking-tight">${proj.title}</h2>
       <p class="text-gray-700 font-semibold text-base">${proj.role} · <span class="text-gray-900">${proj.company}</span></p>
-      <p class="text-gray-400 text-xs mt-1 font-mono">${proj.sector}</p>
+      <p class="text-gray-400 text-xs mt-1">${proj.sector}</p>
     </div>
 
     <!-- Modal Content -->
@@ -185,12 +185,12 @@ window.openProjectModal = function (projectId) {
 
       <!-- STAR Detailed Framework -->
       <div class="space-y-4">
-        <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider font-mono">DÉCOMPOSITION MÉTHODE STAR</h4>
+        <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider">DÉCOMPOSITION MÉTHODE STAR</h4>
 
         <!-- Situation -->
         <div class="p-4 rounded-xl bg-white border border-gray-200">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-gray-100 text-gray-900 font-mono">S</span>
+            <span class="star-tag bg-gray-100 text-gray-900">S</span>
             <h5 class="text-sm font-bold text-gray-900">Situation & Contexte</h5>
           </div>
           <p class="text-gray-600 text-sm leading-relaxed">${proj.star.situation}</p>
@@ -199,7 +199,7 @@ window.openProjectModal = function (projectId) {
         <!-- Tâche -->
         <div class="p-4 rounded-xl bg-white border border-gray-200">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-gray-100 text-gray-900 font-mono">T</span>
+            <span class="star-tag bg-gray-100 text-gray-900">T</span>
             <h5 class="text-sm font-bold text-gray-900">Tâche & Enjeu Prioritaire</h5>
           </div>
           <p class="text-gray-600 text-sm leading-relaxed">${proj.star.tache}</p>
@@ -208,7 +208,7 @@ window.openProjectModal = function (projectId) {
         <!-- Actions -->
         <div class="p-4 rounded-xl bg-white border border-gray-200">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-gray-100 text-gray-900 font-mono">A</span>
+            <span class="star-tag bg-gray-100 text-gray-900">A</span>
             <h5 class="text-sm font-bold text-gray-900">Actions Clés Conduites</h5>
           </div>
           <ul class="space-y-2 mt-2">
@@ -224,7 +224,7 @@ window.openProjectModal = function (projectId) {
         <!-- Résultats -->
         <div class="p-4 rounded-xl bg-gray-900 text-white border border-gray-800">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-white text-gray-900 font-mono font-bold">R</span>
+            <span class="star-tag bg-white text-gray-900 font-bold">R</span>
             <h5 class="text-sm font-bold text-white">Résultats & Impact Mesurable</h5>
           </div>
           <ul class="space-y-2 mt-2">
@@ -240,7 +240,7 @@ window.openProjectModal = function (projectId) {
 
       <!-- Livrables Majeurs -->
       <div>
-        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 font-mono">LIVRABLES MAJEURS</h4>
+        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">LIVRABLES MAJEURS</h4>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
           ${proj.deliverables.map(d => `
             <div class="p-2.5 rounded-lg bg-white border border-gray-200 text-xs text-gray-800 flex items-center gap-2">
@@ -253,7 +253,7 @@ window.openProjectModal = function (projectId) {
 
       <!-- Skills Used -->
       <div>
-        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 font-mono">COMPÉTENCES MOBILISÉES</h4>
+        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">COMPÉTENCES MOBILISÉES</h4>
         <div class="flex flex-wrap gap-1.5">
           ${proj.skills.map(s => `
             <span class="px-3 py-1 rounded-full bg-gray-200 text-gray-800 text-xs font-semibold">
@@ -267,7 +267,7 @@ window.openProjectModal = function (projectId) {
 
     <!-- Modal Footer -->
     <div class="p-4 sm:p-5 border-t border-gray-200 bg-white flex items-center justify-between flex-wrap gap-2">
-      <span class="text-xs text-gray-500 font-mono italic">« Toute victoire s’élabore »</span>
+      <span class="serif text-base text-gray-600">« Toute victoire s’élabore »</span>
       <div class="flex gap-2">
         <a href="mailto:akins.anretar@yahoo.com?subject=Contact suite à votre portfolio - ${encodeURIComponent(proj.title)}" class="px-5 py-2.5 rounded-full bg-black text-white text-xs font-bold hover:bg-gray-800 transition flex items-center gap-1.5">
           <i data-lucide="mail" class="w-3.5 h-3.5"></i>

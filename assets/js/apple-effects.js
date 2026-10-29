@@ -134,7 +134,6 @@
    ========================================================== */
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
@@ -156,52 +155,13 @@
   const about = $('#about');
   if (about) {
     const items = ['Gouvernance de projet', 'IA conversationnelle', 'Conduite du changement', 'Prise de parole', 'Analyse budgétaire', 'PowerApps'];
-    const row = [...items, ...items].map((t) => `<span>${t}</span><span>✦</span>`).join('');
+    const row = [...items, ...items].map((t) => `<span>${t}</span><span>·</span>`).join('');
     const m = document.createElement('div');
     m.className = 'fx-marquee'; m.setAttribute('aria-hidden', 'true');
     m.innerHTML = `<div class="fx-track">${row}${row}</div>`;
     about.parentNode.insertBefore(m, about);
   }
 
-  if (!fine || reduce) return;
-
-  /* 3. Halo qui suit la souris dans le hero (avec inertie) */
-  const hero = $('#profil');
-  if (hero) {
-    const g = document.createElement('div'); g.className = 'fx-glow'; hero.appendChild(g);
-    let tx = innerWidth / 2, ty = innerHeight * .4, x = tx, y = ty;
-    hero.addEventListener('pointermove', (e) => {
-      const r = hero.getBoundingClientRect(); tx = e.clientX - r.left; ty = e.clientY - r.top;
-    });
-    const loop = () => {
-      x += (tx - x) * .08; y += (ty - y) * .08;
-      g.style.setProperty('--gx', x + 'px'); g.style.setProperty('--gy', y + 'px');
-      requestAnimationFrame(loop);
-    };
-    loop();
-  }
-
-  /* 4. Cartes : projecteur + inclinaison 3D */
-  $$('.editorial-card').forEach((c) => {
-    c.classList.add('tilt');
-    c.addEventListener('pointermove', (e) => {
-      const r = c.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-      c.style.setProperty('--mx', px * r.width + 'px'); c.style.setProperty('--my', py * r.height + 'px');
-      c.style.setProperty('--rx', ((.5 - py) * 7).toFixed(2) + 'deg');
-      c.style.setProperty('--ry', ((px - .5) * 7).toFixed(2) + 'deg');
-    });
-    c.addEventListener('pointerleave', () => { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); });
-  });
-
-  /* 5. Boutons magnétiques */
-  $$('#contact a, #contact button, .floating-navbar a[href="#contact"]').forEach((b) => {
-    b.classList.add('fx-mag');
-    b.addEventListener('pointermove', (e) => {
-      const r = b.getBoundingClientRect();
-      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .25}px, ${(e.clientY - r.top - r.height / 2) * .35}px)`;
-    });
-    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
-  });
 })();
 
 /* Compteurs génériques : <span data-count="500" data-suffix=" €">500 €</span> */

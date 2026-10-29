@@ -73,7 +73,7 @@
 
       <!-- Texte d'invite épuré, typographie moderne Apple -->
       <div class="flex items-center gap-2.5 pointer-events-none">
-        <span class="w-1.5 h-1.5 rounded-full bg-neutral-400 animate-pulse"></span>
+        <span class="w-1.5 h-1.5 rounded-full bg-neutral-300"></span>
         <p class="text-xs sm:text-[13px] font-medium tracking-normal text-neutral-500 font-sans">
           Cliquer pour découvrir
         </p>
@@ -217,7 +217,7 @@
       <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
         <div>
           <span class="text-xs font-bold uppercase tracking-widest text-gray-500 block mb-0.5">Poste & Spécialité</span>
-          <h2 class="text-lg sm:text-xl font-extrabold text-black font-sans tracking-tight">
+          <h2 class="text-lg sm:text-xl font-bold text-black font-sans tracking-tight">
             Chef de Projet · Organisation & Transformation
           </h2>
         </div>
@@ -225,7 +225,7 @@
         <div class="sm:text-right">
           <span
             class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 border border-gray-300 text-xs font-semibold text-gray-800">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
             Alternant chez OUIGO · SNCF Voyageurs
           </span>
         </div>
@@ -248,7 +248,7 @@
           <div class="relative group">
             <!-- Subtle ambient glow behind subject -->
             <div
-              class="absolute -inset-6 bg-gradient-to-tr from-sky-400/10 via-white/50 to-indigo-500/10 rounded-full blur-2xl opacity-80 pointer-events-none">
+              class="absolute -inset-6 bg-gradient-to-tr from-white/0 via-white/70 to-white/0 rounded-full blur-2xl opacity-80 pointer-events-none">
             </div>
 
             <!-- Cutout Image directly on canvas -->
@@ -260,7 +260,7 @@
             <div class="absolute top-10 -right-2 sm:-right-6 z-20 animate-float">
               <div
                 class="px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-pulse"></span>
+                <span class="w-1.5 h-1.5 rounded-full bg-black"></span>
                 <span class="text-xs font-bold text-gray-900 tracking-tight font-sans">Pilotage IA · OUIGO</span>
               </div>
             </div>
@@ -269,7 +269,7 @@
             <div class="absolute bottom-12 -left-2 sm:-left-6 z-20 animate-float-delayed">
               <div
                 class="px-4 py-2 rounded-full bg-black text-white border border-gray-800 shadow-xl flex items-center gap-2">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-white/80"></i>
                 <span class="text-xs font-bold tracking-tight font-sans">Master IAE Paris-Saclay</span>
               </div>
             </div>
@@ -285,9 +285,9 @@
 
         <!-- Motto Quote -->
         <div class="flex items-center gap-3">
-          <span class="w-2.5 h-2.5 rounded-full bg-black"></span>
-          <p class="text-xs sm:text-sm font-semibold italic text-gray-800">
-            « Toute victoire s’élabore » <span class="text-gray-500 font-normal ml-1">— Master Management Stratégique
+          <span class="w-8 h-px bg-black/40"></span>
+          <p class="text-sm sm:text-base text-gray-800">
+            <em class="serif text-lg sm:text-xl text-black">« Toute victoire s’élabore »</em> <span class="text-gray-500 text-xs sm:text-sm ml-1">— Master Management Stratégique
               (ISM-IAE Paris-Saclay)</span>
           </p>
         </div>
@@ -313,7 +313,7 @@
       <!-- Section Title -->
       <div class="max-w-3xl mb-12">
         <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Positionnement</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
+        <h2 class="section-title">
           Piloter le changement par la méthode, l'IA et l'engagement humain.
         </h2>
       </div>
@@ -383,11 +383,11 @@
       <div>
         <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Missions
           Opérationnelles</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
-          Mes 4 Expériences Clés
+        <h2 class="section-title">
+          Mes 4 expériences <em class="serif">clés.</em>
         </h2>
       </div>
-      <p class="text-xs font-mono text-gray-500">
+      <p class="text-xs text-gray-500">
         Décomposition STAR complète · Cliquez sur une carte pour voir les détails
       </p>
     </div>
@@ -400,13 +400,13 @@
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('ouigo')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+            <span class="date-pill">
               Sept. 2025 – Aujourd'hui
             </span>
             <span class="text-xs font-semibold text-gray-500">Alternance (Master)</span>
           </div>
 
-          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+          <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-black font-sans mb-1">
             Pilotage du Projet d'Assistant Virtuel IA
           </h3>
           <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
@@ -415,9 +415,9 @@
 
           <!-- Visuel -->
           <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-[#111215] text-white flex flex-col items-center justify-center gap-2 p-6 text-center">
-            <i data-lucide="bot" class="w-8 h-8 text-sky-400"></i>
+            <i data-lucide="bot" class="w-8 h-8 text-white/70" stroke-width="1.5"></i>
             <span class="text-2xl sm:text-3xl font-extrabold tracking-tight">OUIGO</span>
-            <span class="text-[11px] font-mono uppercase tracking-widest text-gray-400">Assistant virtuel IA · Selfcare voyageur 24/7</span>
+            <span class="text-[11px] uppercase tracking-widest text-gray-400">Assistant virtuel IA · Selfcare voyageur 24/7</span>
           </div>
 
           <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
@@ -427,7 +427,7 @@
 
           <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
             <div class="flex items-center gap-2">
-              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Impact</span>
               <span class="text-gray-700">Désengorgement des flux relation client 24h/24 & hausse de la
                 satisfaction.</span>
             </div>
@@ -446,13 +446,13 @@
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('sncf-optim')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+            <span class="date-pill">
               Sept. 2024 – Sept. 2025
             </span>
             <span class="text-xs font-semibold text-gray-500">Alternance (1 an 1 mois)</span>
           </div>
 
-          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+          <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-black font-sans mb-1">
             Chatbot IA, PowerApps & Séminaire National
           </h3>
           <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
@@ -472,7 +472,7 @@
 
           <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
             <div class="flex items-center gap-2">
-              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Impact</span>
               <span class="text-gray-700">Adoption massive des outils digitaux & succès plébiscité du séminaire.</span>
             </div>
           </div>
@@ -490,13 +490,13 @@
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('region-idf')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+            <span class="date-pill">
               Mars – Juil. 2024
             </span>
             <span class="text-xs font-semibold text-gray-500">Stage (5 mois)</span>
           </div>
 
-          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+          <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-black font-sans mb-1">
             Instruction de Dossiers & JOP Paris 2024
           </h3>
           <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
@@ -516,7 +516,7 @@
 
           <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
             <div class="flex items-center gap-2">
-              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Impact</span>
               <span class="text-gray-700">Arbitrages budgétaires sécurisés et contribution au rayonnement des JOP
                 2024.</span>
             </div>
@@ -535,13 +535,13 @@
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('agorex')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
+            <span class="date-pill">
               Avril – Mai 2023
             </span>
             <span class="text-xs font-semibold text-gray-500">Stage (BUT GEA)</span>
           </div>
 
-          <h3 class="text-xl sm:text-2xl font-extrabold text-black font-sans mb-1 group-hover:underline">
+          <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-black font-sans mb-1">
             Gestion Financière, Rapprochements & Bilan
           </h3>
           <p class="text-xs font-bold text-gray-700 uppercase tracking-wider mb-4">
@@ -562,7 +562,7 @@
 
           <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 mb-4 text-xs space-y-1">
             <div class="flex items-center gap-2">
-              <span class="font-bold text-black font-mono">[Impact]</span>
+              <span class="text-[10px] font-semibold uppercase tracking-widest text-gray-400">Impact</span>
               <span class="text-gray-700">Maîtrise approfondie des chiffres et de la rentabilité (ROI) d'un
                 projet.</span>
             </div>
@@ -586,8 +586,8 @@
 
       <div class="max-w-2xl mb-12">
         <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Compétences</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
-          Méthodologies & Stack Opérationnelle
+        <h2 class="section-title">
+          Méthodes &amp; <em class="serif">compétences.</em>
         </h2>
       </div>
 
@@ -656,8 +656,8 @@
 
     <div class="max-w-2xl mb-12">
       <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Parcours Académique</span>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
-        Formations & Diplômes d'Excellence
+      <h2 class="section-title">
+        Formations &amp; <em class="serif">diplômes.</em>
       </h2>
     </div>
 
@@ -667,10 +667,10 @@
       <div id="master-card" 
            class="group/master editorial-card p-6 rounded-2xl bg-white border border-gray-200 flex flex-col justify-between cursor-pointer hover:border-black hover:shadow-lg transition">
         <div>
-          <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono inline-block mb-3">
+          <span class="date-pill mb-3">
             2025 – 2027 · Bac +5
           </span>
-          <h3 class="text-lg font-bold text-black font-sans mb-1 min-h-[3.25rem] flex items-center group-hover/master:underline">
+          <h3 class="text-lg font-bold text-black font-sans mb-1 min-h-[3.25rem] flex items-center">
             Master Management Stratégique et Changement
           </h3>
           <p class="text-xs font-semibold text-gray-700 mb-2 truncate">
@@ -703,7 +703,7 @@
       <!-- Formation 2 -->
       <div class="group/gea editorial-card p-6 rounded-2xl bg-white border border-gray-200 flex flex-col justify-between hover:border-black hover:shadow-lg transition">
         <div>
-          <span class="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800 font-mono inline-block mb-3 border border-gray-200">
+          <span class="date-pill mb-3">
             2022 – 2025 · Bac +3
           </span>
           <h3 class="text-lg font-bold text-black font-sans mb-1 min-h-[3.25rem] flex items-center">
@@ -741,7 +741,7 @@
       <!-- Formation 3 -->
       <div class="group/bac editorial-card p-6 rounded-2xl bg-white border border-gray-200 flex flex-col justify-between hover:border-black hover:shadow-lg transition">
         <div>
-          <span class="px-3 py-1 rounded-full text-xs font-bold bg-gray-100 text-gray-800 font-mono inline-block mb-3 border border-gray-200">
+          <span class="date-pill mb-3">
             2022 · Mention Très Bien
           </span>
           <h3 class="text-lg font-bold text-black font-sans mb-1 min-h-[3.25rem] flex items-center">
@@ -827,8 +827,8 @@
 
       <div class="max-w-2xl mb-12">
         <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">Retours & Témoignages</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-[#111215] tracking-tight font-sans">
-          Appréciations & Recommandations
+        <h2 class="section-title">
+          Appréciations &amp; <em class="serif">recommandations.</em>
         </h2>
         <p class="text-sm text-gray-500 mt-2 leading-relaxed">
           Extraits de mes lettres de recommandation et fiches d'appréciation, classés par entreprise et par année. Chaque document original est consultable en PDF.
@@ -844,8 +844,8 @@
 
           <div class="relative z-10">
             <div class="flex items-center gap-2 mb-4">
-              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-gray-800 text-white font-mono uppercase tracking-wider">SNCF Optim'services</span>
-              <span class="text-[10px] font-mono text-gray-400">2024 – 2025</span>
+              <span class="px-3 py-1 rounded-full text-[10px] font-semibold bg-[#111215] text-white uppercase tracking-wider">SNCF Optim'services</span>
+              <span class="text-[10px] text-gray-400">2024 – 2025</span>
             </div>
 
             <!-- Pile de documents animée -->
@@ -856,17 +856,17 @@
               </button>
             </div>
 
-            <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
+            <blockquote class="quote-serif mb-5">
               « Sérieux, appliqué et curieux, Akins s'est bien intégré à l'équipe. […] Son sens de l'initiative et sa capacité à gérer plusieurs dossiers en parallèle sont particulièrement appréciés. »
             </blockquote>
           </div>
 
           <div>
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <div class="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">JV</div>
+              <div class="w-9 h-9 rounded-full bg-[#111215] flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">JV</div>
               <div>
                 <p class="text-xs font-bold text-black">Julie VIDAL</p>
-                <p class="text-[11px] text-gray-500 font-mono">Directrice du CSP Déplacements Professionnels</p>
+                <p class="text-[11px] text-gray-500">Directrice du CSP Déplacements Professionnels</p>
               </div>
             </div>
 
@@ -878,7 +878,7 @@
                 </span>
                 <span class="min-w-0 flex-1">
                   <span class="block text-xs font-bold text-black">Lettre de recommandation</span>
-                  <span class="block text-[11px] text-gray-500 font-mono truncate">Alternance 2024 – 2025 · PDF</span>
+                  <span class="block text-[11px] text-gray-500 truncate">Alternance 2024 – 2025 · PDF</span>
                 </span>
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
@@ -892,8 +892,8 @@
 
           <div class="relative z-10">
             <div class="flex items-center gap-2 mb-4">
-              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-[#003189] text-white font-mono uppercase tracking-wider">Région Île-de-France</span>
-              <span class="text-[10px] font-mono text-gray-400">Mars – Juil. 2024</span>
+              <span class="px-3 py-1 rounded-full text-[10px] font-semibold bg-[#111215] text-white uppercase tracking-wider">Région Île-de-France</span>
+              <span class="text-[10px] text-gray-400">Mars – Juil. 2024</span>
             </div>
 
             <!-- Pile de documents animée -->
@@ -908,17 +908,17 @@
               </button>
             </div>
 
-            <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
+            <blockquote class="quote-serif mb-5">
               « Tout au long de ce stage il a fait preuve d'un professionnalisme et d'une rigueur admirable. […] Akins est un élément de qualité qui […] apportera rapidement une vraie plus-value. »
             </blockquote>
           </div>
 
           <div>
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <div class="w-9 h-9 rounded-full bg-[#003189] flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">PK</div>
+              <div class="w-9 h-9 rounded-full bg-[#111215] flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">PK</div>
               <div>
                 <p class="text-xs font-bold text-black">Patrick KARAM</p>
-                <p class="text-[11px] text-gray-500 font-mono">Vice-Président chargé des Sports et des JOP</p>
+                <p class="text-[11px] text-gray-500">Vice-Président chargé des Sports et des JOP</p>
               </div>
             </div>
 
@@ -930,7 +930,7 @@
                 </span>
                 <span class="min-w-0 flex-1">
                   <span class="block text-xs font-bold text-black">Lettre de recommandation</span>
-                  <span class="block text-[11px] text-gray-500 font-mono truncate">10 juillet 2024 · Patrick KARAM · PDF</span>
+                  <span class="block text-[11px] text-gray-500 truncate">10 juillet 2024 · Patrick KARAM · PDF</span>
                 </span>
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
@@ -941,7 +941,7 @@
                 </span>
                 <span class="min-w-0 flex-1">
                   <span class="block text-xs font-bold text-black">Fiche d'appréciation de stage</span>
-                  <span class="block text-[11px] text-gray-500 font-mono truncate">29 mai 2024 · Bureau des Représentations · PDF</span>
+                  <span class="block text-[11px] text-gray-500 truncate">29 mai 2024 · Bureau des Représentations · PDF</span>
                 </span>
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
@@ -955,8 +955,8 @@
 
           <div class="relative z-10">
             <div class="flex items-center gap-2 mb-4">
-              <span class="px-3 py-1 rounded-full text-[10px] font-bold bg-emerald-700 text-white font-mono uppercase tracking-wider">Agorex Expertise</span>
-              <span class="text-[10px] font-mono text-gray-400">Avr. – Mai 2023</span>
+              <span class="px-3 py-1 rounded-full text-[10px] font-semibold bg-[#111215] text-white uppercase tracking-wider">Agorex Expertise</span>
+              <span class="text-[10px] text-gray-400">Avr. – Mai 2023</span>
             </div>
 
             <!-- Pile de documents animée -->
@@ -967,17 +967,17 @@
               </button>
             </div>
 
-            <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
+            <blockquote class="quote-serif mb-5">
               « Très investi et sérieux. Bonne intégration au sein de l'équipe. »
             </blockquote>
           </div>
 
           <div>
             <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
-              <div class="w-9 h-9 rounded-full bg-emerald-700 flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">SD</div>
+              <div class="w-9 h-9 rounded-full bg-[#111215] flex items-center justify-center text-white text-xs font-bold font-sans shrink-0">SD</div>
               <div>
                 <p class="text-xs font-bold text-black">Stéphane DUBOIS</p>
-                <p class="text-[11px] text-gray-500 font-mono">Responsable juridique & administrative</p>
+                <p class="text-[11px] text-gray-500">Responsable juridique & administrative</p>
               </div>
             </div>
 
@@ -989,7 +989,7 @@
                 </span>
                 <span class="min-w-0 flex-1">
                   <span class="block text-xs font-bold text-black">Fiche d'appréciation de stage</span>
-                  <span class="block text-[11px] text-gray-500 font-mono truncate">17 mai 2023 · Stage BUT GEA · PDF</span>
+                  <span class="block text-[11px] text-gray-500 truncate">17 mai 2023 · Stage BUT GEA · PDF</span>
                 </span>
                 <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-gray-400 group-hover/doc:text-black shrink-0"></i>
               </a>
@@ -1023,8 +1023,8 @@
   <section id="contact" class="py-20 bg-white border-t border-[#D8DCE2]">
     <div class="max-w-4xl mx-auto px-6 text-center space-y-6">
       <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block">Contact</span>
-      <h2 class="text-4xl sm:text-5xl font-extrabold text-[#111215] tracking-tight font-display">
-        Prêt à collaborer sur vos projets stratégiques ?
+      <h2 class="section-title section-title-lg">
+        Prêt à collaborer sur vos <em class="serif">projets stratégiques</em>&nbsp;?
       </h2>
       <p class="text-gray-600 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
         Vous recherchez un profil proactif pour piloter vos projets de transformation ou d'IA ? Je suis à votre écoute
@@ -1052,7 +1052,7 @@
         </a>
       </div>
 
-      <div class="pt-4 text-xs text-gray-400 font-mono">
+      <div class="pt-4 text-xs text-gray-400">
         Saint-Denis · Île-de-France · Mobilité Internationale
       </div>
     </div>
@@ -1086,14 +1086,14 @@
           <span>•</span>
           <button onclick="window.print()" class="hover:text-white transition">Imprimer CV</button>
         </div>
-        <p class="text-[11px] text-gray-600 font-mono pt-2">
+        <p class="text-[11px] text-gray-600 pt-2">
           © 2026 Akins ANRETAR — « Toute victoire s’élabore »
         </p>
       </div>
 
       <!-- Right side: Huge Email -->
       <div class="text-left md:text-right">
-        <span class="text-xs font-mono uppercase tracking-widest text-gray-500 block mb-1">Direct Contact</span>
+        <span class="text-xs uppercase tracking-widest text-gray-500 block mb-1">Contact direct</span>
         <a href="mailto:akins.anretar@yahoo.com"
           class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white hover:text-gray-300 transition font-sans tracking-tight break-all">
           akins.anretar@yahoo.com
