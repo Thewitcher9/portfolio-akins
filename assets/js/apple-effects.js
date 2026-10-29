@@ -29,14 +29,34 @@
   tag('#methodes .max-w-2xl, #formations .max-w-2xl', '');
   tag('#contact .max-w-4xl > *', '', 100);
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('is-in');
-      io.unobserve(e.target);
+  const show = (el) => el.classList.add('is-in');
+
+  if (reduce || !('IntersectionObserver' in window)) {
+    $$('[data-fx]').forEach(show);
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        show(e.target);
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    $$('[data-fx]').forEach((el) => io.observe(el));
+  }
+
+  // Filet de sécurité : tout élément visible à l'écran apparaît, même si
+  // l'observateur ne s'est pas déclenché (saut d'ancre, onglet en arrière-plan…)
+  const revealInView = () => {
+    const limit = innerHeight * 0.95;
+    $$('[data-fx]:not(.is-in)').forEach((el) => {
+      const r = el.getBoundingClientRect();
+      if (r.top < limit && r.bottom > 0) show(el);
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
-  $$('[data-fx]').forEach((el) => io.observe(el));
+  };
+  addEventListener('scroll', revealInView, { passive: true });
+  addEventListener('resize', revealInView);
+  addEventListener('load', revealInView);
+  revealInView();
 
   /* 3. Compteurs animés ------------------------------------------------ */
   const counters = $$('#about .grid.grid-cols-2 .font-display')
