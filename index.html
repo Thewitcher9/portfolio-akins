@@ -175,15 +175,12 @@
 
       <!-- Center Nav Links -->
       <nav
-        class="hidden md:flex items-center gap-4 lg:gap-6 text-[11px] font-bold uppercase tracking-widest text-gray-500">
+        class="hidden lg:flex items-center gap-5 xl:gap-7 text-[11px] font-bold uppercase tracking-widest text-gray-500">
         <a href="#profil" class="hover:text-black transition">Profil</a>
-        <span class="text-gray-300">/</span>
         <a href="#experiences" class="hover:text-black transition">Expériences</a>
-        <span class="text-gray-300">/</span>
+        <a href="#projets" class="hover:text-black transition">Projets</a>
         <a href="#methodes" class="hover:text-black transition">Méthodes</a>
-        <span class="text-gray-300">/</span>
         <a href="#formations" class="hover:text-black transition">Formations</a>
-        <span class="text-gray-300">/</span>
         <a href="#appreciation" class="hover:text-black transition">Appréciation</a>
       </nav>
 
@@ -459,10 +456,12 @@
             SNCF Optim'services (CSP Déplacements) · Saint-Denis
           </p>
 
-          <!-- Logo -->
-          <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center p-6">
-            <img src="assets/images/LogoOptimService.jpg" alt="Logo SNCF Optim'services"
-              loading="lazy" class="max-w-full max-h-full object-contain">
+          <!-- Photo -->
+          <div class="relative aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white">
+            <img src="assets/images/presentation_ferplay.jpg" alt="Akins Anretar au micro lors d'un événement SNCF sur l'innovation numérique"
+              loading="lazy" class="w-full h-full object-cover object-[70%_center]">
+            <img src="assets/images/LogoOptimService.jpg" alt="" aria-hidden="true"
+              class="absolute bottom-3 left-3 h-8 rounded-md shadow-sm">
           </div>
 
           <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
@@ -575,6 +574,132 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- SECTION: PROJETS UNIVERSITAIRES            -->
+  <!-- ========================================== -->
+  <section id="projets" class="py-20 sm:py-28 bg-white border-t border-[#D8DCE2]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">BUT GEA · IUT de Meaux</span>
+          <h2 class="section-title">
+            Projets <em class="serif">universitaires.</em>
+          </h2>
+        </div>
+        <p class="text-xs text-gray-500 max-w-xs sm:text-right">
+          Des projets menés en équipe, du premier contact partenaire jusqu'à l'événement final.
+        </p>
+      </div>
+
+      <!-- Projet phare : GEA Relations Entreprises -->
+      <article class="editorial-card p-6 sm:p-8 lg:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 mb-8">
+        <div class="lg:col-span-6 flex flex-col">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="date-pill">9 février 2024</span>
+            <span class="text-xs font-semibold text-gray-500">SAÉ · Projet d'équipe</span>
+          </div>
+          <div class="flex items-center gap-3 mb-3">
+            <img src="assets/images/LogoGeaRelationsEntreprises.png" alt="Logo GEA Relations Entreprises" loading="lazy"
+              class="w-12 h-12 rounded-full object-cover border border-gray-200 bg-white">
+            <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-black">GEA Relations Entreprises</h3>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-5">
+            Développer un réseau d'organisations pour accroître la notoriété du département GEA et ouvrir aux étudiants
+            des pistes d'orientation et de carrière. Le projet s'est concrétisé par une
+            <strong class="text-black">conférence de l'orientation</strong> à l'IUT de Meaux, où d'anciens étudiants
+            sont venus raconter leur parcours.
+          </p>
+
+          <div class="p-4 rounded-xl bg-gray-50 border border-gray-200 mb-5">
+            <span class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 block mb-1">Mon rôle</span>
+            <p class="text-sm text-gray-800 leading-relaxed">
+              Responsable du pôle démarchage et partenariats. J'ai sollicité le cabinet du Maire de Meaux, la Mission
+              locale, Pays de Meaux Habitat et le Club des Entrepreneurs du Val d'Europe pour soutenir l'événement.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 mt-auto">
+            <div class="p-4 rounded-xl border border-gray-200">
+              <span class="block text-3xl font-bold tracking-tight text-black">9</span>
+              <span class="block text-xs text-gray-500 mt-1">anciens étudiants intervenants</span>
+            </div>
+            <div class="p-4 rounded-xl border border-gray-200">
+              <span class="block text-3xl font-bold tracking-tight text-black">500&nbsp;€</span>
+              <span class="block text-xs text-gray-500 mt-1">de soutien obtenu auprès de Pays de Meaux Habitat</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Galerie -->
+        <div class="lg:col-span-6 grid grid-cols-2 grid-rows-2 gap-3 min-h-[320px]">
+          <a href="assets/images/Afficheconference.png" target="_blank" rel="noopener noreferrer"
+            class="row-span-2 rounded-xl overflow-hidden border border-gray-200 bg-[#DCE7F7] group/img">
+            <img src="assets/images/Afficheconference.png" alt="Affiche de la conférence de l'orientation du 9 février 2024"
+              loading="lazy" class="w-full h-full object-contain group-hover/img:scale-[1.03] transition-transform duration-500">
+          </a>
+          <a href="assets/images/conference_6.jpg" target="_blank" rel="noopener noreferrer"
+            class="rounded-xl overflow-hidden border border-gray-200 group/img">
+            <img src="assets/images/conference_6.jpg" alt="L'équipe du projet sur scène lors de la conférence"
+              loading="lazy" class="w-full h-full object-cover group-hover/img:scale-[1.03] transition-transform duration-500">
+          </a>
+          <a href="assets/images/conference_2.jpg" target="_blank" rel="noopener noreferrer"
+            class="rounded-xl overflow-hidden border border-gray-200 group/img">
+            <img src="assets/images/conference_2.jpg" alt="L'équipe organisatrice de GEA Relations Entreprises"
+              loading="lazy" class="w-full h-full object-cover object-top group-hover/img:scale-[1.03] transition-transform duration-500">
+          </a>
+        </div>
+      </article>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+        <!-- Athletic Vibes -->
+        <article class="editorial-card p-6 sm:p-8 flex flex-col sm:flex-row gap-6">
+          <div class="sm:w-40 shrink-0 rounded-xl overflow-hidden border border-gray-200 bg-black h-64 sm:h-auto">
+            <img src="assets/images/application_1.png" alt="Écran de l'application Athletic Vibes" loading="lazy"
+              class="w-full h-full object-cover object-top">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-gray-500 mb-2">Application et site web</span>
+            <h3 class="text-xl font-bold tracking-tight text-black mb-3">Athletic Vibes</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+              Faciliter l'accès au sport en Île-de-France avec un catalogue d'activités, construit grâce à des
+              partenariats avec des structures sportives. Fonctionnalités imaginées : matchmaking entre pratiquants,
+              activités insolites, espace organisateur et carte interactive.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-auto">
+              <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">Partenariats</span>
+              <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">Expérience utilisateur</span>
+              <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">Sport</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Meaux'Bil Food -->
+        <article class="editorial-card p-6 sm:p-8 flex flex-col sm:flex-row gap-6">
+          <div class="sm:w-40 shrink-0 rounded-xl overflow-hidden border border-gray-200 bg-[#F4F3EF] flex items-center justify-center p-4 h-48 sm:h-auto">
+            <img src="assets/images/LogoMobilFood.png" alt="Logo du food truck Meaux'Bil Food" loading="lazy"
+              class="max-w-full max-h-full object-contain">
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xs font-semibold text-gray-500 mb-2">Création d'entreprise · SAÉ</span>
+            <h3 class="text-xl font-bold tracking-tight text-black mb-3">Meaux'Bil Food</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+              Un food truck pour les étudiants de l'Université Gustave Eiffel sans accès à la cantine : un menu complet
+              à petit prix, cuisiné à partir de produits de producteurs de Seine-et-Marne pour soutenir l'économie locale.
+            </p>
+            <div class="flex flex-wrap gap-1.5 mt-auto">
+              <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">Business plan</span>
+              <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">Circuit court</span>
+              <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">Innovation sociale</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
     </div>
   </section>
 
@@ -817,6 +942,23 @@
         </div>
       </div>
     </div>
+
+    <!-- Certification -->
+    <div class="mt-8 editorial-card p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-[#111215] text-white flex items-center justify-center shrink-0">
+          <i data-lucide="languages" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <span class="text-[10px] font-semibold uppercase tracking-widest text-gray-400 block">Certification · Mars 2025</span>
+          <h3 class="text-lg font-bold text-black">TOEIC Listening &amp; Reading</h3>
+        </div>
+      </div>
+      <div class="flex items-baseline gap-6 sm:ml-auto">
+        <div><span class="text-3xl font-bold tracking-tight text-black">730</span><span class="text-sm text-gray-400"> / 990</span></div>
+        <div class="text-xs text-gray-500 leading-relaxed">Compréhension orale <strong class="text-black">360</strong><br>Compréhension écrite <strong class="text-black">370</strong></div>
+      </div>
+    </div>
   </section>
 
   <!-- ========================================== -->
@@ -1013,6 +1155,44 @@
           </a>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- SECTION: CENTRES D'INTÉRÊT                 -->
+  <!-- ========================================== -->
+  <section id="interets" class="py-20 sm:py-28 max-w-7xl mx-auto px-6 lg:px-12">
+    <div class="max-w-2xl mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-gray-400 block mb-1">En dehors du travail</span>
+      <h2 class="section-title">
+        Centres <em class="serif">d'intérêt.</em>
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="editorial-card p-6 sm:p-7">
+        <i data-lucide="trophy" class="w-6 h-6 text-black mb-5" stroke-width="1.5"></i>
+        <h3 class="text-lg font-bold text-black mb-2">Sport</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Footballeur depuis l'âge de 6 ans. Le sport m'a forgé une discipline, une détermination et un esprit de
+          compétiteur que je retrouve dans chaque projet.
+        </p>
+      </div>
+      <div class="editorial-card p-6 sm:p-7">
+        <i data-lucide="plane" class="w-6 h-6 text-black mb-5" stroke-width="1.5"></i>
+        <h3 class="text-lg font-bold text-black mb-2">Voyage</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Découvrir de nouveaux paysages et d'autres cultures. Originaire de la Martinique, c'est là que je me
+          ressource le plus souvent.
+        </p>
+      </div>
+      <div class="editorial-card p-6 sm:p-7">
+        <i data-lucide="book-open" class="w-6 h-6 text-black mb-5" stroke-width="1.5"></i>
+        <h3 class="text-lg font-bold text-black mb-2">Lecture</h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Lire pour m'évader, prendre du recul et remettre en question ma vision du monde.
+        </p>
       </div>
     </div>
   </section>

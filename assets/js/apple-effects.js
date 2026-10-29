@@ -23,6 +23,8 @@
   tag('#experiences .editorial-card', '', 120);
   tag('#methodes .grid > div', '', 120);
   tag('#formations .editorial-card', '', 120);
+  tag('#projets .editorial-card', '', 120);
+  tag('#interets .editorial-card', '', 120);
   tag('#experiences > div:first-child', '');
   tag('#methodes .max-w-2xl, #formations .max-w-2xl', '');
   tag('#contact .max-w-4xl > *', '', 100);

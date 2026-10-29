@@ -89,8 +89,11 @@ const projectsData = [
       action: [
         "Instruction technique et financière des dossiers de subvention présentés au Conseil Régional.",
         "Interface quotidienne avec les cabinets de maires et directions des sports des communes franciliennes.",
-        "Participation active au pilotage de la Semaine Olympique et Paralympique (SOP).",
-        "Gestion logistique et protocolaire des échanges avec les athlètes de haut niveau soutenus par la Région."
+        "Contact de plus d'une centaine d'ambassadeurs du sport pour le lancement de la Semaine Olympique et Paralympique, le 3 avril 2024 au stade nautique olympique de Vaires-sur-Marne.",
+        "Organisation de ce lancement sur site : accompagnement des sportifs présents et coordination de l'installation des activités.",
+        "Préparation des réunions avec le mouvement sportif francilien et suivi des projets sportifs du Vice-Président.",
+        "Création de supports de communication pour les réseaux sociaux du Vice-Président chargé des Sports.",
+        "Gestion de la billetterie sportive de la Région et organisation des déplacements (inaugurations, assemblées générales, événements)."
       ],
       resultats: [
         "Traitement fluide et sécurisé des dossiers dans le respect strict des calendriers administratifs.",
@@ -113,15 +116,16 @@ const projectsData = [
     company: "Agorex Expertise",
     period: "Avril – Mai 2023",
     contract: "Stage de BUT",
-    location: "Île-de-France",
-    sector: "Expertise Comptable, Fiscalité & Audit PME",
+    location: "Nogent-sur-Marne (94)",
+    sector: "Cabinet d'expertise comptable · plus de 400 clients",
     summary: "Tenue comptable, révision, analyse de la cohérence financière et participation aux travaux préparatoires de bilans d'entreprises.",
     star: {
       situation: "Au sein d'un cabinet d'expertise comptable, la rigueur absolue dans le traitement des flux et des comptes annuels est indispensable pour la conformité et le pilotage des dirigeants.",
       tache: "Assurer la tenue des dossiers clients, effectuer les contrôles de conformité et sécuriser la préparation des bilans.",
       action: [
-        "Saisie comptable, lettrage des comptes et rapprochements bancaires exhaustifs.",
-        "Vérification des pièces comptables et conformité avec les réglementations fiscales.",
+        "Saisie des factures de vente et d'achat, lettrage des comptes et rapprochements bancaires avec les relevés des clients.",
+        "Contrôle de dossiers clients, notamment la vérification des taux de TVA appliqués.",
+        "Cadrage du chiffre d'affaires et de la TVA.",
         "Analyse des écarts de trésorerie et reporting financier.",
         "Participation aux écritures d'inventaire de clôture."
       ],
