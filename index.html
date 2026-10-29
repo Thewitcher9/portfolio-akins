@@ -9,6 +9,14 @@
   <meta name="description"
     content="Portfolio d'Akins ANRETAR, Chef de Projet Organisation & Transformation. Master Management Stratégique (IAE Paris-Saclay), alternant chez OUIGO.">
   <meta name="author" content="Akins ANRETAR">
+  <meta name="theme-color" content="#111215">
+  <meta property="og:type" content="profile">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Akins ANRETAR — Chef de Projet Organisation & Transformation">
+  <meta property="og:description"
+    content="Pilotage de projets IA et conduite du changement chez OUIGO et SNCF Optim'services. Master Management Stratégique & Changement (ISM-IAE Paris-Saclay).">
+  <meta property="og:image" content="assets/images/profile_banner.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" type="image/png" href="assets/images/Logo_AKINS.png">
 
   <!-- Tailwind CSS via CDN -->
@@ -36,7 +44,7 @@
   </script>
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 
   <!-- Custom CSS for Matthew Brutalist Luxe Theme -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -81,9 +89,8 @@
       // Verrouiller le scroll
       document.body.style.overflow = 'hidden';
 
-      // 1. Préchargement immédiat des deux audios (son de transition + voix de Lauren)
+      // 1. Préchargement du son de transition
       let revealAudio = null;
-      let voiceAudio = null;
 
       try {
         revealAudio = new Audio('assets/audio/reveal.mp3');
@@ -93,14 +100,6 @@
         revealAudio = null;
       }
 
-      try {
-        voiceAudio = new Audio('assets/audio/Voix_Lauren_AkinsANRETAR.mp3');
-        voiceAudio.preload = 'auto';
-        voiceAudio.onerror = function () { voiceAudio = null; };
-      } catch (e) {
-        voiceAudio = null;
-      }
-
       // Animation d'apparition du logo
       setTimeout(function () {
         content.classList.remove('opacity-0', 'scale-90', 'translate-y-2');
@@ -108,64 +107,28 @@
       }, 50);
 
       let isRevealed = false;
-      let soundFinished = false;
-      let animationFinished = false;
-      let voicePlayed = false;
 
-      function playVoice() {
-        if (voicePlayed || !voiceAudio) return;
-        voicePlayed = true;
-        try {
-          voiceAudio.currentTime = 0;
-          const vp = voiceAudio.play();
-          if (vp && typeof vp.catch === 'function') {
-            vp.catch(function () {});
-          }
-        } catch (e) {}
-      }
-
-      function checkAndPlayVoice() {
-        if (soundFinished && animationFinished) {
-          playVoice();
-        }
+      function finishReveal() {
+        overlay.remove();
+        document.body.style.overflow = '';
+        window.dispatchEvent(new Event('resize'));
       }
 
       function handleReveal() {
         if (isRevealed) return;
         isRevealed = true;
 
-        // Écoute de la fin du son de transition pour enchaîner sur la voix
         if (revealAudio) {
-          revealAudio.addEventListener('ended', function () {
-            soundFinished = true;
-            checkAndPlayVoice();
-          });
-
           try {
             revealAudio.currentTime = 0;
             const p = revealAudio.play();
-            if (p && typeof p.catch === 'function') {
-              p.catch(function () {
-                // Si la lecture du premier son échoue, on marque le son comme terminé
-                soundFinished = true;
-                checkAndPlayVoice();
-              });
-            }
-          } catch (e) {
-            soundFinished = true;
-            checkAndPlayVoice();
-          }
-        } else {
-          soundFinished = true;
+            if (p && typeof p.catch === 'function') p.catch(function () {});
+          } catch (e) {}
         }
 
         const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReduced) {
-          animationFinished = true;
-          overlay.remove();
-          document.body.style.overflow = '';
-          window.dispatchEvent(new Event('resize'));
-          checkAndPlayVoice();
+          finishReveal();
           return;
         }
 
@@ -175,20 +138,7 @@
         content.style.transform = 'scale(0.9) translateY(-1rem)';
 
         // Fin de l'animation de révélation (820ms)
-        setTimeout(function () {
-          animationFinished = true;
-          overlay.remove();
-          document.body.style.overflow = '';
-          window.dispatchEvent(new Event('resize'));
-          checkAndPlayVoice();
-        }, 820);
-
-        // Sécurité de secours : garantit que la voix se déclenche même si un événement audio n'est pas émis
-        setTimeout(function () {
-          if (!voicePlayed) {
-            playVoice();
-          }
-        }, 2600);
+        setTimeout(finishReveal, 820);
       }
 
       overlay.addEventListener('click', handleReveal);
@@ -344,7 +294,7 @@
         <!-- Scroll down indicator matching reference -->
         <a href="#about"
           class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-black hover:translate-y-0.5 transition-transform">
-          <span>Scroll down</span>
+          <span>Découvrir</span>
           <i data-lucide="arrow-down" class="w-4 h-4"></i>
         </a>
 
@@ -445,7 +395,8 @@
 
       <!-- CARTE EXPÉRIENCE 1: OUIGO -->
       <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
-        onclick="openProjectModal('ouigo')">
+        role="button" tabindex="0" onclick="openProjectModal('ouigo')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('ouigo')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
@@ -461,13 +412,11 @@
             OUIGO (SNCF Voyageurs) · Saint-Denis
           </p>
 
-          <!-- Photo Placeholder -->
-          <div class="photo-placeholder aspect-[16/9] mb-4 bg-gray-50 border-2 border-dashed border-gray-300">
-            <i data-lucide="image-plus" class="w-6 h-6 text-gray-400 mb-1"></i>
-            <span class="text-xs font-bold uppercase tracking-wider text-gray-800">
-              [ Emplacement : Capture Assistant Virtuel IA OUIGO ]
-            </span>
-            <span class="text-[10px] text-gray-500">Maquette, interface ou schéma de parcours client</span>
+          <!-- Visuel -->
+          <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-[#111215] text-white flex flex-col items-center justify-center gap-2 p-6 text-center">
+            <i data-lucide="bot" class="w-8 h-8 text-sky-400"></i>
+            <span class="text-2xl sm:text-3xl font-extrabold tracking-tight">OUIGO</span>
+            <span class="text-[11px] font-mono uppercase tracking-widest text-gray-400">Assistant virtuel IA · Selfcare voyageur 24/7</span>
           </div>
 
           <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
@@ -492,7 +441,8 @@
 
       <!-- CARTE EXPÉRIENCE 2: SNCF OPTIM'SERVICES -->
       <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
-        onclick="openProjectModal('sncf-optim')">
+        role="button" tabindex="0" onclick="openProjectModal('sncf-optim')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('sncf-optim')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
@@ -508,13 +458,10 @@
             SNCF Optim'services (CSP Déplacements) · Saint-Denis
           </p>
 
-          <!-- Photo Placeholder -->
-          <div class="photo-placeholder aspect-[16/9] mb-4 bg-gray-50 border-2 border-dashed border-gray-300">
-            <i data-lucide="image-plus" class="w-6 h-6 text-gray-400 mb-1"></i>
-            <span class="text-xs font-bold uppercase tracking-wider text-gray-800">
-              [ Emplacement : Photos Séminaire SNCF sur scène ]
-            </span>
-            <span class="text-[10px] text-gray-500">Présentation au micro ou captures PowerApps</span>
+          <!-- Logo -->
+          <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center p-6">
+            <img src="assets/images/LogoOptimService.jpg" alt="Logo SNCF Optim'services"
+              loading="lazy" class="max-w-full max-h-full object-contain">
           </div>
 
           <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
@@ -538,7 +485,8 @@
 
       <!-- CARTE EXPÉRIENCE 3: RÉGION ÎLE-DE-FRANCE -->
       <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
-        onclick="openProjectModal('region-idf')">
+        role="button" tabindex="0" onclick="openProjectModal('region-idf')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('region-idf')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
@@ -556,7 +504,7 @@
 
           <!-- Photo Placeholder -->
           <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center p-6">
-  <img src="assets/images/conseil_regional_idf.jpg" 
+  <img src="assets/images/conseil_regional_idf.jpg" alt="Conseil Régional Île-de-France"
     loading="lazy" class="max-w-full max-h-full object-contain">
 </div>
 
@@ -582,11 +530,8 @@
 
       <!-- CARTE EXPÉRIENCE 4: AGOREX EXPERTISE -->
       <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
-  onclick="openProjectModal('agorex')">
-  <div>
-          <!-- CARTE EXPÉRIENCE 4: AGOREX EXPERTISE -->
-      <div class="editorial-card p-6 sm:p-8 flex flex-col justify-between group cursor-pointer"
-        onclick="openProjectModal('agorex')">
+        role="button" tabindex="0" onclick="openProjectModal('agorex')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openProjectModal('agorex')}">
         <div>
           <div class="flex items-center justify-between gap-2 mb-4">
             <span class="px-3 py-1 rounded-full text-xs font-bold bg-black text-white font-mono">
@@ -605,7 +550,7 @@
           <!-- Photo Placeholder -->
           <!-- Logo -->
 <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-white flex items-center justify-center p-6">
-  <img src="assets/images/LogoAgorexExpertise.jpg" alt="Fiche d'appréciation de stage, Agorex Expertise"
+  <img src="assets/images/LogoAgorexExpertise.jpg" alt="Logo Agorex Expertise"
     loading="lazy" class="max-w-full max-h-full object-contain">
 </div>
 
@@ -871,8 +816,6 @@
         </div>
       </div>
     </div>
-
-    </div>
   </section>
 
   <!-- ========================================== -->
@@ -935,6 +878,11 @@
             <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
               « Un alternant d'exception. Akins a su s'imposer comme le référent de nos projets digitaux, notamment avec le déploiement du chatbot IA et l'organisation du séminaire national. Sérieux, rigoureux et très bon communiquant. »
             </blockquote>
+            <a href="assets/docs/Lettre_de_Recommandation_SNCF_OptimServices.pdf" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black mb-5">
+              <i data-lucide="file-check" class="w-3.5 h-3.5"></i>
+              Lire la lettre de recommandation (PDF)
+            </a>
           </div>
 
           <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
@@ -959,6 +907,16 @@
             <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
               « Akins a intégré notre service avec une maturité professionnelle impressionnante. Sa rigueur dans l'instruction des dossiers de subvention et son engagement lors de la Semaine Olympique et Paralympique ont été très appréciés de toute l'équipe. »
             </blockquote>
+            <a href="assets/docs/Lettre_de_Recommandation_Region_IDF.pdf" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black mb-5">
+              <i data-lucide="file-check" class="w-3.5 h-3.5"></i>
+              Lire la lettre de recommandation (PDF)
+            </a>
+            <a href="assets/docs/Fiche_Appreciation_Region_IDF.pdf" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black mb-5">
+              <i data-lucide="file-check" class="w-3.5 h-3.5"></i>
+              Fiche d'appréciation de stage (PDF)
+            </a>
           </div>
 
           <div class="flex items-center gap-3 pt-4 border-t border-gray-100">
@@ -983,6 +941,11 @@
             <blockquote class="text-sm text-gray-700 leading-relaxed italic mb-5">
               « Stagiaire très investi et curieux, Akins a rapidement maîtrisé nos outils comptables. Sa précision dans les rapprochements bancaires et sa capacité d'adaptation nous ont beaucoup impressionnés pour un profil de son niveau. »
             </blockquote>
+            <a href="assets/docs/Fiche_Appreciation_Agroex_Expertise.pdf" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-[11px] font-semibold text-black underline underline-offset-4 decoration-gray-300 hover:decoration-black mb-5">
+              <i data-lucide="file-check" class="w-3.5 h-3.5"></i>
+              Fiche d'appréciation de stage (PDF)
+            </a>
           </div>
 
           <div class="flex items-center gap-3 pt-4 border-t border-gray-100">

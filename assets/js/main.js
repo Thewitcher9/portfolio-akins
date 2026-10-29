@@ -1,7 +1,7 @@
 /**
  * PORTFOLIO AKINS ANRETAR - JAVASCRIPT LOGIC
  * Style Matthew Editorial Brutalist Luxe
- * Sans photos forcées, avec emplacements réservés pour personnalisation
+ * Visuel optionnel par projet via le champ `image` (aucun bloc affiché si absent)
  */
 
 const projectsData = [
@@ -14,8 +14,6 @@ const projectsData = [
     contract: "Alternance (Master)",
     location: "Saint-Denis (93) · Sur site",
     sector: "Transport Ferroviaire Grande Vitesse & Low-cost",
-    placeholderLabel: "Capture d'écran de l'Assistant Virtuel IA / Parcours Selfcare Voyageur",
-    placeholderFormat: "16:9 ou 4:3 (ex: ouigo_ia_assistant.png)",
     summary: "Pilotage stratégique et opérationnel du projet d'Assistant Virtuel IA conversationnel pour moderniser le parcours voyageur et optimiser le selfcare à grande échelle.",
     star: {
       situation: "Chez OUIGO (des millions de billets vendus chaque année), le service relation client fait face à de très forts volumes de requêtes à faible valeur ajoutée (recherches d'horaires, règles bagages, billets, perturbations).",
@@ -41,6 +39,7 @@ const projectsData = [
   },
   {
     id: "sncf-optim",
+    image: "assets/images/LogoOptimService.jpg",
     title: "Chatbot IA, PowerApps & Séminaire National",
     role: "Assistant Chef de Projets (CSP Déplacements Professionnels)",
     company: "SNCF Optim'Services",
@@ -48,8 +47,6 @@ const projectsData = [
     contract: "Alternance (BUT GEA)",
     location: "Saint-Denis (93) · Sur site",
     sector: "Centre de Services Partagés · Groupe SNCF",
-    placeholderLabel: "Photos de votre intervention sur scène lors du Séminaire National des Assistantes de Direction",
-    placeholderFormat: "16:9 paysage (ex: seminaire_sncf_scene.jpg)",
     summary: "Supervision du projet ChatBot IA, refonte du portail SharePoint, kits d'adoption pour la suite PowerApps et organisation clé en main d'un séminaire d'envergure nationale pour les assistants de direction.",
     star: {
       situation: "Le CSP Déplacements gère 3 pôles vitaux (déplacements internationaux, titres tiers, parc automobile) pour des dizaines de milliers d'agents du Groupe SNCF, avec un fort besoin de digitalisation.",
@@ -77,6 +74,7 @@ const projectsData = [
   },
   {
     id: "region-idf",
+    image: "assets/images/conseil_regional_idf.jpg",
     title: "Instruction de Dossiers & JOP Paris 2024",
     role: "Stagiaire au Service des Sports",
     company: "Région Île-de-France (Conseil Régional)",
@@ -84,8 +82,6 @@ const projectsData = [
     contract: "Stage de BUT",
     location: "Saint-Ouen (93) · Siège de Région",
     sector: "Politiques Publiques Territoriales & Écosystème Olympique",
-    placeholderLabel: "Visuel officiel Paris 2024 / Logo Conseil Régional Île-de-France",
-    placeholderFormat: "16:9 paysage (ex: paris2024_region_idf.jpg)",
     summary: "Instruction des dossiers de subventions sportives du Conseil Régional, interface avec les mairies franciliennes, coordination de la Semaine Olympique et Paralympique et relations athlètes de haut niveau.",
     star: {
       situation: "À l'approche des Jeux Olympiques et Paralympiques de Paris 2024, la Région Île-de-France gérait des enjeux majeurs de mobilisation territoriale et de rayonnement sportif.",
@@ -111,6 +107,7 @@ const projectsData = [
   },
   {
     id: "agorex",
+    image: "assets/images/LogoAgorexExpertise.jpg",
     title: "Gestion Financière, Rapprochements & Bilan",
     role: "Stagiaire Comptable & Gestion Financière",
     company: "Agorex Expertise",
@@ -118,8 +115,6 @@ const projectsData = [
     contract: "Stage de BUT",
     location: "Île-de-France",
     sector: "Expertise Comptable, Fiscalité & Audit PME",
-    placeholderLabel: "Visuel gestion comptable / Tableau de bord budgétaire ou attestation",
-    placeholderFormat: "16:9 paysage (ex: agorex_comptabilite.jpg)",
     summary: "Tenue comptable, révision, analyse de la cohérence financière et participation aux travaux préparatoires de bilans d'entreprises.",
     star: {
       situation: "Au sein d'un cabinet d'expertise comptable, la rigueur absolue dans le traitement des flux et des comptes annuels est indispensable pour la conformité et le pilotage des dirigeants.",
@@ -152,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Open Project Modal (STAR Breakdown with custom placeholder)
+// Open Project Modal (STAR Breakdown)
 window.openProjectModal = function (projectId) {
   const proj = projectsData.find(p => p.id === projectId);
   if (!proj) return;
@@ -177,13 +172,10 @@ window.openProjectModal = function (projectId) {
     <!-- Modal Content -->
     <div class="p-6 sm:p-8 space-y-6 max-h-[70vh] overflow-y-auto bg-gray-50">
       
-      <!-- Photo Placeholder in Modal -->
-      <div class="photo-placeholder py-8 bg-white border border-dashed border-gray-300 rounded-2xl">
-        <i data-lucide="image-plus" class="w-8 h-8 text-gray-400 mb-2"></i>
-        <span class="text-xs font-bold uppercase tracking-wider text-gray-800">Emplacement Visuel / Photo</span>
-        <p class="text-xs text-gray-500 mt-1 max-w-md">${proj.placeholderLabel}</p>
-        <span class="text-[10px] font-mono text-gray-400 mt-1">Format recommandé : ${proj.placeholderFormat}</span>
-      </div>
+      ${proj.image ? `
+      <div class="h-40 rounded-2xl bg-white border border-gray-200 flex items-center justify-center p-6">
+        <img src="${proj.image}" alt="${proj.company}" class="max-w-full max-h-full object-contain">
+      </div>` : ""}
 
       <!-- Summary Box -->
       <div class="p-4 rounded-xl bg-white border border-gray-200">
