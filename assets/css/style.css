@@ -85,7 +85,10 @@ body {
 /* Signature manuscrite (écran d'accueil) */
 .signature {
   display: block;
-  padding: 0 0.35em;
+  /* Marge généreuse : les boucles de la police dépassent la ligne et le masque
+     d'écriture ne peint qu'à l'intérieur de la boîte */
+  padding: 0.35em 0.45em 0.25em;
+  margin: -0.35em 0 -0.25em;
   font-family: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
   font-size: clamp(3.25rem, 9vw, 5.75rem);
   line-height: 1.1;
