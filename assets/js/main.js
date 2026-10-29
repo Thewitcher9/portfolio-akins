@@ -40,6 +40,10 @@ const projectsData = [
   {
     id: "sncf-optim",
     image: "assets/images/LogoOptimService.jpg",
+    video: {
+      id: "wwgQ7EqXUgg",
+      title: "Journée annuelle des assistant(e)s de direction du Groupe SNCF – Activité physique et bien-être"
+    },
     title: "Chatbot IA, PowerApps & Séminaire National",
     role: "Assistant chef de projets (CSP Déplacements Professionnels)",
     company: "SNCF Optim'Services",
@@ -181,6 +185,22 @@ window.openProjectModal = function (projectId) {
         <img src="${proj.image}" alt="${proj.company}" class="max-w-full max-h-full object-contain">
       </div>` : ""}
 
+      ${proj.video ? `
+      <!-- Vidéo -->
+      <figure class="rounded-2xl overflow-hidden bg-white border border-gray-200">
+        <div class="relative w-full aspect-video bg-black">
+          <iframe class="absolute inset-0 w-full h-full" loading="lazy"
+            src="https://www.youtube-nocookie.com/embed/${proj.video.id}?rel=0"
+            title="${proj.video.title}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <figcaption class="px-4 py-3 text-xs text-gray-500 flex items-center gap-2">
+          <i data-lucide="play-circle" class="w-4 h-4 text-gray-400 shrink-0"></i>
+          ${proj.video.title}
+        </figcaption>
+      </figure>` : ""}
+
       <!-- Summary Box -->
       <div class="p-4 rounded-xl bg-white border border-gray-200">
         <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Résumé de la mission</h4>
@@ -296,6 +316,9 @@ window.openProjectModal = function (projectId) {
 window.closeProjectModal = function () {
   const modal = document.getElementById("project-modal");
   if (modal) {
+    // Coupe une éventuelle vidéo en cours de lecture
+    const body = document.getElementById("project-modal-content");
+    if (body) body.innerHTML = "";
     modal.classList.add("hidden");
     modal.classList.remove("flex");
     document.body.style.overflow = "auto";
