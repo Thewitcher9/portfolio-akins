@@ -1,0 +1,303 @@
+/* ==========================================================
+   CENTRES D'INTÉRÊT — fenêtres « univers » (Sport, Voyage, Lecture)
+   ========================================================== */
+
+/* Cartes cliquables */
+.interest-card { cursor: pointer; }
+.interest-card:focus-visible { outline: 2px solid #111215; outline-offset: 4px; }
+.interest-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111215;
+}
+.interest-more svg { transition: transform 300ms ease; }
+.interest-card:hover .interest-more svg { transform: translateX(3px); }
+
+/* Fenêtre */
+.universe {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-y: auto;
+  background: rgba(10, 11, 13, 0.72);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+.universe.is-open { opacity: 1; pointer-events: auto; }
+
+.universe-panel {
+  position: relative;
+  width: min(1040px, 100%);
+  margin: auto 0;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.45);
+  transform: translateY(24px) scale(0.98);
+  transition: transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.universe.is-open .universe-panel { transform: none; }
+
+.universe-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  cursor: pointer;
+  transition: transform 200ms ease, background-color 200ms ease;
+}
+.universe-close:hover { transform: rotate(90deg); }
+
+.universe-hero { position: relative; padding: 56px 40px 40px; }
+.universe-body { padding: 0 40px 48px; }
+
+.universe-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.universe-gallery a {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+.universe-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms ease;
+}
+.universe-gallery a:hover img { transform: scale(1.04); }
+
+@media (max-width: 640px) {
+  .universe-hero { padding: 48px 22px 28px; }
+  .universe-body { padding: 0 22px 32px; }
+  .universe-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ---------- Univers SPORT : stade de nuit ---------- */
+.universe-sport {
+  background:
+    radial-gradient(ellipse 80% 45% at 50% -10%, rgba(255, 255, 255, 0.22), transparent 70%),
+    linear-gradient(180deg, #0F2A1A 0%, #0A1C12 55%, #07140D 100%);
+  color: #F2F5F1;
+}
+.universe-sport .universe-close { background: rgba(255, 255, 255, 0.12); color: #FFFFFF; }
+.universe-sport .pitch-lines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.16;
+  pointer-events: none;
+}
+.universe-sport .sport-kicker { color: #E63946; letter-spacing: 0.3em; }
+.universe-sport .sport-title {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: clamp(4.5rem, 14vw, 9rem);
+  line-height: 0.85;
+  letter-spacing: 0.01em;
+}
+.universe-sport .sport-stat {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.04);
+}
+.universe-sport .sport-stat strong {
+  display: block;
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: #FFFFFF;
+}
+.universe-sport .sport-quote {
+  border-left: 4px solid #E63946;
+  padding: 6px 0 6px 20px;
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+.universe-sport p { color: rgba(242, 245, 241, 0.78); }
+
+/* ---------- Univers VOYAGE : carnet de voyage ---------- */
+.universe-voyage {
+  background: linear-gradient(180deg, #E6F1F5 0%, #F5EFE4 100%);
+  color: #13263A;
+}
+.universe-voyage .universe-close { background: rgba(19, 38, 58, 0.08); color: #13263A; }
+.universe-voyage .voyage-kicker { color: #D9822B; letter-spacing: 0.3em; }
+.universe-voyage .voyage-title {
+  font-family: 'Instrument Serif', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: clamp(3.2rem, 9vw, 6rem);
+  line-height: 0.95;
+}
+.universe-voyage p { color: rgba(19, 38, 58, 0.78); }
+
+.world-map {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 40%, #CFE5EE 0%, #B9D7E3 100%);
+  border: 1px solid rgba(19, 38, 58, 0.08);
+  aspect-ratio: 16 / 10;
+}
+.world-map svg { display: block; width: 100%; height: 100%; }
+.world-map .land { fill: #F7F3EA; stroke: #C9D3D9; stroke-width: 0.5; }
+.world-map .land.is-visited { fill: #F2B45C; stroke: #D9822B; }
+.world-map .land.is-home { fill: #F9DDB0; stroke: #E3B26A; }
+.world-map .graticule { fill: none; stroke: rgba(19, 38, 58, 0.07); stroke-width: 0.6; }
+.world-map .pin { cursor: pointer; }
+.world-map .pin-dot { fill: #D9482B; stroke: #FFFFFF; stroke-width: 3; }
+.world-map .pin-pulse {
+  fill: rgba(217, 72, 43, 0.35);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pin-pulse 2.2s ease-out infinite;
+}
+.world-map .pin.is-active .pin-dot { fill: #13263A; }
+.world-map .pin-label {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  fill: #13263A;
+  paint-order: stroke;
+  stroke: rgba(247, 243, 234, 0.92);
+  stroke-width: 7px;
+  stroke-linejoin: round;
+}
+@keyframes pin-pulse {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.6); opacity: 0; }
+}
+
+.map-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: rgba(19, 38, 58, 0.6);
+}
+
+.destination-list button {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(19, 38, 58, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+.destination-list button:hover,
+.destination-list button.is-active { background: #FFFFFF; border-color: #D9822B; }
+.destination-list .dest-num {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  background: #13263A;
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.destination-card {
+  border-radius: 22px;
+  overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid rgba(19, 38, 58, 0.08);
+  box-shadow: 0 20px 40px -24px rgba(19, 38, 58, 0.35);
+}
+.destination-card .dest-photo { aspect-ratio: 4 / 3; background: #E6F1F5; }
+.destination-card .dest-photo img { width: 100%; height: 100%; object-fit: cover; }
+.destination-card .dest-photo.is-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(19, 38, 58, 0.45);
+  font-size: 13px;
+}
+
+/* ---------- Univers LECTURE : papier et bibliothèque ---------- */
+.universe-lecture {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.55), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(120, 84, 48, 0.08), transparent 45%),
+    #F3EBDD;
+  color: #2B1E14;
+}
+.universe-lecture .universe-close { background: rgba(43, 30, 20, 0.08); color: #2B1E14; }
+.universe-lecture .lecture-kicker { color: #8C5A2B; letter-spacing: 0.3em; }
+.universe-lecture .lecture-title {
+  font-family: 'Instrument Serif', 'Times New Roman', serif;
+  font-size: clamp(3.2rem, 9vw, 6rem);
+  line-height: 0.95;
+}
+.universe-lecture .lecture-text {
+  font-family: 'Instrument Serif', 'Times New Roman', serif;
+  font-size: 1.35rem;
+  line-height: 1.55;
+  color: rgba(43, 30, 20, 0.86);
+}
+.universe-lecture .lecture-text p:first-child::first-letter {
+  float: left;
+  font-size: 4.2rem;
+  line-height: 0.8;
+  padding: 6px 10px 0 0;
+  color: #8C5A2B;
+}
+.universe-lecture .lecture-quote {
+  font-family: 'Instrument Serif', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.6vw, 2.4rem);
+  line-height: 1.2;
+  text-align: center;
+  color: #2B1E14;
+}
+.universe-lecture .lecture-rule { height: 1px; background: rgba(43, 30, 20, 0.2); }
+.universe-lecture .book {
+  position: relative;
+  border-radius: 4px 12px 12px 4px;
+  overflow: hidden;
+  box-shadow:
+    inset 6px 0 10px -6px rgba(0, 0, 0, 0.35),
+    0 30px 50px -20px rgba(43, 30, 20, 0.55);
+  transform: rotate(-3deg);
+  transition: transform 500ms ease;
+}
+.universe-lecture .book:hover { transform: rotate(0deg) translateY(-4px); }
+.universe-lecture .book img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+
+@media (prefers-reduced-motion: reduce) {
+  .universe, .universe-panel { transition: none; }
+  .world-map .pin-pulse { animation: none; opacity: 0; }
+}
+
+@media print {
+  .universe { display: none !important; }
+}

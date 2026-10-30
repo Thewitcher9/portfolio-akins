@@ -47,9 +47,10 @@
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 
   <!-- Custom CSS for Matthew Brutalist Luxe Theme -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20261030">
-  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261030">
-  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261030">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261030c">
+  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261030c">
+  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261030c">
+  <link rel="stylesheet" href="assets/css/interests.css?v=20261030c">
 </head>
 
 <body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
@@ -1232,11 +1233,16 @@
       <h2 class="section-title">
         Centres <em class="serif">d'intérêt.</em>
       </h2>
+      <p class="text-sm text-gray-500 mt-3">
+        <em class="serif text-lg text-black">« L'homme de l'avenir vaudra ce que vaudront ses loisirs. »</em>
+        <span class="ml-1">— Jean Guéhenno</span>
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Sport -->
-      <div class="editorial-card overflow-hidden flex flex-col">
+      <div class="editorial-card interest-card overflow-hidden flex flex-col" data-interest="sport"
+        role="button" tabindex="0" aria-label="Découvrir l'univers Sport">
         <div class="photo-slideshow" aria-label="Photos : sport">
           <img src="assets/images/interets/sport_1.jpg" alt="Akins en match de football, ballon au pied" loading="lazy">
           <img src="assets/images/interets/sport_6.jpg" alt="Akins sur le terrain, maillot rouge numéro 5" loading="lazy">
@@ -1254,11 +1260,13 @@
             Footballeur depuis l'âge de 6 ans. Le sport m'a forgé une discipline, une détermination et un esprit de
             compétiteur que je retrouve dans chaque projet.
           </p>
+          <span class="interest-more">Découvrir l'univers <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
         </div>
       </div>
 
       <!-- Voyage -->
-      <div class="editorial-card overflow-hidden flex flex-col">
+      <div class="editorial-card interest-card overflow-hidden flex flex-col" data-interest="voyage"
+        role="button" tabindex="0" aria-label="Découvrir l'univers Voyage">
         <div class="photo-slideshow" aria-label="Photos : voyage">
           <img src="assets/images/interets/voyage_2.jpg" alt="Akins face à la mer, sous un palmier" loading="lazy">
           <img src="assets/images/interets/voyage_8.jpg" alt="Vue panoramique sur la côte de la Martinique" loading="lazy">
@@ -1278,11 +1286,13 @@
             Découvrir de nouveaux paysages et d'autres cultures. Originaire de la Martinique, c'est là que je me
             ressource le plus souvent.
           </p>
+          <span class="interest-more">Découvrir l'univers <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
         </div>
       </div>
 
       <!-- Lecture -->
-      <div class="editorial-card overflow-hidden flex flex-col">
+      <div class="editorial-card interest-card overflow-hidden flex flex-col" data-interest="lecture"
+        role="button" tabindex="0" aria-label="Découvrir l'univers Lecture">
         <div class="photo-slideshow" aria-label="Photo : lecture">
           <img src="assets/images/interets/lecture_1.jpg" alt="Le roman « Rompre » de Yann Moix" loading="lazy">
         </div>
@@ -1294,6 +1304,7 @@
           <p class="text-sm text-gray-600 leading-relaxed">
             Lire pour m'évader, prendre du recul et remettre en question ma vision du monde.
           </p>
+          <span class="interest-more">Découvrir l'univers <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
         </div>
       </div>
     </div>
@@ -1407,11 +1418,12 @@
   <div id="toast-notification"></div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261030"></script>
-  <script src="assets/js/apple-effects.js?v=20261030"></script>
-  <script src="assets/js/doc-stack.js?v=20261030"></script>
-  <script src="assets/js/photo-slideshow.js?v=20261030"></script>
-  <script src="assets/js/linkedin-feed.js?v=20261030"></script>
+  <script src="assets/js/main.js?v=20261030c"></script>
+  <script src="assets/js/apple-effects.js?v=20261030c"></script>
+  <script src="assets/js/doc-stack.js?v=20261030c"></script>
+  <script src="assets/js/photo-slideshow.js?v=20261030c"></script>
+  <script src="assets/js/linkedin-feed.js?v=20261030c"></script>
+  <script src="assets/js/interests.js?v=20261030c"></script>
 
   <script>
   let currentSlide = 0;
