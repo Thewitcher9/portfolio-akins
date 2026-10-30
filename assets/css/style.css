@@ -401,13 +401,55 @@ body {
   color: rgba(255, 255, 255, 0.72);
 }
 
+/* Signature du pied de page : elle s'écrit quand le pied de page apparaît */
+.footer-sign {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 18px;
+}
+
 .footer-signature {
   display: block;
+  /* marge intérieure : les boucles de la police dépassent la ligne et le masque
+     d'écriture ne peint qu'à l'intérieur de la boîte */
+  padding: 0.35em 0.4em 0.2em;
+  margin: -0.35em -0.4em -0.2em;
   font-family: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
-  font-size: clamp(2.6rem, 5vw, 3.75rem);
-  line-height: 1.2;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 18px;
+  font-size: clamp(2.8rem, 5.5vw, 4.25rem);
+  line-height: 1.15;
+  white-space: nowrap;
+  color: #FFFFFF;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.18);
+  -webkit-mask-image: linear-gradient(90deg, #000 0 40%, transparent 60% 100%);
+  mask-image: linear-gradient(90deg, #000 0 40%, transparent 60% 100%);
+  -webkit-mask-size: 250% 100%;
+  mask-size: 250% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 100% 0;
+  mask-position: 100% 0;
+}
+
+.footer-sign.is-writing .footer-signature {
+  animation: signature-write 2.6s cubic-bezier(0.45, 0.05, 0.35, 1) 0.2s forwards;
+}
+
+.footer-signature-line {
+  display: block;
+  height: 1px;
+  margin-top: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55) 15%, rgba(255, 255, 255, 0.55) 85%, transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 1100ms cubic-bezier(0.22, 1, 0.36, 1) 2.2s;
+}
+.footer-sign.is-writing .footer-signature-line { transform: scaleX(1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-signature { -webkit-mask-image: none; mask-image: none; }
+  .footer-sign.is-writing .footer-signature { animation: none; }
+  .footer-signature-line { transition: none; transform: scaleX(1); }
 }
 
 .footer-cta {
@@ -442,19 +484,6 @@ body {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
 }
 
-.footer-location {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 20px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.6);
-}
-.footer-location-dot { width: 6px; height: 6px; border-radius: 999px; background: #34D399; }
-
 .footer-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
 .footer-links a,
 .footer-links button {
@@ -480,20 +509,6 @@ body {
 .footer-links button:hover { color: #FFFFFF; }
 .footer-links a:hover::after,
 .footer-links button:hover::after { transform: scaleX(1); }
-
-.footer-watermark {
-  font-family: var(--font-display);
-  font-size: clamp(4.5rem, 17vw, 15rem);
-  line-height: 0.8;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  text-align: center;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.14);
-  margin-bottom: -0.12em;
-  user-select: none;
-  pointer-events: none;
-}
 
 .footer-bottom {
   position: relative;

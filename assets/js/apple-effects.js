@@ -203,3 +203,30 @@
   }), { threshold: 0.6 });
   els.forEach((el) => { el.textContent = '0' + (el.dataset.suffix || ''); io.observe(el); });
 })();
+
+/* Signatures manuscrites [data-sign] : elles s'écrivent quand elles arrivent à l'écran */
+(() => {
+  const signs = [...document.querySelectorAll('[data-sign]')];
+  if (!signs.length) return;
+
+  const write = (el) => el.classList.add('is-writing');
+  const check = () => {
+    signs.forEach((el) => {
+      if (el.classList.contains('is-writing')) return;
+      const r = el.getBoundingClientRect();
+      if (r.top < innerHeight * 0.88 && r.bottom > 0) write(el);
+    });
+  };
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      write(e.target);
+      io.unobserve(e.target);
+    }), { threshold: 0.6 });
+    signs.forEach((el) => io.observe(el));
+  }
+  // Filet de sécurité si l'observateur ne se déclenche pas
+  addEventListener('scroll', check, { passive: true });
+  addEventListener('load', check);
+})();
