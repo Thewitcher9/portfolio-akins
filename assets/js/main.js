@@ -7,6 +7,7 @@
 const projectsData = [
   {
     id: "ouigo",
+    trainCover: true,
     title: "Pilotage du Projet d'Assistant Virtuel IA",
     role: "Chargé de la relation client",
     company: "OUIGO (SNCF Voyageurs)",
@@ -185,6 +186,25 @@ window.openProjectModal = function (projectId) {
         <img src="${proj.image}" alt="${proj.company}" class="max-w-full max-h-full object-contain">
       </div>` : ""}
 
+      ${proj.trainCover ? `
+      <!-- Couverture animée -->
+      <div class="train-cover train-cover--modal">
+        <div class="train-cover-photo">
+          <img src="assets/images/ouigo/train_ouigo.webp" alt="TGV OUIGO bleu à deux étages roulant dans la campagne">
+        </div>
+        <div class="train-cover-speed" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="train-cover-shade" aria-hidden="true"></div>
+        <div class="train-cover-logos">
+          <img src="assets/images/ouigo/logo_ouigo.png" alt="OUIGO" class="train-cover-ouigo">
+          <span class="train-cover-sep" aria-hidden="true"></span>
+          <img src="assets/images/ouigo/logo_sncf_voyageurs.webp" alt="SNCF Voyageurs" class="train-cover-sncf">
+        </div>
+        <div class="train-cover-caption">
+          <span class="train-cover-kicker">Relation client · Assistant virtuel IA</span>
+          <span class="train-cover-title">Selfcare voyageur 24/7</span>
+        </div>
+      </div>` : ""}
+
       ${proj.video ? `
       <!-- Vidéo -->
       <figure class="rounded-2xl overflow-hidden bg-white border border-gray-200">
@@ -307,6 +327,9 @@ window.openProjectModal = function (projectId) {
   modal.classList.remove("hidden");
   modal.classList.add("flex");
   document.body.style.overflow = "hidden";
+
+  const cover = modalBody.querySelector(".train-cover");
+  if (cover && window.trainCover) window.trainCover.launch(cover);
 
   if (window.lucide) {
     window.lucide.createIcons();

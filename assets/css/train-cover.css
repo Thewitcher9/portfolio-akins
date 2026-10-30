@@ -1,0 +1,169 @@
+/* ==========================================================
+   COUVERTURE ANIMÉE — expérience OUIGO (Chargé de la relation client)
+   Le train « arrive » dans le cadre, des traînées de vitesse défilent,
+   puis la photo avance lentement (effet travelling).
+   La classe .is-live est ajoutée par train-cover.js quand la carte est visible.
+   ========================================================== */
+
+.train-cover {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: #0B2A3C;
+}
+
+.train-cover-photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.train-cover-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 72% 62%;
+  transform: translate3d(-14%, 0, 0) scale(1.18);
+  filter: blur(6px) saturate(1.1);
+  opacity: 0;
+  transition:
+    transform 1800ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1400ms ease-out,
+    opacity 600ms ease-out;
+}
+
+.train-cover.is-live .train-cover-photo img {
+  transform: translate3d(0, 0, 0) scale(1.08);
+  filter: blur(0) saturate(1.1);
+  opacity: 1;
+}
+
+/* Travelling continu une fois le train arrivé */
+.train-cover.is-cruising .train-cover-photo img {
+  animation: train-travel 14s ease-in-out infinite alternate;
+}
+
+@keyframes train-travel {
+  from { transform: translate3d(0, 0, 0) scale(1.08); }
+  to { transform: translate3d(-3%, -1%, 0) scale(1.14); }
+}
+
+/* Traînées de vitesse */
+.train-cover-speed {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.train-cover.is-live .train-cover-speed { opacity: 1; }
+
+.train-cover-speed span {
+  position: absolute;
+  left: 0;
+  height: 2px;
+  width: 38%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  transform: translateX(-110%);
+  animation: train-speed 2.6s linear infinite;
+}
+.train-cover-speed span:nth-child(1) { top: 52%; animation-delay: 0s; }
+.train-cover-speed span:nth-child(2) { top: 61%; width: 26%; animation-delay: 0.9s; }
+.train-cover-speed span:nth-child(3) { top: 69%; width: 44%; animation-delay: 1.6s; }
+.train-cover-speed span:nth-child(4) { top: 46%; width: 20%; animation-delay: 2.1s; opacity: 0.6; }
+.train-cover-speed span:nth-child(5) { top: 76%; width: 30%; animation-delay: 0.4s; opacity: 0.5; }
+
+@keyframes train-speed {
+  from { transform: translateX(-110%); }
+  to { transform: translateX(290%); }
+}
+
+/* Dégradé de lisibilité */
+.train-cover-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, rgba(5, 20, 31, 0.78) 0%, rgba(5, 20, 31, 0.15) 45%, transparent 70%),
+    linear-gradient(90deg, rgba(5, 20, 31, 0.35) 0%, transparent 45%);
+}
+
+/* Logos */
+.train-cover-logos {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px 6px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(5, 20, 31, 0.25);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 600ms ease 900ms, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 900ms;
+}
+.train-cover.is-live .train-cover-logos { opacity: 1; transform: none; }
+
+.train-cover-ouigo { width: 34px; height: 34px; }
+.train-cover-sncf { height: 30px; width: auto; }
+.train-cover-sep { width: 1px; height: 22px; background: rgba(17, 18, 21, 0.15); }
+
+/* Légende */
+.train-cover-caption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  z-index: 3;
+  color: #FFFFFF;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 600ms ease 1200ms, transform 600ms cubic-bezier(0.22, 1, 0.36, 1) 1200ms;
+}
+.train-cover.is-live .train-cover-caption { opacity: 1; transform: none; }
+
+.train-cover-kicker {
+  display: block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+  .train-cover-kicker { font-size: 9px; letter-spacing: 0.12em; }
+}
+.train-cover-title {
+  display: block;
+  margin-top: 2px;
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Version agrandie dans l'étude de cas */
+.train-cover--modal { border-radius: 18px; aspect-ratio: 16 / 7; }
+.train-cover--modal .train-cover-ouigo { width: 44px; height: 44px; }
+.train-cover--modal .train-cover-sncf { height: 40px; }
+.train-cover--modal .train-cover-logos { top: 16px; left: 16px; }
+.train-cover--modal .train-cover-caption { left: 22px; bottom: 18px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .train-cover-photo img,
+  .train-cover-logos,
+  .train-cover-caption { transition: none; }
+  .train-cover-photo img { transform: scale(1.08); filter: none; opacity: 1; }
+  .train-cover-logos, .train-cover-caption { opacity: 1; transform: none; }
+  .train-cover-speed { display: none; }
+  .train-cover.is-cruising .train-cover-photo img { animation: none; }
+}

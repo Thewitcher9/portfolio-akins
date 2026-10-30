@@ -47,10 +47,11 @@
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
 
   <!-- Custom CSS for Matthew Brutalist Luxe Theme -->
-  <link rel="stylesheet" href="assets/css/style.css?v=20261030c">
-  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261030c">
-  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261030c">
-  <link rel="stylesheet" href="assets/css/interests.css?v=20261030c">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261030d">
+  <link rel="stylesheet" href="assets/css/apple-effects.css?v=20261030d">
+  <link rel="stylesheet" href="assets/css/doc-stack.css?v=20261030d">
+  <link rel="stylesheet" href="assets/css/interests.css?v=20261030d">
+  <link rel="stylesheet" href="assets/css/train-cover.css?v=20261030d">
 </head>
 
 <body class="bg-[#EAECEF] text-[#111215] antialiased selection:bg-black selection:text-white relative">
@@ -438,11 +439,25 @@
             OUIGO (SNCF Voyageurs) · Saint-Denis
           </p>
 
-          <!-- Visuel -->
-          <div class="aspect-[16/9] mb-4 rounded-xl overflow-hidden border border-gray-200 bg-[#111215] text-white flex flex-col items-center justify-center gap-2 p-6 text-center">
-            <i data-lucide="bot" class="w-8 h-8 text-white/70" stroke-width="1.5"></i>
-            <span class="text-2xl sm:text-3xl font-extrabold tracking-tight">OUIGO</span>
-            <span class="text-[11px] uppercase tracking-widest text-gray-400">Assistant virtuel IA · Selfcare voyageur 24/7</span>
+          <!-- Couverture animée : train OUIGO + logos -->
+          <div class="train-cover aspect-[16/9] mb-4 rounded-xl border border-gray-200">
+            <div class="train-cover-photo">
+              <img src="assets/images/ouigo/train_ouigo.webp"
+                alt="TGV OUIGO bleu à deux étages roulant dans la campagne" loading="lazy">
+            </div>
+            <div class="train-cover-speed" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="train-cover-shade" aria-hidden="true"></div>
+
+            <div class="train-cover-logos">
+              <img src="assets/images/ouigo/logo_ouigo.png" alt="OUIGO" class="train-cover-ouigo">
+              <span class="train-cover-sep" aria-hidden="true"></span>
+              <img src="assets/images/ouigo/logo_sncf_voyageurs.webp" alt="SNCF Voyageurs" class="train-cover-sncf">
+            </div>
+
+            <div class="train-cover-caption">
+              <span class="train-cover-kicker">Relation client · Assistant virtuel IA</span>
+              <span class="train-cover-title">Selfcare voyageur 24/7</span>
+            </div>
           </div>
 
           <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-4">
@@ -1418,12 +1433,13 @@
   <div id="toast-notification"></div>
 
   <!-- Main JavaScript File -->
-  <script src="assets/js/main.js?v=20261030c"></script>
-  <script src="assets/js/apple-effects.js?v=20261030c"></script>
-  <script src="assets/js/doc-stack.js?v=20261030c"></script>
-  <script src="assets/js/photo-slideshow.js?v=20261030c"></script>
-  <script src="assets/js/linkedin-feed.js?v=20261030c"></script>
-  <script src="assets/js/interests.js?v=20261030c"></script>
+  <script src="assets/js/train-cover.js?v=20261030d"></script>
+  <script src="assets/js/main.js?v=20261030d"></script>
+  <script src="assets/js/apple-effects.js?v=20261030d"></script>
+  <script src="assets/js/doc-stack.js?v=20261030d"></script>
+  <script src="assets/js/photo-slideshow.js?v=20261030d"></script>
+  <script src="assets/js/linkedin-feed.js?v=20261030d"></script>
+  <script src="assets/js/interests.js?v=20261030d"></script>
 
   <script>
   let currentSlide = 0;
