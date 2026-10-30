@@ -11,7 +11,7 @@ Ce portfolio a été conçu sur-mesure pour mettre en valeur le profil, les **4 
 
 ### 🌟 Points Forts pour les Recruteurs :
 1. **Design "Executive Tech" immersif** : Fond sombre prestigieux, accents bleu ciel & émeraude, cartes en glassmorphism, typographie premium (*Space Grotesk* et *Plus Jakarta Sans*).
-2. **Méthode STAR intégrée** : Décomposition systématique de chaque projet en **Situation**, **Tâche**, **Action** et **Résultat / KPIs** avec livrables concrets.
+2. **Fiche détaillée par mission** : contexte, objectif, réalisations et résultats, avec les livrables concrets.
 3. **Filtres interactifs par catégorie** :
    - *Transformation & IA* (OUIGO & SNCF Optim'services)
    - *Conduite du Changement* (PowerApps & Séminaire Assistantes SNCF)
@@ -34,7 +34,7 @@ PORTFOLIO/
     ├── css/
     │   └── style.css              # Thème Executive Tech, effets glassmorphism, mode sombre/clair, impression
     ├── js/
-    │   └── main.js                # Données des 4 projets, logique STAR, filtres, modals, copie email
+    │   └── main.js                # Données des 4 missions, fiches détaillées, modals, copie email
     └── images/
         ├── akins_avatar.png       # Photo de profil détourée (en prise de parole au micro)
         ├── profile_banner.png     # Bannière LinkedIn officielle
@@ -65,5 +65,5 @@ PORTFOLIO/
 ## 📝 Personnalisation facile du contenu
 
 Pour ajuster un texte, ajouter une mission ou mettre à jour un KPI :
-* **Projets & Méthode STAR** : Ouvrez `assets/js/main.js` et modifiez le tableau `projectsData`.
+* **Missions et fiches détaillées** : Ouvrez `assets/js/main.js` et modifiez le tableau `projectsData`.
 * **Coordonnées ou Liens** : Modifiez `index.html` dans les sections `#profil` et `#contact`.

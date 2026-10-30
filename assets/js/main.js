@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Open Project Modal (STAR Breakdown)
+// Ouvre la fiche détaillée d'une mission
 window.openProjectModal = function (projectId) {
   const proj = projectsData.find(p => p.id === projectId);
   if (!proj) return;
@@ -227,15 +227,15 @@ window.openProjectModal = function (projectId) {
         <p class="text-sm text-gray-800 leading-relaxed">${proj.summary}</p>
       </div>
 
-      <!-- STAR Detailed Framework -->
+      <!-- La mission en détail : contexte, objectif, actions, résultats -->
       <div class="space-y-4">
-        <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider">DÉCOMPOSITION MÉTHODE STAR</h4>
+        <h4 class="text-xs font-bold text-gray-900 uppercase tracking-wider">LA MISSION EN DÉTAIL</h4>
 
         <!-- Situation -->
         <div class="p-4 rounded-xl bg-white border border-gray-200">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-gray-100 text-gray-900">S</span>
-            <h5 class="text-sm font-bold text-gray-900">Situation & Contexte</h5>
+            <span class="star-tag bg-gray-100 text-gray-900"><i data-lucide="compass" class="w-3.5 h-3.5"></i></span>
+            <h5 class="text-sm font-bold text-gray-900">Le contexte</h5>
           </div>
           <p class="text-gray-600 text-sm leading-relaxed">${proj.star.situation}</p>
         </div>
@@ -243,8 +243,8 @@ window.openProjectModal = function (projectId) {
         <!-- Tâche -->
         <div class="p-4 rounded-xl bg-white border border-gray-200">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-gray-100 text-gray-900">T</span>
-            <h5 class="text-sm font-bold text-gray-900">Tâche & Enjeu Prioritaire</h5>
+            <span class="star-tag bg-gray-100 text-gray-900"><i data-lucide="target" class="w-3.5 h-3.5"></i></span>
+            <h5 class="text-sm font-bold text-gray-900">Mon objectif</h5>
           </div>
           <p class="text-gray-600 text-sm leading-relaxed">${proj.star.tache}</p>
         </div>
@@ -252,8 +252,8 @@ window.openProjectModal = function (projectId) {
         <!-- Actions -->
         <div class="p-4 rounded-xl bg-white border border-gray-200">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-gray-100 text-gray-900">A</span>
-            <h5 class="text-sm font-bold text-gray-900">Actions Clés Conduites</h5>
+            <span class="star-tag bg-gray-100 text-gray-900"><i data-lucide="list-checks" class="w-3.5 h-3.5"></i></span>
+            <h5 class="text-sm font-bold text-gray-900">Ce que j'ai réalisé</h5>
           </div>
           <ul class="space-y-2 mt-2">
             ${proj.star.action.map(act => `
@@ -268,8 +268,8 @@ window.openProjectModal = function (projectId) {
         <!-- Résultats -->
         <div class="p-4 rounded-xl bg-gray-900 text-white border border-gray-800">
           <div class="flex items-center gap-2 mb-1.5">
-            <span class="star-tag bg-white text-gray-900 font-bold">R</span>
-            <h5 class="text-sm font-bold text-white">Résultats & Impact Mesurable</h5>
+            <span class="star-tag bg-white text-gray-900"><i data-lucide="trending-up" class="w-3.5 h-3.5"></i></span>
+            <h5 class="text-sm font-bold text-white">Les résultats</h5>
           </div>
           <ul class="space-y-2 mt-2">
             ${proj.star.resultats.map(res => `
