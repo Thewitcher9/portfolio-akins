@@ -40,7 +40,7 @@ const projectsData = [
   },
   {
     id: "sncf-optim",
-    image: "assets/images/LogoOptimService.jpg",
+    image: "assets/images/logos/logo_optim_services.png",
     video: {
       id: "wwgQ7EqXUgg",
       title: "Journée annuelle des assistant(e)s de direction du Groupe SNCF – Activité physique et bien-être"
@@ -79,7 +79,7 @@ const projectsData = [
   },
   {
     id: "region-idf",
-    image: "assets/images/conseil_regional_idf.jpg",
+    image: "assets/images/logos/logo_region_idf.png",
     title: "Instruction de Dossiers & JOP Paris 2024",
     role: "Stagiaire auprès du service des sports",
     company: "Région Île-de-France (Conseil Régional)",
